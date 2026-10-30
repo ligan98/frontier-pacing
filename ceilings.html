@@ -291,7 +291,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <ol>
       <li><a href="#overview"><span class="n">·</span><span>五项结论一览</span></a></li>
       <li class="toc-part">基本构件</li>
-      <li><a href="#takeoff"><span class="n">1</span><span>算力与起飞</span></a></li>
+      <li><a href="#takeoff"><span class="n">1</span><span>算力与起飞期</span></a></li>
       <li><a href="#hazard"><span class="n">2</span><span>风险率与知识</span></a></li>
       <li><a href="#fit"><span class="n">3</span><span>拟合生产率</span></a></li>
       <li class="toc-part">兑现两项承诺</li>
@@ -334,7 +334,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <ol>
           <li><a href="#overview">五项结论一览</a></li>
           <li class="toc-part">基本构件</li>
-          <li><a href="#takeoff">算力与起飞</a></li>
+          <li><a href="#takeoff">算力与起飞期</a></li>
           <li><a href="#hazard">风险率与知识</a></li>
           <li><a href="#fit">拟合生产率</a></li>
           <li class="toc-part">兑现两项承诺</li>
@@ -364,11 +364,11 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <p>一项放缓前沿开发的提案作出两项承诺：其一，每月完全失控的风险率不超过上限；其二，任何能力里程碑的推迟不超过一年。能否同时兑现，取决于尚不明确的安全研究生产率。下图展示连接两项承诺的计算，后文分十四步展开。</p>
         <p>可以这样来想：把前沿开发看作一辆赛车。发动机是能力研究，刹车是安全研究。风险上限限制赛道上每一段允许有多大风险，开发期限则是单圈用时。要同时守住两者，刹车必须足够好；若刹车可能很弱，任何方案都无法既守住风险限制又跑完这一圈。最好的办法是先让机械师把刹车造好，再用更强的发动机跑这一圈，因为算力在持续增长。</p>
         <ol class="findings">
-          <li>同时兑现两项承诺，要求安全研究的生产率不低于某一最低值，即一个必要下界。若不增加任何安全知识，最终模型的风险率约为上限的 57 倍；因此，在起飞结束之前，安全知识须将其减半约 5.8 次。按拟合生产率计，即使全力投入，安全研究也至少需要 17.2 个月；而开发至多持续 30 个月——全速开发 18 个月，另加 12 个月的领先时间。由此，只要安全研究生产率有可能低于情景假定值的 57%，任何规则都无法同时兑现两项承诺。<a class="go" href="#promises">第 4–5 步</a></li>
+          <li>同时兑现两项承诺，要求安全研究的生产率不低于某一最低值，即一个必要下界。若不增加任何安全知识，最终模型的风险率约为上限的 57 倍；因此，在起飞期结束之前，安全知识须将其减半约 5.8 次。按拟合生产率计，即使全力投入，安全研究也至少需要 17.2 个月；而开发至多持续 30 个月——全速开发 18 个月，另加 12 个月的领先时间。由此，只要安全研究生产率有可能低于情景假定值的 57%，任何规则都无法同时兑现两项承诺。<a class="go" href="#promises">第 4–5 步</a></li>
           <li>先全力做安全、再重启，可将所需的安全研究生产率压低至接近必要下界。实验室暂停能力开发一年、专攻安全研究，随后重启能力开发，沿全速路径晚一年推进。算力持续增长：重启后仅需拿出 12.5% 的算力用于研究，富余算力重启则把其余算力全部投入安全研究。其重启界比必要下界高 21%；在这一下界上，完全失控概率为 8%，全速开发为 75%。若早期知识随模型变强而贬值，或后期研究更为有效，两者差距会进一步拉大。<a class="go" href="#replay">第 6–7 步</a></li>
-          <li>安全研究越早开展，价值越高；但若更强的模型使安全研究更有效，而早期知识同时贬值，结论可能反转。推迟一个月的价值，等于该月学习所消除的风险，减去在每个能力水平上多停留一个月所增加的风险；到起飞后期，后者超过前者。按情景的技术参数，在起点安排为期 12 个月、含安全研究的暂停，可将完全失控概率降低 60 个百分点，越早暂停越有利。<a class="go" href="#month">第 8–10 步</a></li>
+          <li>安全研究越早开展，价值越高；但若更强的模型使安全研究更有效，而早期知识同时贬值，结论可能反转。推迟一个月的价值，等于该月学习所消除的风险，减去在每个能力水平上多停留一个月所增加的风险；到起飞期后期，后者超过前者。按情景的技术参数，在起点安排为期 12 个月、含安全研究的暂停，可将完全失控概率降低 60 个百分点，越早暂停越有利。<a class="go" href="#month">第 8–10 步</a></li>
           <li>客户承担这项保证的代价。服务既取决于推理算力，也取决于模型质量，所以把算力转给安全研究，无论取自推理还是取自能力研究，客户都要付出代价：前者直接减少眼下的服务，后者推迟更好的模型。富余算力重启要放弃五年服务价值的 13%。关于生产率的证据可以降低这一代价：监管者若能剔除生产率低于拟合值的情形，这类重启政策中最便宜的一种只需放弃 4.1%。<a class="go" href="#cost">第 11 步</a></li>
-          <li>固定算力份额的规则保持开发日期不变，风险则随安全研究生产率变化；风险上限规则固定风险率，开发延迟则随生产率变化。在十个安全技术版本中，较好的选择是尽早把算力转入安全研究的规则：算力下限使完全失控概率下降 15 至 71 个百分点，带安全研究的暂停则下降 21 至 68 个百分点。风险上限与研发模型滞后造成的开发延迟，发生在起飞后期；它们的效果并不一致，既可能降低风险，也可能抬高风险。<a class="go" href="#zero">第 12–13 步</a></li>
+          <li>固定算力份额的规则保持开发日期不变，风险则随安全研究生产率变化；风险上限规则固定风险率，开发延迟则随生产率变化。在十个安全技术版本中，较好的选择是尽早把算力转入安全研究的规则：算力下限使完全失控概率下降 15 至 71 个百分点，带安全研究的暂停则下降 21 至 68 个百分点。风险上限与研发模型滞后造成的开发延迟，发生在起飞期后期；它们的效果并不一致，既可能降低风险，也可能抬高风险。<a class="go" href="#zero">第 12–13 步</a></li>
         </ol>
       </div>
       <figure class="fig">
@@ -376,7 +376,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
           <div class="box top"><h3>两项承诺：风险率不超过上限，任何里程碑的推迟都不超过 12 个月</h3></div>
           <div class="link split" aria-hidden="true"><span class="stem"></span><span class="bar l"></span><span class="bar r"></span><span class="drop l head"></span><span class="drop r head"></span></div>
           <div class="row">
-            <div class="box a"><h3>风险上限要求什么</h3><dl><dt>需要</dt><dd>能把最终模型的风险率压低到约 1/57 的安全知识，相当于约 5.8 次减半</dd><dt>时间</dt><dd>在最危险的模型运行之前，也就是起飞接近尾声时</dd></dl></div>
+            <div class="box a"><h3>风险上限要求什么</h3><dl><dt>需要</dt><dd>能把最终模型的风险率压低到约 1/57 的安全知识，相当于约 5.8 次减半</dd><dt>时间</dt><dd>在最危险的模型运行之前，也就是起飞期接近尾声时</dd></dl></div>
             <div class="box b"><h3>开发期限允许什么</h3><dl><dt>时长</dt><dd>最多 30 个月：全速 18 个月，加上 12 个月的领先时间</dd><dt>速度</dt><dd>按拟合生产率、全部算力投入安全研究，最快每 2.9 个月减半一次</dd></dl></div>
           </div>
           <div class="link merge" aria-hidden="true"><span class="drop l"></span><span class="drop r"></span><span class="bar l"></span><span class="bar r"></span><span class="stem head"></span></div>
@@ -407,12 +407,12 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <p class="part-h"><span>第一部分</span>基本构件：算力、风险率与拟合生产率</p>
 
     <!-- 1 -->
-    <section class="sec" id="takeoff" aria-labelledby="h-takeoff" data-paper="title:Compute_and_the_Takeoff sec:capability sec:fit">
+    <section class="sec" id="takeoff" aria-labelledby="h-takeoff" data-paper="title:Compute_and_the_Takeoff_Period sec:capability sec:fit">
       <div class="prose">
         <p class="kicker">第 1 步 · 论文第 2.1、3.1 与 4.2 节</p>
         <h2 id="h-takeoff">算力持续增长，晚启动的实验室只需较少的研究份额就能沿全速路径推进</h2>
-        <p>模型考察一家前沿实验室的整个起飞过程。起点是自动化程序员（Automated Coder），也就是把软件工程全部自动化的 AI；终点是全面超越顶尖专家的 AI，也就是在几乎所有认知任务上都超过顶尖人类专家的 AI。能力用一个指数衡量，第一个里程碑处为 0，第二个里程碑处为 1。实验室把算力分配给客户、能力研究与安全研究。这两个里程碑，以及全速起飞要用的 18 个月，都来自 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 的算例。</p>
-        <p>算力每 6 个月翻一番，这是 2010 年代初以来训练算力的趋势（<a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">Sevilla 等 2022</a>）。一年下来是 4 倍，18 个月的全速起飞走完是 8 倍。模型越强，做研究越快，研究速度在起飞中提高到 28 倍。能力到第 15.1 个月走完一半，后一半只用最后 3 个月。</p>
+        <p>模型考察一家前沿实验室的整个起飞期。起点是自动化程序员（Automated Coder），也就是把软件工程全部自动化的 AI；终点是全面超越顶尖专家的 AI，也就是在几乎所有认知任务上都超过顶尖人类专家的 AI。能力用一个指数衡量，第一个里程碑处为 0，第二个里程碑处为 1。实验室把算力分配给客户、能力研究与安全研究。这两个里程碑，以及全速起飞期要用的 18 个月，都来自 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 的算例。</p>
+        <p>算力每 6 个月翻一番，这是 2010 年代初以来训练算力的趋势（<a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">Sevilla 等 2022</a>）。一年下来是 4 倍，18 个月的全速起飞期走完是 8 倍。模型越强，做研究越快，研究速度在起飞期中提高到 28 倍。能力到第 15.1 个月走完一半，后一半只用最后 3 个月。</p>
         <p>算力增长是论文主要政策结论的基础。一家实验室晚 <i>τ</i> 个月开始，只要研究份额取 <i>x</i><sub>0</sub><i>e</i><sup>−<i>Gτ</i></sup>，就能沿原有的全速路径推进：</p>
         <div class="pdisp" data-tex="x_0e^{-G\tau}\,K(\tau+u)=x_0K(u)\qquad\text{对所有 }u\ge0"><i>x</i><sub>0</sub><i>e</i><sup>−<i>Gτ</i></sup> <i>K</i>(<i>τ</i> + <i>u</i>) = <i>x</i><sub>0</sub><i>K</i>(<i>u</i>)，对所有 <i>u</i> ≥ 0</div>
         <p>等式两边都是路径同一阶段 <i>u</i> 上的研究算力，所以晚开始的实验室每个里程碑都正好晚 <i>τ</i> 个月。算力一年涨到四倍，晚一年开始的实验室只要八分之一的研究算力，而不是一半，剩余算力可以用于其他用途。</p>
@@ -420,7 +420,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <div class="src-wrap"><table class="src-tab">
           <thead><tr><th>数字</th><th>取值</th><th>来源</th></tr></thead>
           <tbody>
-            <tr><td>全速起飞：从自动化程序员到全面超越顶尖专家的 AI</td><td class="v">18 个月</td><td><a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project（2026）</a>的算例：1.5 年。</td></tr>
+            <tr><td>全速起飞期：从自动化程序员到全面超越顶尖专家的 AI</td><td class="v">18 个月</td><td><a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project（2026）</a>的算例：1.5 年。</td></tr>
             <tr><td>全速时的完全失控概率</td><td class="v">75%（范围 5% 至 75%）</td><td>AI Futures Project（2026）的算例。每个概率下上限都重新求解，所以各个界不变（第 2 步）。</td></tr>
             <tr><td>安全论证（safety case）制度下的完全失控概率</td><td class="v">40%</td><td>AI Futures Project（2026）。把它视为起点处 12 个月的暂停、并由此确定安全产出，是论文的假设。</td></tr>
             <tr><td>对最接近对手的领先；对手的追赶时间</td><td class="v">4–8 个月；约一年</td><td>AI Futures Project（2026）；论文 12 个月的期限由此而来。</td></tr>
@@ -458,7 +458,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <div class="prose">
         <p class="kicker">第 2 步 · 论文第 2.2、3.2 与 4.2 节</p>
         <h2 id="h-hazard">风险既来自模型所处的状态，也来自每一步推进；安全知识按比例压低两者</h2>
-        <p>这里的完全失控，指人类对人工智能不可逆地失去控制。论文把这种危险理解为对齐失败。能力越强的模型，越可能追求开发者并未设定的目标，也越有能力摆脱控制，所以危险随能力上升。论文用风险率表示完全失控的危险，即在此前尚未发生的条件下，它在当月发生的概率。累计风险 <i>H</i> 对应概率 1 − <i>e</i><sup>−<i>H</i></sup>；情景里全速开发的 75%，对应的累计风险是 ln 4 ≈ 1.386。与 AI Futures Project 的 75% 一样，论文只计起飞期间的风险。因此它假定危险在起飞结束时终止，例如仍受控的全面超越顶尖专家的 AI 能够帮助解决后继模型的对齐问题。</p>
+        <p>这里的完全失控，指人类对人工智能不可逆地失去控制。论文把这种危险理解为对齐失败。能力越强的模型，越可能追求开发者并未设定的目标，也越有能力摆脱控制，所以危险随能力上升。论文用风险率表示完全失控的危险，即在此前尚未发生的条件下，它在当月发生的概率。累计风险 <i>H</i> 对应概率 1 − <i>e</i><sup>−<i>H</i></sup>；情景里全速开发的 75%，对应的累计风险是 ln 4 ≈ 1.386。与 AI Futures Project 的 75% 一样，论文只计起飞期间的风险。因此它假定危险在起飞期结束时终止，例如仍受控的全面超越顶尖专家的 AI 能够帮助解决后继模型的对齐问题。</p>
         <p>状态风险来自模型的运行和使用：能力越高，风险越大，并按月累积。步进风险来自训练下一个更强的模型，按能力增量累积。安全研究积累安全知识存量 <i>S</i>，把此后每个能力水平上的这两类风险按同一比例压低：</p>
         <div class="pdisp" data-tex="\lambda(t)=\bigl[h(F)+k(F)\,\dot F\bigr]\,e^{-S(t)}\qquad \dot S=a\,\bar\sigma\,y(s)"><i>λ</i>(<i>t</i>) = [<i>h</i>(<i>F</i>) + <i>k</i>(<i>F</i>) <i>Ḟ</i>] <i>e</i><sup>−<i>S</i></sup>, &nbsp; <i>Ṡ</i> = <i>a σ̄ y</i>(<i>s</i>)</div>
         <p><i>S</i> 每增加 ln 2，风险率减半。生产率 <i>a</i> 是论文的核心未知量。在拟合生产率 <i>a</i> = 1 下，按常规份额做一个月的安全研究，此后每个风险率都降低 8.3%。这里生产率按固定口径变化：<i>h</i> 与 <i>k</i> 保持情景值，生产率低只是说研究积累的知识少。</p>
@@ -469,7 +469,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <div class="fig-body">
           <div class="plots two">
             <div><p class="plot-h">全速时每月的风险率</p><div class="chart" data-chart="hz-l"></div><div class="legend" data-legend="hz-l"></div></div>
-            <div><p class="plot-h">起飞过程中的完全失控概率</p><div class="chart" data-chart="hz-p"></div></div>
+            <div><p class="plot-h">起飞期中的完全失控概率</p><div class="chart" data-chart="hz-p"></div></div>
           </div>
           <div class="side">
             <div class="ctl-box" data-controls="prodHaz"></div>
@@ -479,7 +479,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <figcaption class="read">
           <p>左图（风险率）。全速路径上每月的风险率，对数刻度。蓝线把实验室在滑块所设生产率下积累的知识算进去；灰色虚线一点知识都不算。点线是情景的上限每月 0.0492。风险率随能力陡升：全速累计风险的四分之三，出现在能力过了一半之后。</p>
           <p>右图（概率）。同样两条路径上的累计完全失控概率。按拟合生产率，最终是 75%。生产率越低，积累的知识越少，蓝线越接近灰线。</p>
-          <p>含义：全速开发在起飞后期、模型最强的时候突破上限。把风险率压在上限之下需要知识，而知识需要时间。</p>
+          <p>含义：全速开发在起飞期后期、模型最强的时候突破上限。把风险率压在上限之下需要知识，而知识需要时间。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="hazard"></div></details>
       </figure>
@@ -490,7 +490,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <div class="prose">
         <p class="kicker">第 3 步 · 论文第 4.1 与 4.2 节</p>
         <h2 id="h-fit">安全产出按 40% 的结果拟合，学习对算力的回报递减</h2>
-        <p>情景沿用 AI Futures Project 的算例：全速起飞要 18 个月，完全失控概率 75%。安全论证（safety case）制度下，第三方评估者估每家公司的风险，政府照着设上限，这样一来概率落到约 40%，领先时间并没有丢。论文把这种制度折成起点处 12 个月的暂停：安全份额保持常规值，算力不再增长。这只是一个建模假设。</p>
+        <p>情景沿用 AI Futures Project 的算例：全速起飞期要 18 个月，完全失控概率 75%。安全论证（safety case）制度下，第三方评估者估每家公司的风险，政府照着设上限，这样一来概率落到约 40%，领先时间并没有丢。论文把这种制度折成起点处 12 个月的暂停：安全份额保持常规值，算力不再增长。这只是一个建模假设。</p>
         <p>拟合的安全产出 <i>σ</i><sub>b</sub> 由下式定出</p>
         <div class="pdisp" data-tex="\frac{h(0)\bigl(1-e^{-12\sigma_b}\bigr)}{\sigma_b}+e^{-12\sigma_b}\,\bigl[-\ln(1-0.75)\bigr]=-\ln(1-0.40)"><i>h</i>(0)(1 − <i>e</i><sup>−12<i>σ</i><sub>b</sub></sup>)/<i>σ</i><sub>b</sub> + <i>e</i><sup>−12<i>σ</i><sub>b</sub></sup> [−ln(1 − 0.75)] = −ln(1 − 0.40)</div>
         <p>第一项是暂停期间的暴露，起点是每月 <i>h</i>(0) = 0.00235，随知识积累往下走。第二项是全速累计风险 1.386，按暂停期间积累的知识降低。解出来是每月 <i>σ</i><sub>b</sub> = 0.086116。一次暂停把此后的所有风险率都乘上 0.356，1.386 就降到 0.493。等待本身只添了 0.018，因为初始模型的风险率很低。两项合计 0.511，也就是 40% 的概率。</p>
@@ -568,7 +568,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <ol>
           <li>最终模型必须处在上限之下。步进风险不为负，所以上限要求 <i>h</i>(1)<i>e</i><sup>−<i>S</i>(<i>T</i>)</sup> ≤ <i>c̄</i>，即 <i>S</i>(<i>T</i>) ≥ ln[<i>h</i>(1)/<i>c̄</i>]。</li>
           <li>知识的增长速度有上限：全部算力投入安全、处在最有利的能力水平时，每月至多 <i>aσ̄</i><sub>max</sub><i>ȳ</i>。</li>
-          <li>两者合并，起飞至少需要 <i>T</i> ≥ ln[<i>h</i>(1)/<i>c̄</i>]/(<i>aσ̄</i><sub>max</sub><i>ȳ</i>) 个月。</li>
+          <li>两者合并，起飞期至少需要 <i>T</i> ≥ ln[<i>h</i>(1)/<i>c̄</i>]/(<i>aσ̄</i><sub>max</sub><i>ȳ</i>) 个月。</li>
           <li>最后一个里程碑至多晚到 <i>L</i> 个月，因此 <i>T</i> ≤ <i>T</i><sub>0</sub> + <i>L</i>。若最短时间更长，任何路径都无法兑现两项承诺。</li>
         </ol>
         <p>这就是命题 1。情景中 <i>h</i>(1) = 每月 2.82，约为上限的 57 倍，所以实验室需要 <i>S</i>(<i>T</i>) ≥ 4.05，约 5.8 次减半。最快的学习为每月 0.236，一次减半需要 2.9 个月，合规至少需要 17.2 个月。这在 18 + 12 = 30 个月之内，但一旦生产率低于拟合值的 17.2/30 ≈ 0.57，就放不下了。</p>
@@ -586,7 +586,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
           </div>
         </div>
         <figcaption class="read">
-          <p>左图（合规时间）。在滑块所设上限下守住上限所需的最短起飞时间，横轴为生产率（对数刻度）。点线是期限允许的 30 个月。在阴影区间内曲线高于点线，任何规则都无法兑现两项承诺。</p>
+          <p>左图（合规时间）。在滑块所设上限下守住上限所需的最短起飞期，横轴为生产率（对数刻度）。点线是期限允许的 30 个月。在阴影区间内曲线高于点线，任何规则都无法兑现两项承诺。</p>
           <p>右图（必要界）。上限能够在 30 个月内实现的最低生产率，横轴为上限（对数刻度）。上限越紧，所需知识越多，必要界随上限下降而上升。上限达到 <i>h</i>(1) = 2.82 时，不再需要知识。点线标出情景的上限。</p>
           <p>含义：上限只能与生产率下界一同保证。若生产率可以任意小，任何低于 <i>h</i>(1) 的上限都会在某种情形下失效。</p>
         </figcaption>
@@ -669,7 +669,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <p>能够兑现承诺，并不意味着研究时机已经确定。论文先用一个基准单独分析时机：暂停之后，实验室按里程碑一个一个恢复它本来要走的那条路径。权衡落在两个量上：前面还剩多少风险要经历 <i>A</i>(<i>t</i>)，以及原地不动要担的风险 <i>w</i>(<i>t</i>) = <i>h</i>(<i>F</i>)<i>e</i><sup>−<i>S</i></sup>。一个月的暂停增加 <i>m</i> 的知识，约节省前方风险中的 <i>mA</i>(<i>t</i>)，代价是 <i>w</i>(<i>t</i>) 的暴露：</p>
         <div class="pdisp" data-tex="v_{s_p}(t)=m\,A(t)-w(t)"><i>v</i>(<i>t</i>) = <i>m A</i>(<i>t</i>) − <i>w</i>(<i>t</i>)</div>
         <p>命题 4 给出暂停 <i>δ</i> 个月的确切效果：<span class="nw">Δ<i>H</i> = −[(1 − <i>e</i><sup>−<i>mδ</i></sup>)/<i>m</i>] <i>v</i>(<i>t</i>)</span>。方括号里那一项，把暂停长度折成有效月数；暴露随知识积累缩小，所以它小于 <i>δ</i>。第 3 步的拟合用的就是这个结果。起点处 <i>v</i> = 0.086116 × 1.386 − 0.00235 ≈ 0.117，12 个月的暂停相当于 7.48 个有效月，大约省下 0.875。</p>
-        <p>沿全速路径走，一个月的价值随开始日期一路下降。按常规份额，到第 15.9 个月它变成负的。把研究算力转进安全的那种暂停，学习速度是常规的 2.16 倍：起点处价值为 0.255，到第 16.7 个月还是正的。全部推理都停的暂停，到第 14.8 个月就不划算了。起飞后期，手上的模型已经很危险，前面留给新知识去护的风险也没多少了。</p>
+        <p>沿全速路径走，一个月的价值随开始日期一路下降。按常规份额，到第 15.9 个月它变成负的。把研究算力转进安全的那种暂停，学习速度是常规的 2.16 倍：起点处价值为 0.255，到第 16.7 个月还是正的。全部推理都停的暂停，到第 14.8 个月就不划算了。起飞期后期，手上的模型已经很危险，前面留给新知识去护的风险也没多少了。</p>
       </div>
       <figure class="fig">
         <div class="fig-body">
@@ -763,9 +763,9 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <div class="prose">
         <p class="kicker">第 11 步 · 论文第 7 节</p>
         <h2 id="h-cost">客户承担算力减少和能力改进延迟的代价；更多证据可以降低这项代价</h2>
-        <p>客户每月得到价值 √(<i>e</i><sup><i>μF</i></sup><i>iK</i>) 的服务：推理算力 <i>iK</i>，质量乘以 <i>e</i><sup><i>μF</i></sup>。服务质量在起飞中提高到十倍。政策的服务损失是 <i>q</i> 个月内折现服务价值相对全速下降的百分比：</p>
+        <p>客户每月得到价值 √(<i>e</i><sup><i>μF</i></sup><i>iK</i>) 的服务：推理算力 <i>iK</i>，质量乘以 <i>e</i><sup><i>μF</i></sup>。服务质量在起飞期中提高到十倍。政策的服务损失是 <i>q</i> 个月内折现服务价值相对全速下降的百分比：</p>
         <div class="pdisp" data-tex="J_q=\int_0^q e^{-rt}\sqrt{e^{\mu F(t)}\,i(t)\,K(t)}\,dt"><i>J</i><sub><i>q</i></sub> = ∫<sub>0</sub><sup><i>q</i></sup> <i>e</i><sup>−<i>rt</i></sup> √(<i>e</i><sup><i>μF</i></sup> <i>iK</i>) <i>dt</i></div>
-        <p>重启后安全份额在服务价值与生产率下界之间权衡。富余算力重启要的下界是 0.69。它放弃 13% 的五年服务价值，两年服务价值则全部损失，因为起飞到第 30 个月收尾之前，客户什么都拿不到。在它的下界处，完全失控概率被压在 8%，全速则是 75%。常规份额重启只放弃 4.7% 和 51%，但需要 1.08 的下界。</p>
+        <p>重启后安全份额在服务价值与生产率下界之间权衡。富余算力重启要的下界是 0.69。它放弃 13% 的五年服务价值，两年服务价值则全部损失，因为起飞期到第 30 个月收尾之前，客户什么都拿不到。在它的下界处，完全失控概率被压在 8%，全速则是 75%。常规份额重启只放弃 4.7% 和 51%，但需要 1.08 的下界。</p>
         <p>更强的证据降低代价。对每个生产率下界，图里的做法是在学习时间和重启后安全份额上挑：既要在最坏的生产率下守住上限，又要让五年损失最小。在拟合生产率下，最便宜的政策学习 7.5 个月，然后把 21.0% 的算力用于研究、40.1% 用于安全、38.9% 留给客户。它放弃 4.1% 的五年价值，学习一年时为 5.0%。它在拟合生产率下留下的风险也更高：8%，富余算力重启为 2%。</p>
         <p>服务价值和风险，论文分开报，不把两者换算到一起。讲服务预算必须说清是几年的：全速开发五年，服务价值是两年的 13.65 倍。</p>
       </div>
@@ -782,7 +782,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         </div>
         <figcaption class="read">
           <p>左图（代价）。保证情景上限与 12 个月期限的最便宜重启政策的五年服务损失，随生产率下界变化。蓝线：学习时间与重启后安全份额都可选。灰色虚线：学习固定为 12 个月，只选重启后安全份额。黑线是必要界，它左边任何政策都无法同时兑现两项承诺；黑线和曲线起点之间，任何重启政策都守不住。</p>
-          <p>右图（算力）。各政策恢复开发之后的算力分配，条形末端是五年服务损失。富余算力重启在起飞结束之前不给客户任何算力。</p>
+          <p>右图（算力）。各政策恢复开发之后的算力分配，条形末端是五年服务损失。富余算力重启在起飞期结束之前不给客户任何算力。</p>
           <p>含义：生产率下界决定两项承诺的服务代价。能够排除较低生产率的证据越充分，这项代价越低。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="cost"></div></details>
@@ -795,8 +795,8 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <p class="kicker">第 12 步 · 论文第 8.1 与 8.2 节，命题 7</p>
         <h2 id="h-zero">安全研究不产生知识时，放慢会提高风险，但早期暂停可以降低风险</h2>
         <p>算力下限、暂停与滞后，管的是算力怎么分，不是风险率。这类规则在任何生产率下都走出同一条能力路径，因为能力的运动方程里既没有知识也没有生产率。因此它们固定开发日期，风险随生产率变化；风险上限规则则固定风险率，延迟随生产率变化。说到底，一个是管数量，一个是管价格。</p>
-        <p>最极端的情形是研究完全不产生知识。研究份额长期低于全速份额，每个里程碑在研究能力尺度上就晚到 <i>M</i> = (<i>x</i><sub>0</sub>/<i>x</i>)<sup><i>ε</i></sup> 倍，实验室在每个能力水平上停得更久。步进风险不变，状态风险更大，累计风险于是上升（命题 7）。情景的算力下限将研究份额固定在 7.7%，于是 <i>M</i> ≈ 2.5，起飞到第 30.0 个月才结束。研究一点用都没有时，它把完全失控概率推高 5.4 个百分点，R&amp;D 模型滞后推高 16.8 个百分点。</p>
-        <p>暂停则不同，因为实验室等待期间算力继续增长。它恢复时拥有更多算力，此后跨越每个能力水平都比全速更快。起飞累计风险的确切变化为</p>
+        <p>最极端的情形是研究完全不产生知识。研究份额长期低于全速份额，每个里程碑在研究能力尺度上就晚到 <i>M</i> = (<i>x</i><sub>0</sub>/<i>x</i>)<sup><i>ε</i></sup> 倍，实验室在每个能力水平上停得更久。步进风险不变，状态风险更大，累计风险于是上升（命题 7）。情景的算力下限将研究份额固定在 7.7%，于是 <i>M</i> ≈ 2.5，起飞期到第 30.0 个月才结束。研究一点用都没有时，它把完全失控概率推高 5.4 个百分点，R&amp;D 模型滞后推高 16.8 个百分点。</p>
+        <p>暂停则不同，因为实验室等待期间算力继续增长。它恢复时拥有更多算力，此后跨越每个能力水平都比全速更快。起飞期累计风险的确切变化为</p>
         <div class="pdisp" data-tex="\Delta H=\underbrace{\delta\,h(F_*)}_{\text{等待期间的暴露}}-\underbrace{\int_{F_*}^1 h(F)\,t_0'(F)\,\frac{C}{e^{\gamma t_0(F)}+C}\,dF}_{\text{恢复之后节省的暴露}}">Δ<i>H</i> = 等待期间的暴露 − 恢复之后节省的暴露</div>
         <p>起点处停 12 个月，等待期间多出 0.0282 的暴露，因为初始模型的状态风险很低；此后省下 0.201。两者相抵，Δ<i>H</i> = -0.173，概率降 4.72 个百分点。从第 12.8 个月起，两项打平；再晚就变成加风险了。这个结论的前提是步进风险与速度成正比。若风险随速度超比例上升，暂停之后的加速追赶可能增加风险，这就是算力过剩的担忧。</p>
       </div>
@@ -813,7 +813,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         </div>
         <figcaption class="read">
           <p>左图（两项）。研究不产生知识时，12 个月暂停在等待期间增加的暴露（橙）与恢复之后节省的暴露（蓝），随开始日期变化，对数刻度。节省项随开始日期几乎不动；等待项随手上那个模型的风险率往上走。二者在第 12.8 个月相交。</p>
-          <p>右图（四种规则）。安全研究不产生知识时完全失控概率的变化，单位为百分点。在整个起飞期间放慢研究的规则增加暴露。起飞早期的暂停降低风险，因为实验室此后追赶得更快；第 12.8 个月之后的暂停提高风险。安全下限不改变任何东西，因为它不动能力研究。</p>
+          <p>右图（四种规则）。安全研究不产生知识时完全失控概率的变化，单位为百分点。在整个起飞期间放慢研究的规则增加暴露。起飞期早期的暂停降低风险，因为实验室此后追赶得更快；第 12.8 个月之后的暂停提高风险。安全下限不改变任何东西，因为它不动能力研究。</p>
           <p>含义：放慢本身并不安全。它换来什么取决于安全研究的生产率；生产率为零时，只有早期暂停有帮助。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="zero"></div></details>
@@ -827,7 +827,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <h2 id="h-rules">配置规则固定开发日期；较早投入安全研究的规则，降低风险的效果更一致</h2>
         <p>论文让每种规则都保持用满一年领先时间的那套设定，再在标准化口径下把生产率从拟合值的十分之一拉到两倍。算力下限把研究份额固定为 7.7%，安全份额固定为 25%。两种 12 个月暂停分别从第 1.5 个月（含安全研究）和第 10 个月（全部推理）开始。R&amp;D 模型滞后为 21 个月，安全下限不使用领先时间。这些是用于比较的固定设定，并非每种规则的最优设计。</p>
         <p>生产率变化时，配置规则保持原有日期。上限在一半拟合生产率时使用 25 个月的领先时间，在四分之一时使用 52 个月。停在上限上的每个月都有风险，因此很长的延迟可能留下比全速更高的风险，条形图在低生产率处显示了这一点。</p>
-        <p>论文还把安全技术换成十个版本，每种规则重算一遍。早把算力投进安全研究的规则，降低风险的效果最一致：各个版本里，算力下限让完全失控概率降 15 至 71 个百分点，含安全研究的暂停降 21 至 68 个百分点。延迟发生在起飞后期的规则，效果就不一致：上限的效果从升 24 个百分点到降 74 个百分点都有，滞后从升 12 个百分点到降 36 个百分点都有。当安全研究随能力或算力变得更有生产率，或者危险在起飞结束后仍然持续时，后期延迟才划算。</p>
+        <p>论文还把安全技术换成十个版本，每种规则重算一遍。早把算力投进安全研究的规则，降低风险的效果最一致：各个版本里，算力下限让完全失控概率降 15 至 71 个百分点，含安全研究的暂停降 21 至 68 个百分点。延迟发生在起飞期后期的规则，效果就不一致：上限的效果从升 24 个百分点到降 74 个百分点都有，滞后从升 12 个百分点到降 36 个百分点都有。当安全研究随能力或算力变得更有生产率，或者危险在起飞期结束后仍然持续时，后期延迟才划算。</p>
       </div>
       <figure class="fig">
         <div class="fig-body">
@@ -872,7 +872,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <footer>
       <p><b>论文。</b>甘犁（2026），《风险上限与开发期限：安全研究生产率不确定时的 AI 节奏管控》（<i>Risk Ceilings and Development Deadlines: Pacing AI under Uncertain Safety Productivity</i>），工作论文。<span data-paper-link>论文公开后将在此加入链接。</span></p>
       <p class="refs"><b>资料来源。</b>AI Futures Project（2026），“How to Pace the US Frontier: Tentative Proposals for Domestic AI Regulation”，8 月 5 日，<a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">blog.aifutures.org</a>。Amodei, Dario（2026），“We Must Pace the Frontier”，9 月，<a href="https://darioamodei.com/post/we-must-pace-the-frontier" target="_blank" rel="noopener">darioamodei.com</a>。Sevilla, Jaime 等（2022），“Compute Trends Across Three Eras of Machine Learning”，<i>2022 International Joint Conference on Neural Networks</i>，第 1–8 页，<a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">doi.org/10.1109/IJCNN55064.2022.9891914</a>。</p>
-      <p><b>本页如何运作。</b>页面在浏览器中运行论文的模型：同一套起飞技术、风险率与安全知识、标定、规则和重启政策。在论文设定下，页面显示的数字与论文一致，测试脚本将其逐一与论文的结果文件核对。页面由论文源文件 <span class="mono">5963d425</span> 生成，日期 2026 年 10 月 30 日。</p>
+      <p><b>本页如何运作。</b>页面在浏览器中运行论文的模型：同一套起飞技术、风险率与安全知识、标定、规则和重启政策。在论文设定下，页面显示的数字与论文一致，测试脚本将其逐一与论文的结果文件核对。页面由论文源文件 <span class="mono">82016ce9</span> 生成，日期 2026 年 10 月 30 日。</p>
       <p><b>人工智能的使用。</b>页面在作者指导下，用人工智能软件（Anthropic 的 Claude）做成。作者核对了全部内容，并为此负责。</p>
     </footer>
   </main>
@@ -2264,7 +2264,7 @@ const CTL = {
             show: () => '第 ' + state.vStart.toFixed(2) + ' 个月', paper: '第 0 个月，与拟合相同' },
   riseT: { label: '终点处的安全产出（相对起点）', min: 1, max: 5, step: 0.1, get: () => state.riseT, set: v => { state.riseT = r1(v); },
            show: () => '× ' + state.riseT.toFixed(1), paper: '× 1 或 × 3' },
-  keepT: { label: '起飞全程的知识保留比例', min: 0.25, max: 1, step: 0.05, get: () => state.keepT, set: v => { state.keepT = r2(v); },
+  keepT: { label: '起飞期全程的知识保留比例', min: 0.25, max: 1, step: 0.05, get: () => state.keepT, set: v => { state.keepT = r2(v); },
            show: () => pc(state.keepT, 0) + '%', paper: '100% 或 50%' },
   capT: { label: '上限 c̄', min: Math.log10(0.04), max: Math.log10(0.8), step: 0.005, get: () => Math.log10(state.capT),
           set: v => { state.capT = Math.round(1000 * Math.pow(10, v)) / 1000; }, show: () => '每月 ' + state.capT.toFixed(3),
@@ -2552,7 +2552,7 @@ const RENDER = {
       { k: '推迟开始的实验室的研究份额', v: pc(c.share, 1) + '%', p: '12 个月时 ' + PAPER.insFrReplayShare + '%' },
       { k: '每个里程碑晚到', v: mo(tau) },
       { k: '一年的算力增长', v: likePaper('lfComputeYear', c.computeYear) + ' 倍', p: PAPER.lfComputeYear + ' 倍' },
-      { k: '起飞全程的算力增长', v: likePaper('lfComputeEnd', c.computeEnd) + ' 倍', p: PAPER.lfComputeEnd + ' 倍' },
+      { k: '起飞期全程的算力增长', v: likePaper('lfComputeEnd', c.computeEnd) + ' 倍', p: PAPER.lfComputeEnd + ' 倍' },
       { k: '研究速度，终点相对起点', v: likePaper('lfSpeedRatio', c.speedRatio) + ' 倍', p: PAPER.lfSpeedRatio + ' 倍' },
       { k: '能力达到一半', v: '第 ' + likePaper('lfHalfMonth', c.halfT) + ' 个月', p: '第 ' + PAPER.lfHalfMonth + ' 个月' },
     ]);
@@ -2570,7 +2570,7 @@ const RENDER = {
       ['x_0,\\ s_0,\\ i_0', '全速份额：研究、安全、客户', '50%, 5%, 45%', '50%, 5%, 45%'],
       ['\\tau', '推迟开始', mo(tau), '12 个月'],
       ['\\gamma=\\varepsilon G', '研究能力的增长率', S.m.g.toFixed(4), S.m.g.toFixed(4)],
-      ['T_0', '全速起飞的时长', '18 个月', '18 个月'],
+      ['T_0', '全速起飞期的时长', '18 个月', '18 个月'],
       ['x_0e^{-G\\tau}', '推迟开始的实验室的研究份额', pc(c.share, 1) + '%', PAPER.insFrReplayShare + '%'],
     ], '研究能力以速率 γ = εG 增长，能力的运动方程可以分离变量：dF/φ(F) = (x₀K₀)^ε e^{γt} dt。晚开始的实验室，在路径同一阶段 u 上的研究算力与全速实验室一样，所以每个里程碑都晚 τ 个月到达。');
   },
@@ -2588,7 +2588,7 @@ const RENDER = {
     });
     legend('hz-l', [{ name: none, color: color('ref'), dash: '5 4' }, { name, color: color('s1') }]);
     drawChart('hz-p', {
-      aria: '全速起飞中的累计完全失控概率', height: 250, x: monthsX(18),
+      aria: '全速起飞期中的累计完全失控概率', height: 250, x: monthsX(18),
       y: { min: 0, max: 1, label: '完全失控概率', fmt: pctTick, tipFmt: v => pc(v, 1) + '%' },
       series: [{ name: none, color: color('ref'), dash: '5 4', x: c.t, y: cum(c.zero) }, { name, color: color('s1'), x: c.t, y: cum(c.lam) }],
       points: [{ x: 18, y: c.P, color: color('s1'), label: pc(c.P, 0) + '%', anchor: 'end', dy: 16 }],
@@ -2828,7 +2828,7 @@ const RENDER = {
     if (v && !v.error) miniTable('br-var', ['情形', '只有状态风险', '各占一半'], [
       { cells: ['产出不变，知识完全延续', c.factor.toFixed(3), (S.spare / S.nec).toFixed(2)] },
       { paper: true, cells: ['论文', PAPER.insFrPureFactor, PAPER.lfGapPred] },
-      { cells: ['产出在起飞中升至三倍', v.pureRise.toFixed(1), v.halfRise.toFixed(1)] },
+      { cells: ['产出在起飞期中升至三倍', v.pureRise.toFixed(1), v.halfRise.toFixed(1)] },
       { paper: true, cells: ['论文', PAPER.insFrRiseRatio, PAPER.insFrRiseRatioHalf] },
       { cells: ['一半知识流失', v.pureTransfer.toFixed(1), v.halfTransfer.toFixed(1)] },
       { paper: true, cells: ['论文', PAPER.insFrTransferRatio, PAPER.insFrTransferRatioHalf] },
@@ -2841,7 +2841,7 @@ const RENDER = {
     ], [
       ['\\bar y', '全部算力投入安全时的学习速度', PAPER.insYbar, PAPER.insYbar],
       ['y_r', '富余算力重启后的学习速度', PAPER.insFrYspare, PAPER.insFrYspare],
-      ['T_0,\\ L', '全速起飞时间与期限', '18、12 个月', '18、12 个月'],
+      ['T_0,\\ L', '全速起飞期与期限', '18、12 个月', '18、12 个月'],
       ['', '算力翻倍时间', mo(state.doubling), PAPER.ipComputeDoubling + ' 个月'],
       ['\\lambda^0(u),\\ h(1),\\ \\sigma_b,\\ y(s)', '同第 2、3 步', '', ''],
     ], '第二行适用于最后一个里程碑起约束作用、且该处状态风险与步进风险相等的情形：按全速路径重启，要承担两倍的状态风险，比必要界多一次减半。');
@@ -2935,7 +2935,7 @@ const RENDER = {
       String.raw`\int_{t_2}^T\lambda\bigl[e^{-z_1}-e^{-z_2}\bigr]du>\int_{t_1}^{t_2}\lambda\bigl[1-e^{-z_1}\bigr]du+E_2-E_1`,
     ], [
       ['e^{g}', '终点处安全产出相对起点', '× ' + state.riseT.toFixed(1), '× 1 或 × 3'],
-      ['e^{-d}', '起飞全程的知识保留比例', pc(state.keepT, 0) + '%', '100% 或 50%'],
+      ['e^{-d}', '起飞期全程的知识保留比例', pc(state.keepT, 0) + '%', '100% 或 50%'],
       ['\\delta', '暂停长度', '12 个月', '12 个月'],
       ['y(s_p)', '含安全研究的暂停期间的学习速度', PAPER.tsPauseMult, PAPER.tsPauseMult],
       ['H_0', '全速的累计风险，−ln(1 − 75%)', 'ln 4', 'ln 4'],
@@ -3041,7 +3041,7 @@ const RENDER = {
       ['L', '领先时间', '12 个月', '12 个月'],
       ['\\lambda^0(T_0)', '全速结束时没有知识的风险率，每月', lam0(S.m, S.m.p.T0).toFixed(3), lam0(S.m, S.m.p.T0).toFixed(3)],
       ['i_0,\\ x_0,\\ s_0,\\ K,\\ F^0,\\ \\sigma_b,\\ \\bar y,\\ y(s)', '同第 1 至 3 步', '', ''],
-    ], '在每个学习时间下，满足最后一个里程碑约束的最小安全份额给客户留下最多的算力；再选择使五年损失最小的学习时间。起飞结束后，能力保持为一，恢复全速份额。');
+    ], '在每个学习时间下，满足最后一个里程碑约束的最小安全份额给客户留下最多的算力；再选择使五年损失最小的学习时间。起飞期结束后，能力保持为一，恢复全速份额。');
   },
 
   zero() {
