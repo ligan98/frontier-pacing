@@ -219,6 +219,7 @@ footer .refs a { overflow-wrap: anywhere; }
 .mech { display: grid; gap: 10px; font-size: 0.9rem; }
 .mech .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 10px; }
 .mech .box { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: var(--bg); display: grid; gap: 6px; align-content: start; }
+.mech .row .box { grid-template-columns: minmax(0, max-content); justify-content: center; }   /* center short content, no gap at the middle */
 .mech .box.top, .mech .box.bottom { text-align: center; background: var(--tint); border-color: transparent; }
 .mech .box h3 { margin: 0; font-size: 0.92rem; font-weight: 600; }
 .mech .box.cust h3 { color: var(--s3); }
