@@ -12,6 +12,9 @@
   main { max-width: 640px; margin: 0 auto; padding: 48px 16px 64px; }
   h1 { font-size: 1.5rem; line-height: 1.35; margin: 0 0 8px; }
   p.note { color: var(--muted); margin: 0 0 28px; font-size: 0.95rem; }
+  p.by { color: var(--muted); margin: 0 0 24px; }
+  .intro p { margin: 0 0 16px; }
+  .intro { margin-bottom: 12px; }
   ol { list-style: none; padding: 0; margin: 0; }
   li { border-top: 1px solid var(--line); }
   li:last-child { border-bottom: 1px solid var(--line); }
@@ -25,12 +28,18 @@
 <body>
 <main>
 <h1>Pacing the AI Frontier: Interactive Companions</h1>
-<p class="note">Li Gan. One page per paper; the model runs in your browser, so moving a slider shows the result at once.</p>
+<p class="by">Li Gan</p>
+<div class="intro">
+<p>A few companies are building ever more capable AI. Today's models already write code and help with research. In scenarios such as the AI Futures Project's, within a few years models will do most AI research themselves. Faster research makes better models, and better models make research faster, so within a year or two the frontier could jump to AI that beats top experts in every field. This fast stretch is the takeoff period, and all four papers study it.</p>
+<p>The difficulty is that the stronger the model, the worse and the harder to undo a loss of control would be. Think of frontier development as a race car. The engine is capability research, which makes models stronger. The brake is safety research, which makes them reliable and controllable. The track gets more dangerous toward the end, and a crash ends the race for everyone. The papers ask how fast the car should go and how good the brake must be, who pays for the brake, why several cars on one track drive too fast, and how they can agree to stop together.</p>
+<p>The four papers share one model. A lab's compute has three uses: serving paying customers, capability research and safety research. Compute doubles every six months, and research speeds up as models improve. Safety knowledge lowers the monthly risk of catastrophe at each capability level. In the AI Futures Project's worked example, the takeoff period takes about 18 months at full speed. The numbers are illustrative. They compare rules and are not estimates of real risk.</p>
+</div>
+<p class="note">One page per paper. The model runs in your browser, so moving a slider shows the result at once.</p>
 <ol>
-<li><a href="ceilings.html"><span class="n">1</span><span class="t">Risk Ceilings and Development Deadlines</span></a></li>
-<li><a href="allocation.html"><span class="n">2</span><span class="t">Safety Research and the Allocation of Frontier Compute</span></a></li>
-<li><a href="labs.html"><span class="n">3</span><span class="t">Prizes, Shared Hazard, and the Speed of Frontier AI</span></a></li>
-<li><a href="agreements.html"><span class="n">4</span><span class="t">Agreements Have a Clock</span></a></li>
+<li><a href="ceilings.html"><span class="n">1</span><span class="t">Risk Ceilings and Development Deadlines</span><span class="s">Pacing proposals promise to cap monthly risk and to limit delay. Whether both can hold depends on how productive safety research is, and safety research is worth most when it starts early.</span></a></li>
+<li><a href="allocation.html"><span class="n">2</span><span class="t">Safety Research and the Allocation of Frontier Compute</span><span class="s">Extra safety compute can come from customers or from capability research. Which source costs less depends on how much reaching the end of the takeoff period raises customer services.</span></a></li>
+<li><a href="labs.html"><span class="n">3</span><span class="t">Prizes, Shared Hazard, and the Speed of Frontier AI</span><span class="s">Competing labs develop much faster than a common rule would choose. Only the prize from leading and the shared hazard together explain the gap.</span></a></li>
+<li><a href="agreements.html"><span class="n">4</span><span class="t">Agreements Have a Clock</span><span class="s">A joint pause by two countries can cut the global probability of catastrophe sharply. Compute keeps growing during the pause, so verification and response must keep pace with the clock.</span></a></li>
 </ol>
 </main>
 </body>
