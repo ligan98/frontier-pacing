@@ -317,9 +317,9 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <p class="byline">甘犁 · Department of Economics, Texas A&amp;M University · 2026 年 10 月</p>
       <p class="dek">在前沿起飞期内，人工智能实验室把一批已承诺采购的算力分给能力研究、安全研究和客户三种用途；监管者既限制客户损失的服务，也限制任何能力被推迟的时长。额外的安全算力因而可以来自客户，也可以来自能力研究。前者不推迟能力进展；后者让安全知识有更长时间积累，代价是能力提升和客户服务的改善都要推迟。科研出资会推迟起飞期的结束，所以哪种来源代价更低，取决于抵达终点能把客户服务提高多少：这一终点溢价高于某个阈值时，应由客户出资；低于阈值时，能力研究也应承担一部分。阈值取决于减少研究算力造成的延迟、额外安全算力带来的知识，以及客户服务价值的递减程度。本文还讨论安全算力的投入时机，以及安全研究效果尚不明确时监管者能够作出的承诺。</p>
       <div class="results" role="list">
-        <div class="result" role="listitem"><span class="big msg">先问抵达终点的前沿值多少</span><span class="what">由能力研究出资会推迟抵达终点，每拿走一个百分点推迟 0.11 个月。抵达终点时客户服务增加得越多，这一推迟的代价就越高。增幅超过 34% 时，应由客户出资。释放的算力能立即服务客户时，增幅为 64%；不能时，只有 13%。</span><span class="where">第 2 节与第 5 节，命题 1 与命题 2</span></div>
-        <div class="result" role="listitem"><span class="big msg">安全算力要早投入</span><span class="what">基准情形下，前置的客户出资安全研究可以把完全失控概率从 75.00% 降到 51.01%，或从 25% 降到 13.76%，与本文检验过的最优规则相差无几。</span><span class="where">命题 4，第 7.1 节，表 3</span></div>
-        <div class="result" role="listitem"><span class="big msg">推迟代价低时，放慢能力研究更划算</span><span class="what">基准情形下，若实验室投入能力研究的算力超过 64%，或研究进度对算力不敏感，即使释放的算力全部能服务客户，能力研究也该出资。对各实验室研究份额的估计分在界线两侧，一家实验室 2026 年的研究份额已高于转折点。起飞期从 9 个月到 36 个月，结论都不变。</span><span class="where">第 7.4 节，图 4</span></div>
+        <div class="result" role="listitem"><span class="big msg">先问抵达终点的前沿值多少</span><span class="what">由能力研究出资会推迟抵达终点，每拿走一个百分点推迟 0.11 个月。抵达终点时客户服务增加得越多，这一推迟的代价就越高。增幅超过 34% 时，应由客户出资。释放的算力能立即服务客户时，增幅为 64%；不能时，只有 13%。</span><span class="where">第 2.1 节与第 3 节，命题 1 与命题 2</span></div>
+        <div class="result" role="listitem"><span class="big msg">安全算力要早投入</span><span class="what">基准情形下，前置的客户出资安全研究可以把完全失控概率从 75.00% 降到 51.01%，或从 25% 降到 13.76%，与本文检验过的最优规则相差无几。</span><span class="where">命题 4，第 5.1 节，表 3</span></div>
+        <div class="result" role="listitem"><span class="big msg">推迟代价低时，放慢能力研究更划算</span><span class="what">基准情形下，若实验室投入能力研究的算力超过 64%，或研究进度对算力不敏感，即使释放的算力全部能服务客户，能力研究也该出资。对各实验室研究份额的估计分在界线两侧，一家实验室 2026 年的研究份额已高于转折点。起飞期从 9 个月到 36 个月，结论都不变。</span><span class="where">第 5.4 节，图 4</span></div>
       </div>
       <p class="howto">下面每一步对应论文的一节。图形在浏览器中运行论文的模型。页面打开时采用论文设定，显示的数字与论文一致。拖动滑块可以查看结果如何随参数变化；“论文设定”按钮可恢复原值。恒定规则在浏览器中求解；两阶段规则与分段规则使用论文保存的多起点解，本页只代入计算，不重新求解。全部数字出自以 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 算例为起点的条件情景，不是估计值。论文把 75% 的完全失控概率作为一个范围的上端，范围向下延伸到 25%（第 11 步）。</p>
       <details class="toc-mobile">
@@ -400,7 +400,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 1 -->
     <section class="sec" id="clock" aria-labelledby="h-clock" data-paper="sec:background title:Capability_and_the_research_clock">
       <div class="prose">
-        <p class="kicker">第 1 步 · 论文第 2 节与第 3.1 节</p>
+        <p class="kicker">第 1 步 · 论文第 2.1 节与第 2.2 节</p>
         <h2 id="h-clock">算力的三种用途，和一只按研究能力走的时钟</h2>
         <p>前沿实验室把算力用在三处：服务客户，也就是推理；做能力研究，训练更强的模型；做安全研究，让模型不容易出事。三种用途共同使用同一批芯片。论文的参照配置是 50% 投能力研究、5% 投安全研究、45% 留给客户，称为全速。全速下，前沿从自动化程序员（Automated Coder）这个里程碑出发，18 个月走到“超越顶级专家”的终点，与 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 的算例一致。</p>
         <p>额外安全算力只能从客户服务或能力研究中转出。前者不改变各能力水平的到达日期，但减少客户服务；后者则放慢前沿开发。能力研究一慢，安全知识在模型到达每个能力水平之前都有更多时间积累；但模型走完起飞期要花更长的时间，在每个能力水平上停留得更久，承受状态风险的时间也变长，起飞期结束后的模型所能提供的一切也来得更晚。“该由谁出资”要比较的是：每损失一单位客户服务，哪种来源降低的累计危险率更多。</p>
@@ -442,7 +442,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 2 -->
     <section class="sec" id="risk" aria-labelledby="h-risk" data-paper="title:Knowledge_and_risk sec:scenario">
       <div class="prose">
-        <p class="kicker">第 2 步 · 论文第 3.2 节与第 4 节</p>
+        <p class="kicker">第 2 步 · 论文第 2.3 节与第 2.7 节</p>
         <h2 id="h-risk">知识按比例压低危险率，客户出资无需推迟</h2>
         <p>安全研究积累一个知识存量 <i>S</i>。知识以对数危险率的降幅计量：<i>S</i> 增加 log&nbsp;2，此后的危险率全部减半。它按 <i>Ṡ</i>&nbsp;=&nbsp;<i>σ</i>&nbsp;<i>y</i>(<i>s</i>) 增长，其中学习乘数 <i>y</i>(<i>s</i>) 随安全份额调整学习速度。参照份额下的学习有一半不需要专用算力，另一半的回报是平方根。安全研究生产率 <i>σ</i>&nbsp;=&nbsp;每月 0.086116，按如下判断拟合：在起点暂停 12 个月，可把完全失控概率从 75% 降到 40%。</p>
         <p>完全失控是人类对人工智能不可逆地失去控制。论文把这种危险理解为对齐失败。能力越强的模型，越可能追求开发者并未设定的目标，也越有能力摆脱控制，所以危险随能力上升。在还没有发生完全失控的前提下，危险率由两块构成：</p>
@@ -473,7 +473,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 3 -->
     <section class="sec" id="budget" aria-labelledby="h-budget" data-paper="title:Customers_and_services title:The_budget_and_the_objective">
       <div class="prose">
-        <p class="kicker">第 3 步 · 论文第 3.3 节与第 3.4 节</p>
+        <p class="kicker">第 3 步 · 论文第 2.4 节与第 2.5 节</p>
         <h2 id="h-budget">客户重视服务，服务预算为两种算力来源提供共同的衡量尺度</h2>
         <p>客户看重推理容量和模型质量。贴现后的服务流为</p>
         <div class="pdisp" data-tex="b(t,F,i)=e^{-rt}\sqrt{Q}=e^{(G/2-r)\,t+\mu F/2}\,\sqrt{\min\{i,\bar\imath\}}."><i>b</i> = <i>e</i><sup>−<i>rt</i></sup>√<i>Q</i> = <i>e</i><sup>(<i>G</i>/2 − <i>r</i>)<i>t</i> + <i>μF</i>/2</sup> √min{<i>i</i>, <i>ī</i>}.</div>
@@ -508,7 +508,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 4 -->
     <section class="sec" id="hazard" aria-labelledby="h-hazard" data-paper="sec:funding">
       <div class="prose">
-        <p class="kicker">第 4 步 · 论文第 5 节，命题 1</p>
+        <p class="kicker">第 4 步 · 论文第 3 节，命题 1</p>
         <h2 id="h-hazard">两种来源提供相同的安全算力，但放慢能力研究会改变危险率</h2>
         <p>先看恒定份额。把一单位份额转进安全研究，客户出资时累积危险率变动 <i>H<sub>s</sub></i>，科研出资时变动 <i>H<sub>s</sub></i>&nbsp;−&nbsp;<i>H<sub>x</sub></i>。两种来源直接产生的知识相同，差别全在 <i>H<sub>x</sub></i>，也就是研究多起来对危险率的影响。它分两块（命题 1）：</p>
         <div class="pdisp" data-tex="\begin{aligned}H_x=\ &amp;\underbrace{a(s)\int_0^1\ell(F)\Bigl[\frac{h}{u_x}+k\Bigr]e^{-a t_x}\,dF}_{\text{知识项}}\\ &amp;-\underbrace{\int_0^1\frac{h}{u_x}\,\vartheta(F)\,e^{-a t_x}\,dF}_{\text{暴露项}}.\end{aligned}"><i>H<sub>x</sub></i> = 知识项 − 暴露项。</div>
@@ -539,7 +539,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 5 -->
     <section class="sec" id="source" aria-labelledby="h-source" data-paper="sec:funding">
       <div class="prose">
-        <p class="kicker">第 5 步 · 论文第 5 节，命题 2 与推论 1</p>
+        <p class="kicker">第 5 步 · 论文第 3 节，命题 2 与推论 1</p>
         <h2 id="h-source">由谁出资，取决于抵达终点把客户服务提高多少</h2>
         <p>另一项需要比较的是服务代价。客户出资时，多一单位安全份额的代价是 <i>c<sub>C</sub></i>&nbsp;=&nbsp;<i>J</i><sup>pre</sup>/(2<i>i</i>)，也就是客户终点前的算力平均价值的一半。客户留下 <i>i</i>&nbsp;=&nbsp;0.352，<i>J</i><sup>pre</sup>&nbsp;=&nbsp;27.7，于是 <i>c<sub>C</sub></i>&nbsp;≈&nbsp;每单位份额 39.33 个指数单位。科研出资的代价是晚到的质量 <i>Q<sub>x</sub></i>&nbsp;=&nbsp;29.66，再加一个终点项：抵达终点晚多少时间乘终点价值，扣掉放慢的前沿本来也会提供的部分（命题 2）。</p>
         <p>比较在给定配置下做，并假定抵达终点后的前沿把能服务客户的算力全数交给客户，参照路径与每种政策都这样处理。参照固定，而终点之后危险率不再看算力怎么分，所以给某项政策配这种续篇就不会有损失。于是抵达终点后的前沿给客户终点后份额 <i>i<sub>c</sub></i>，抵达终点把客户服务流提高多少，也就是终点溢价，等于 √(<i>i<sub>c</sub></i>/<i>i</i>)&nbsp;−&nbsp;1。溢价低于阈值 <i>π</i>* 时，由能力研究承担的代价更低，换句话说，终点后客户份额低于出资阈值（推论 1）</p>
@@ -570,7 +570,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 6 -->
     <section class="sec" id="threshold" aria-labelledby="h-threshold" data-paper="sec:funding sec:larger">
       <div class="prose">
-        <p class="kicker">第 6 步 · 论文第 5 节，命题 3，以及图 3a</p>
+        <p class="kicker">第 6 步 · 论文第 3 节，命题 3，以及图 3a</p>
         <h2 id="h-threshold">阈值随服务预算上升</h2>
         <p>服务预算一放大，边际比较就变：客户出资的最优点留给客户的算力更少。推论 1 在这个配置上局部地算阈值。沿客户出资最优点走，阈值有个简单形式（命题 3）：</p>
         <div class="pdisp" data-tex="\sqrt{\bar\imath^{\ast}(i)}=(1-\theta_Q)\sqrt{i}+\theta_C\,\frac{\rho(i)}{\sqrt{i}},\qquad \rho(i)=\frac{R_R}{R_C}."><span>√<i>ī</i>*(<i>i</i>) = (1 − <i>θ<sub>Q</sub></i>)√<i>i</i> + <i>θ<sub>C</sub></i> <i>ρ</i>(<i>i</i>)/√<i>i</i>,  <i>ρ</i> = <i>R<sub>R</sub></i>/<i>R<sub>C</sub></i>.</span></div>
@@ -603,7 +603,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 7 -->
     <section class="sec" id="timing" aria-labelledby="h-timing" data-paper="sec:timing title:Timing_paid_by_customers">
       <div class="prose">
-        <p class="kicker">第 7 步 · 论文第 6 节，命题 4，以及第 7.1 节</p>
+        <p class="kicker">第 7 步 · 论文第 4 节，命题 4，以及第 5.1 节</p>
         <h2 id="h-timing">客户出资的安全研究宜安排在客户使用之前</h2>
         <p>在内点区间里，基准最优路径把安全研究排在客户使用前面。这样的区间上，安全算力与客户算力的边际价值相等。知识的影子价值是还没到来的危险率 <i>A</i>(<i>t</i>)。令两边边际价值相等，就得到安全与客户算力之比以及它的变化率（命题 4）：</p>
         <div class="pdisp" data-tex="\frac{d}{dt}\log\frac{s}{i}=2\,\frac{d}{dt}\log\sigma(F)-2\,\frac{\lambda}{A}-G+2r-\mu\dot F."><i>d</i>/<i>dt</i> log(<i>s</i>/<i>i</i>) = 2 <i>d</i>/<i>dt</i> log <i>σ</i> − 2<i>λ</i>/<i>A</i> − <i>G</i> + 2<i>r</i> − <i>μḞ</i>.</div>
@@ -636,7 +636,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 8 -->
     <section class="sec" id="known" aria-labelledby="h-known" data-paper="title:When_capability_research_should_also_pay">
       <div class="prose">
-        <p class="kicker">第 8 步 · 论文第 7.2 节，表 4，图 1c</p>
+        <p class="kicker">第 8 步 · 论文第 5.2 节，表 4，图 1c</p>
         <h2 id="h-known">技术已知时，续篇决定由谁出资</h2>
         <p>推论 1 表明，终点后的情形影响算力来源的选择。完全转用下，最优恒定规则就是客户出资的安全研究本身：推迟等于放弃终点后的前沿用 95% 算力服务客户的那份增量，所以每压一单位危险率，科研出资的代价都更高。</p>
         <p>不可转用下，轮到研究出资。最优恒定规则让客户留在 45%，研究压到 40.7%，安全提到 14.3%，完全失控概率降 2.85 个百分点，到 54.83%。客户本来就用不上更多算力，推迟只会损失服务质量的提升。</p>
@@ -668,7 +668,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 9 -->
     <section class="sec" id="larger" aria-labelledby="h-larger" data-paper="sec:larger">
       <div class="prose">
-        <p class="kicker">第 9 步 · 论文第 7.3 节，表 3，图 3</p>
+        <p class="kicker">第 9 步 · 论文第 5.3 节，表 3，图 3</p>
         <h2 id="h-larger">预算扩大后能力研究也应承担算力，安全投入宜安排在起飞期早期</h2>
         <p>完全转用下，预算不到 28.8%，最优恒定规则一直把研究留在 50%。预算一到 34.5% 它就开始削，那一点上研究降到 48.3%，69.1% 时降到 37.7%。不可转用下，每个预算它都削：5.8% 预算时研究还有 45.0%，69.1% 时只剩 20.1%。</p>
         <p>更细致地安排投入时机，削减研究的收益更大，削减时间也更早。预算 34.5%、完全转用时，最优十二段规则在起点削得最狠，从 <i>F</i>&nbsp;=&nbsp;0.15 起回到 50%，最大里程碑推迟 1.04 个月。它比最优的客户出资十二段规则低 2.03 个百分点，而两条恒定规则之间只差 0.07 个百分点。预算 69.1% 时收益 8.92 个百分点；不可转用下，两个预算分别是 7.78 和 15.53 个百分点。早期削减研究会推迟此后各能力水平的到达时间，使知识在到达前有更长时间积累；新增暴露则发生在状态风险较低的能力水平上。</p>
@@ -699,7 +699,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 10 -->
     <section class="sec" id="drivers" aria-labelledby="h-drivers" data-paper="sec:drivers">
       <div class="prose">
-        <p class="kicker">第 10 步 · 论文第 7.4 节，图 4</p>
+        <p class="kicker">第 10 步 · 论文第 5.4 节，图 4</p>
         <h2 id="h-drivers">阈值由三个量定；三个量都还在现有证据的范围内，结论已经翻转</h2>
         <p>第一个量，是从研究里拿走一个百分点要推迟多久。研究份额为 <i>x</i><sub>0</sub> 时，从研究里拿走一单位份额，抵达终点的推迟</p>
         <div class="pdisp" data-tex="\ell(1)=\frac{1-e^{-\gamma T_0}}{G\,x_0},\qquad \gamma=\varepsilon G."><i>ℓ</i>(1) = (1 − <i>e</i><sup>−<i>γT</i><sub>0</sub></sup>)/(<i>G x</i><sub>0</sub>),  <i>γ</i> = <i>εG</i>.</div>
@@ -735,7 +735,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 11 -->
     <section class="sec" id="robust" aria-labelledby="h-robust" data-paper="sec:drivers sec:robust">
       <div class="prose">
-        <p class="kicker">第 11 步 · 论文第 7.4 节与第 7.5 节，表 5</p>
+        <p class="kicker">第 11 步 · 论文第 5.4 节与第 5.5 节，表 5</p>
         <h2 id="h-robust">换个方式给服务估值，结论会变；做稳健性检验，结论不变</h2>
         <p>第 10 步留下的第三个量是服务价值的曲率，这里单独拿出来算。把 √<i>Q</i> 换成 <i>Q</i><sup><i>η</i></sup> 重解一遍，技术和危险率函数都不动。<i>η</i>&nbsp;=&nbsp;1/4 时阈值 239.9%，哪怕在完全转用下，最优恒定规则也把研究削到 37.9%。<i>η</i>&nbsp;=&nbsp;3/4 时阈值 42.9%，哪怕在不可转用下，最优恒定规则也把研究留在 50.0%。</p>
         <p>曲率是一种估值选择，不是估计出来的数。服务价值掉得越快，从客户转出算力的代价上升越快，阈值也就越高。</p>
@@ -769,7 +769,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 12 -->
     <section class="sec" id="commit" aria-labelledby="h-commit" data-paper="sec:uncertainty">
       <div class="prose">
-        <p class="kicker">第 12 步 · 论文第 8 节</p>
+        <p class="kicker">第 12 步 · 论文第 6 节</p>
         <h2 id="h-commit">在本文检验的情形里，技术尚不明确时预先确定规则，代价不大，除非安全研究也顺带推进能力</h2>
         <p>监管者许下承诺的时候，并不知道安全研究到底怎么起作用。论文摆出 13 种技术，它们在几处不一样：安全研究生产率，知识能不能迁移到更强的模型，安全算力是否跟着已安装算力一起涨，是否顺带推进能力，终点后危害是否还在。监管者许下一条恒定规则，要在每种技术下都守住预算和期限，然后在其中挑出“相对知情选择的最大超额完全失控概率”最小的那一条，也就是最小化最大遗憾。</p>
         <p>安全算力不推进能力的十种技术里，不管哪种续篇、哪个预算，所选规则与同一份额网格上的知情选择相差都不超过 0.28 个百分点；11.5% 预算时这个上界是 0.15 个百分点。换到会推动出资阈值的 12 个参数变体（第 10 步），上界最大到 1.13 个百分点，出现在 9 个月的起飞期；而能力溢出带来的遗憾，每个变体都在 7.2 到 10.7 个百分点之间。一条规则的能力路径、服务代价和推迟都不看安全技术，所以没有溢出时，可负担的规则事先就已知。这些规则之间怎么排，在本文检验的技术下几乎不变：前者是模型结构决定的，后者只是恒定规则下的数值结果。还要记住，这个上界只在网格上的规则之间比较；网格之外若有可行的规则，可能比网格上的知情选择还好出一截。</p>
@@ -797,7 +797,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 13 -->
     <section class="sec" id="limits" aria-labelledby="h-limits" data-paper="sec:implementation title:Conclusion">
       <div class="prose">
-        <p class="kicker">第 13 步 · 论文第 9 节与第 10 节</p>
+        <p class="kicker">第 13 步 · 论文第 7 节与第 8 节</p>
         <h2 id="h-limits">模型预测了什么，又遗漏了什么</h2>
         <p>联合配置可以通过一条规则实施：在可观察的能力里程碑上调整算力份额。执行这一规则需要能够区分推理、安全研究和能力研究。2026 年 9 月的《白宫超级智能协议》立起了监测、内部团队、独立审计和董事会监督，却没有给安全研究规定算力，也没说这部分算力从谁那里出。审计本文的规则，需要核查算力在三种用途之间的分配，以及安全研究是否同时推进能力。</p>
         <p>实验室已经在用放慢研究的方式为一部分安全工作出资，但还没有审计所需的账目。Anthropic 的注册声明说，它曾推迟发布、限制模型的初期供应，好让安全措施跟上能力进展；它把算力作为一个整体统筹规划，而不是按单项工作负载分配（<a href="{{URL_ANTHROPIC_S1}}" target="_blank" rel="noopener">Anthropic, PBC 2026b</a>）。它估计约 6% 的研究算力用于安全，依据的是一周内尽力而为的标注（<a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" target="_blank" rel="noopener">Anthropic 2026a</a>）。这家实验室向客户出售的推理少于客户的需求，以便把算力留在研究里，可见它对研究算力的估值高于这部分算力服务客户可得的收入，其中包括保持对竞争对手的领先。按它报告的 2026 年算力份额，规则指向研究：同时计入完全失控风险的监管者，会削减这部分研究份额来为额外的安全研究出资，而不是进一步配给客户。模型给出三个有条件的预测。</p>
@@ -814,7 +814,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <footer>
       <p><b>论文。</b>甘犁（2026），《安全研究与前沿算力分配》（<i>Safety Research and the Allocation of Frontier Compute</i>），工作论文。<span data-paper-link>论文公开后将在此加入链接。</span></p>
       <p class="refs"><b>资料来源。</b>AI Futures Project（2026），“How to Pace the US Frontier: Tentative Proposals for Domestic AI Regulation”，8 月 5 日，<a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">blog.aifutures.org</a>。Anthropic（2026a），“Measurements for Understanding the Pace of AI Development inside Frontier Labs”，9 月，<a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" target="_blank" rel="noopener">anthropic.com</a>。Anthropic, PBC（2026b），“Form S-1 Registration Statement”，U.S. Securities and Exchange Commission，10 月 26 日，<a href="{{URL_ANTHROPIC_S1}}" target="_blank" rel="noopener">sec.gov</a>。Sevilla, Jaime 等（2022），“Compute Trends Across Three Eras of Machine Learning”，<i>2022 International Joint Conference on Neural Networks</i>，第 1–8 页，<a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">doi.org/10.1109/IJCNN55064.2022.9891914</a>。Greenblatt, Ryan（2025），“Plans A, B, C, and D for Misalignment Risk”，Redwood Research blog，10 月 8 日，<a href="https://blog.redwoodresearch.org/p/plans-a-b-c-and-d-for-misalignment" target="_blank" rel="noopener">blog.redwoodresearch.org</a>。Samotsvety Forecasting（2022），“Samotsvety’s AI Risk Forecasts”，9 月 9 日，<a href="https://samotsvety.org/blog/2022/09/09/samotsvety-s-ai-risk-forecasts/" target="_blank" rel="noopener">samotsvety.org</a>。Grace, Katja 等（2025），“Thousands of AI Authors on the Future of AI”，<i>Journal of Artificial Intelligence Research</i> 84: 9，<a href="https://arxiv.org/abs/2401.02843" target="_blank" rel="noopener">arxiv.org/abs/2401.02843</a>。Demirer, Mert、Andrey Fradkin、Nadav Tadelis、Sida Peng（2025），“The Emerging Market for Intelligence: Pricing, Supply, and Demand for LLMs”，NBER Working Paper 34608，<a href="https://www.nber.org/papers/w34608" target="_blank" rel="noopener">nber.org/papers/w34608</a>。Emberson, Luke、Yafah Edelman（2026），“Compute Accounts for the Majority of Expenses of AI Companies”，Epoch AI，2 月 4 日，<a href="https://epoch.ai/data-insights/company-spending-breakdown" target="_blank" rel="noopener">epoch.ai</a>。Epoch AI（2026），“Introducing the AI Chip Users Explorer”，9 月 9 日，<a href="https://epoch.ai/latest/introducing-the-ai-chip-users-explorer" target="_blank" rel="noopener">epoch.ai</a>。Lifland, Eli、Brendan Halstead、Alex Kastner、Daniel Kokotajlo（2026），“AI Futures Model: Timelines &amp; Takeoff”，AI Futures Project，预测数据访问于 2026 年 10 月 25 日，<a href="https://www.aifuturesmodel.com/forecast" target="_blank" rel="noopener">aifuturesmodel.com/forecast</a>。You, Josh（2025），“Most of OpenAI’s 2024 Compute Went to Experiments”，Epoch AI，10 月 10 日，<a href="https://epoch.ai/data-insights/openai-compute-spend" target="_blank" rel="noopener">epoch.ai</a>。</p>
-      <p><b>本页如何运作。</b>本页在浏览器中运行论文的模型：同样的起飞技术、情景、服务预算与期限。按论文设定，页面显示的每个数字都等于论文印出的数字，测试脚本已逐条核对。两阶段与分段规则是论文存下的多起点解，本页用同一套模型算它们。页面由论文源文件 <span class="mono">c8a8bfa9</span> 生成于 2026 年 10 月 31 日。</p>
+      <p><b>本页如何运作。</b>本页在浏览器中运行论文的模型：同样的起飞技术、情景、服务预算与期限。按论文设定，页面显示的每个数字都等于论文印出的数字，测试脚本已逐条核对。两阶段与分段规则是论文存下的多起点解，本页用同一套模型算它们。页面由论文源文件 <span class="mono">34a58b0f</span> 生成于 2026 年 11 月 1 日。</p>
       <p><b>人工智能的使用。</b>本页在作者指导下使用人工智能软件（Anthropic 的 Claude）制作。作者已核对全部内容，并对其负责。</p>
     </footer>
   </main>
@@ -1624,7 +1624,7 @@ function alThresholdEta(A, eta) {
 // The multistart searches of the paper (two-stage and segment rules) are not repeated here: their saved rules
 // (the paper's results file, embedded at build time) are evaluated live.
 
-// The paper's scenario (Section 4): the takeoff technology, the monthly discount rate and the tenfold quality rise.
+// The paper's scenario (Section 2.7): the takeoff technology, the monthly discount rate and the tenfold quality rise.
 const ALLOC_TECH = { T0: 18, Pfull: 0.75, Preg: 0.40, Lcal: 12, q: 0.75, omega: 0.5, kDouble: 6, eps: 0.5, rsi: 10,
                      x0: 0.5, s0: 0.05, psi: 0.5, alpha: 0.5 };
 const ALLOC_AP = { r: 0.03 / 12, mu: Math.log(10) };
@@ -1640,7 +1640,7 @@ const BUDGET_GRID = [2.5, 5, 7.5, 10, 12.5, 15, 20, 25, 30];
 const budgetPct = tag => tag * AL_UNIT_SCALE;
 const CAP_GRID = [0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1];
 const ETA_GRID = [0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1];
-// Technologies of the paper's set (Section 7) that this page can compute: safety productivity and continuing danger.
+// Technologies of the paper's set (Section 6) that this page can compute: safety productivity and continuing danger.
 const COMMIT_STATES = [['base', {}], ['quarter', { yfac: 0.25 }], ['half', { yfac: 0.5 }], ['high', { yfac: 1.5 }],
                        ['smallTail', { tail: 0.25 }], ['tail', { tail: 1 }]];
 
@@ -1856,7 +1856,7 @@ const curvRules = (S, eta) => once(S, 'curv' + eta, () => {
 // heavy: the best constant rules at every curvature on the grid
 const curvSweep = S => once(S, 'curvSweep', () => ETA_GRID.map(eta => Object.assign({ eta }, curvRules(S, eta))));
 
-// Step 11: what moves the threshold (Section 7.4, Figure 4). Each variant of the paper's one-at-a-time sweep changes
+// Step 11: what moves the threshold (Section 5.4, Figure 4). Each variant of the paper's one-at-a-time sweep changes
 // one parameter and refits the calibration targets, which takes the paper's pipeline; its thresholds, continuation
 // shares and twelve-segment gains are saved results (parameter_sweep/sweep_results.json, embedded at build time).
 // The delay a point of research costs is the closed form l(1) = (1 - e^{-eps G T0}) / (G x0), computed here.
