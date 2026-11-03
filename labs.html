@@ -314,12 +314,12 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       </nav>
       <p class="kicker">论文的交互式配套页面</p>
       <h1>领先收益、共同危险与前沿人工智能的速度</h1>
-      <p class="byline">甘犁 · Department of Economics, Texas A&amp;M University · 2026 年 10 月</p>
-      <p class="dek">前沿人工智能实验室争夺商业领先地位，但任何一家完全失控都会终结所有实验室的权益。因此，竞赛之下的研发速度远快于共同规则所能选定的速度。在论文设定的参数范围内，来自领先收益的竞赛与危险外部性都无法单独解释如此之快的竞赛，唯有两者合在一起才能解释。保持竞赛敏感度不变，在 9 至 36 个月的起飞期内，先移除竞赛可弥合二者差距的 91%–92%，按两种移除顺序平均为 65%–66%，对应的全速完全失控概率为 75%。在 25% 时重新拟合竞赛敏感度后，先移除竞赛可弥合 69%，两种顺序平均为 44%。</p>
+      <p class="byline">甘犁 · Department of Economics, Texas A&amp;M University · 2026 年 11 月</p>
+      <p class="dek">前沿人工智能实验室争夺商业领先地位，但任何一家完全失控都会终结所有实验室的权益。因此，竞赛之下的研发速度远快于共同规则所能选定的速度。在论文的标定中，竞赛中的实验室用 18 个月走完起飞期，共同规则则需 69 个月。来自领先收益的竞赛与危险外部性都无法单独解释如此之快的竞赛，唯有两者合在一起才能解释。</p>
       <div class="results" role="list">
         <div class="result" role="listitem"><span class="big msg">竞赛下推迟一个月需要更大的风险降幅</span><span class="what">在三家实验室的标定中，只有当多推迟一个月能使危险每月降低 8.3% 时，竞赛中的实验室才会接受，这是共同规则所需 0.25% 的 33 倍（全速完全失控概率为 75% 时）；在 25% 时为每月 1.7%，是 6.9 倍。</span><span class="where">命题 1，第 3.2 节</span></div>
         <div class="result" role="listitem"><span class="big msg">实验室竞赛是为了领先收益，而不只是因为风险共担</span><span class="what">贴现与危险外部性合起来只能支撑每月 0.75% 的门槛。全速概率为 75% 时，竞赛补足 8.3% 中的其余部分；为 25% 时，补足 1.7% 中的其余部分。</span><span class="where">引言，第 4.2 节</span></div>
-        <div class="result" role="listitem"><span class="big msg">克制若不约束所有实验室，收效甚微</span><span class="what">当一家实验室采用协调份额时，其竞争者的研究份额只降到 35%，行业只得到共同规则风险降幅的 27%。</span><span class="where">第 3.5 与 4.4 节，表 4</span></div>
+        <div class="result" role="listitem"><span class="big msg">克制若不约束所有实验室，收效甚微</span><span class="what">当一家实验室采用协调份额时，其竞争者的研究份额只降到 35%，行业只得到共同规则风险降幅的 27%。</span><span class="where">第 3.5 与 4.4 节，表 5</span></div>
       </div>
       <p class="howto">下面每一步对应论文的一节。图形在浏览器中运行论文的模型，打开时采用论文设定，此时每个数字都与论文所印数字相同。拖动滑块可以查看结果如何随参数变化；“论文设定”按钮可以恢复原值。所有数字都来自一个示意性标定，其起点是 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 的算例：全速起飞期 18 个月，完全失控概率为 75%，这是一个范围的上端，向下延伸到 25%（第 14 步）；论文拟合竞赛敏感度，使三家竞赛中的实验室选择全速份额，从而重现这一路径。这些数字并非对现实风险的估计。</p>
       <details class="toc-mobile">
@@ -357,7 +357,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <p class="kicker">一览 · 论文引言</p>
         <h2 id="h-overview">五项发现，以及背后的同一个比较</h2>
         <p>前沿实验室争夺商业领先地位，同时共同承担完全失控风险。论文追问：与共同规则相比，它们的开发速度快多少，原因是什么？在论文的标定中，三家竞赛中的实验室沿 18 个月的全速路径走完起飞期，完全失控概率为 75%；共同规则会把起飞期拉长到 69 个月，把概率降到 6%，若推迟不得超过 12 个月，则降到 47%。下图概括结果背后的比较，后文分十六步展开。这里的数字对应 75% 的全速概率；第 14 步给出 25% 的下限情形，此时竞赛中的实验室门槛为每月 1.7%，先移除竞赛可弥合差距的 69%。</p>
-        <p>可以这样来想：几辆赛车跑在同一条赛道上，一旦连环相撞，所有人的比赛就都结束了。每位车手只要抢先到达，就独得全部领先收益，但自己加速所增加的撞车风险，只计入属于自己的那一份，其余由别人承担。所以每个人都开得比整个车队愿意选择的更快。约束所有车手的共同限速可以解决这个问题；其他人照样往前冲，所以一位车手单独刹车，对整体的作用有限；只检查刹车、不限制速度，也改变不了这种激励。</p>
+        <p>可以这样来想：几辆赛车跑在同一条赛道上，一旦连环相撞，所有人的比赛就都结束了。每位车手越早到达，赢得领先收益的机会就越大，但自己加速所增加的撞车风险，只计入属于自己的那一份，其余由别人承担。所以每个人都开得比整个车队愿意选择的更快。约束所有车手的共同规则可以解决这个问题；其他人照样往前冲，所以一位车手单独刹车，对整体的作用有限；只检查刹车、不限制速度，也改变不了这种激励。</p>
         <ol class="findings">
           <li>竞赛中的实验室要求更大的风险降幅才愿意推迟一个月。每家实验室只计入自身加速所增加危险中属于自己的那一份，却保留提前抵达的全部收益，包括更高的获胜概率。在三家实验室的标定中，只有当多推迟一个月能使危险每月降低 8.3% 时，竞赛中的实验室才会接受，这是共同规则所需 0.25% 的 33 倍。<a class="go" href="#value">第 4–6 步</a></li>
           <li>两种力量各自都不足以解释竞赛。每家实验室只计入三分之一的危险，这使加速的各项私人收益相对于自担危险都放大为三倍，竞赛收益也不例外。解释这一速度需要同时考虑领先收益和危险外部性。贴现与危险外部性合起来只能支撑每月 0.75% 的门槛，其余由竞赛补足。先移除竞赛，可缩小竞赛与共同规则之间风险差距的 91%；在危险外部性之后再移除竞赛，只缩小 39%。<a class="go" href="#contest">第 7 步</a></li>
@@ -404,7 +404,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 1 -->
     <section class="sec" id="compute" aria-labelledby="h-compute" data-paper="title:Compute_and_Capability">
       <div class="prose">
-        <p class="kicker">第 1 步 · 论文第 2.2 节</p>
+        <p class="kicker">第 1 步 · 论文第 2.2 节与第 2.5 节</p>
         <h2 id="h-compute">算力推动能力，而放慢所花的时间比看上去少</h2>
         <p>前沿实验室把算力分配给客户、能力研究和安全研究。已安装的算力每六个月翻一番，而且人工智能模型会帮助人工智能研究，研究因此随着模型改进而加快。全速时，实验室把一半算力投入能力研究，把 5% 投入安全研究；从 Automated Coder 到顶尖专家主导型人工智能（TED-AI）的起飞期需要 18 个月，与 <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">AI Futures Project</a> 的算例相同。</p>
         <p>放慢研究会推迟抵达，但推迟幅度小于研究削减的比例。放慢的实验室在到达之后的每个能力水平时，拥有更多算力。把研究份额从 50% 减半到 25%，抵达时间只从 18 个月推迟到 22.1 个月。全速时，研究份额每增加 1 个百分点，抵达时间提前 0.11 个月。</p>
@@ -497,7 +497,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 4 -->
     <section class="sec" id="value" aria-labelledby="h-value" data-paper="title:Arrival_Dates_and_the_Value_of_a_Month">
       <div class="prose">
-        <p class="kicker">第 4 步 · 论文第 2.4 节</p>
+        <p class="kicker">第 4 步 · 论文第 2.5 节</p>
         <h2 id="h-value">一个月的价值：再推迟一个月所消除的危险</h2>
         <p>放慢是在用时间换取安全。研究份额略微提高时，抵达时间每单位研究份额提前 <i>τ</i>(<i>x</i>) 个月，累计危险上升 <i>H</i>′(<i>x</i>)。两者之比就是一个月的价值，<i>V</i>(<i>x</i>)&nbsp;=&nbsp;<i>H</i>′(<i>x</i>)/<i>τ</i>(<i>x</i>)：略微放慢研究、多推迟一个月所消除的危险。它以每月的累计危险计量，而不是以概率的百分点计量。</p>
         <p>全速时，研究份额减少 1 个百分点使抵达推迟 0.11 个月，而推迟一个月消除 8.3% 的累计危险。研发越快，放慢所消除的危险越多，因此 <i>V</i> 随研究份额上升。这并非必然。放慢使知识在到达每个能力水平之前有更多时间积累，但也使实验室在每个水平停留更多月份。在基准曲线上，知识的作用占优，<i>V</i> 为正且递增。这在论文 18 个月的起飞期下成立，但并非在每种标定下都成立：起飞期短于约 13 个月时，<i>V</i> 先升后降（第 13 步）。</p>
@@ -630,7 +630,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <div class="prose">
         <p class="kicker">第 8 步 · 论文第 3.3 节</p>
         <h2 id="h-labs">实验室越多，每家的门槛越高</h2>
-        <p>多一家实验室，就多一个可以被夺走领先收益的竞争者，而且每家实验室计入的、其速度所增加危险的份额也更小。两者都抬高竞赛门槛：两家实验室时为每月 5.0%，三家时为 8.3%，四家时为 10.6%（命题 2）。研究份额从算力的 11% 升至 50%，再升至 95% 的上限。</p>
+        <p>多一家实验室，就多一个可以被夺走领先收益的竞争者，而且每家实验室计入的、其速度所增加危险的份额也更小。两者都提高竞赛门槛：两家实验室时为每月 5.0%，三家时为 8.3%，四家时为 10.6%（命题 2）。研究份额从算力的 11% 升至 50%，再升至 95% 的上限。</p>
         <p>如果每条前沿保留自己的危险，增加一家实验室会直接增加风险；而竞赛部分在三家时达到峰值，所以超过三家后研究份额可能下降。在所有标定情形中，总风险仍随实验室数量上升。</p>
       </div>
       <figure class="fig">
@@ -680,7 +680,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 10 -->
     <section class="sec" id="restraint" aria-labelledby="h-restraint" data-paper="sec:unilateral sec:numbers">
       <div class="prose">
-        <p class="kicker">第 10 步 · 论文第 3.5 节与表 4</p>
+        <p class="kicker">第 10 步 · 论文第 3.5 节与表 5</p>
         <h2 id="h-restraint">一家实验室的克制远不如共同规则</h2>
         <p>假设一家实验室承诺采用较低的研究份额，而其竞争者选择最优反应。当这家实验室采用协调份额时，其竞争者只从 50% 放慢到 35%。行业风险降到 57%，只相当于同一规则约束每家实验室时所实现降幅的 27%。</p>
         <p>竞争者是否放慢取决于领先收益的大小。在份额接近相等时，若领先收益相对于每家实验室的权益较大，即 <i>Π</i>/<i>B</i>&nbsp;&gt;&nbsp;<i>N</i>(<i>N</i>&nbsp;−&nbsp;2)，竞争者会放慢；若较小，则会加速。基准恰好处在这一边界上，因此小幅克制不会让竞争者改变；较大的克制才会使它们放慢。</p>
@@ -699,7 +699,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <figcaption class="read">
           <p>左图（竞争者的研究份额）。蓝线是一家实验室自我克制时两家竞争者的速度（对数刻度）；虚线是没有克制时它们的位置。含义：竞争者只小幅放慢：当一家实验室采用协调份额时，它们只从 50% 降到 35%。</p>
           <p>右图（完全失控概率）。蓝线是一家实验室克制时的风险，橙线是同一份额约束每家实验室时的风险，虚线是所有实验室都竞赛时的风险。含义在于蓝线与橙线之间的差距。在协调份额下，一家实验室的克制只能把风险降到 57%，而共同规则下为 6%：只实现了 27% 的降幅。</p>
-          <p>克制要有效，需要约束每家实验室。圆点是表 4 的三个情形，竞赛参数与第 6 步相同。</p>
+          <p>克制要有效，需要约束每家实验室。圆点是表 5 的三个情形，竞赛参数与第 6 步相同。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="restraint"></div></details>
       </figure>
@@ -710,7 +710,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
       <div class="prose">
         <p class="kicker">第 11 步 · 论文第 1、4、5、6 节</p>
         <h2 id="h-rules">安全规则与审计作用于安全，而不作用于速度</h2>
-        <p>在竞赛中安全投入是固定的；论文考察对每家实验室强制提高安全份额（表 3）。竞赛中的实验室会以更快的竞赛抵消部分额外的安全：安全份额为 25% 时，它们触及 75.0% 的研究上限，而基准时为 50%。竞赛风险仍会下降，降到 53.6%，但同一安全份额下的共同规则只有 4.1%。竞赛在差距中所占份额仍接近 92%。</p>
+        <p>在竞赛中安全投入是固定的；论文考察对每家实验室强制提高安全份额（表 4）。竞赛中的实验室会以更快的竞赛抵消部分额外的安全：安全份额为 25% 时，它们触及 75.0% 的研究上限，而基准时为 50%。竞赛风险仍会下降，降到 53.6%，但同一安全份额下的共同规则只有 4.1%。竞赛在差距中所占份额仍接近 92%。</p>
         <p>业界近期的协议主要针对安全投入。2026 年 9 月 29 日，六家领先的人工智能与芯片企业（Google、Anthropic、Meta、OpenAI、xAI 与 Nvidia）签署了《白宫超级智能协议》。协议承诺建立内部安全控制、由内部团队核查这些控制、聘请独立外部审计师，并由董事会委员会审议结果。协议没有设定惩罚，也不涉及实验室的研发速度。</p>
         <p>协议不限制每家实验室的研究份额，所以在模型中，协议不会让竞赛放缓。其审计只能通过安全投入降低风险，且以图中所示为限。签署方将“定期开会制定标准”，这可能引发反垄断方面的顾虑；不限制研究份额的规则会保留竞赛楔子，除非各实验室以开源方式公开全部能力发现。</p>
         <p class="src">资料来源：The White House（2026），"White House Accord on Super Intelligence: Joint Commitment on Frontier Responsibilities"，9 月 29 日，存档于 <a href="https://www.presidency.ucsb.edu/documents/white-house-accord-super-intelligence" rel="noopener" target="_blank">American Presidency Project</a>；Crowell &amp; Moring（2026），<a href="https://www.crowell.com/en/insights/client-alerts/white-house-announces-ai-responsibility-accord-executive-orders-and-super-intelligence-task-force" rel="noopener" target="_blank">客户通讯</a>，10 月 7 日。</p>
@@ -730,7 +730,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
           <p>读图。模型没有为协议的四层控制分别设立变量；它展示的是这些控制在模型中能够影响的唯一选择。滑块对每家实验室强制同一安全份额，从基准的 5% 向上调整。可以把它理解为这些控制和审计推动实验室在安全上投入的力度。</p>
           <p>左图（完全失控概率）。蓝线是竞赛中的实验室，橙线是同一安全份额下的共同规则，灰色点线是无竞赛的情形。安全投入越多，每条线都越低：竞赛风险从安全份额 5% 时的 75.0% 降到 25% 时的 53.6%。含义在于蓝线与橙线之间的差距。只有对速度的规则才能弥合它，而这一差距仍然很大：安全份额为 25% 时，共同规则下为 4.1%。竞赛在这一差距中仍占 91–92%。</p>
           <p>右图（竞赛中实验室的研究份额）。它随安全份额上升，从 50% 升到安全份额 25% 时的 75.0%，并在那里触及虚线所示的上限（1 减去安全份额）。含义是一种抵消：更安全的实验室加快竞赛，抵消部分安全收益。</p>
-          <p>在模型中，审计能降低竞赛风险，却不能放慢竞赛。圆点是表 3 的三行，竞赛参数与第 6 步相同。</p>
+          <p>在模型中，审计能降低竞赛风险，却不能放慢竞赛。圆点是表 4 的三行，竞赛参数与第 6 步相同。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="rules"></div></details>
       </figure>
@@ -741,13 +741,13 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 12 -->
     <section class="sec" id="yield" aria-labelledby="h-yield" data-paper="title:Baseline_Numbers title:Arrival_Dates_and_the_Value_of_a_Month sec:numbers app:calibration">
       <div class="prose">
-        <p class="kicker">第 12 步 · 论文第 2.4 节、第 4 节与表 6</p>
+        <p class="kicker">第 12 步 · 论文第 2.5 节、第 4.3 节与表 8</p>
         <h2 id="h-yield">安全产出决定每种体制的风险高低，而不决定竞赛能解释多少差距</h2>
         <p>安全产出 <i>σ</i> 是一个月之所以有价值的原因。它是一个月安全研究所增加的知识（第 3 步）。在基准安全份额下，任何路径上的知识都是 <i>S</i>&nbsp;=&nbsp;<i>σt</i>，因此累计危险为</p>
         <div class="pdisp" data-tex="H(x)=\int_0^1\Bigl[\frac{h(F)}{f_x(F)}+k(F)\Bigr]e^{-\sigma t_x(F)}\,dF,"><i>H</i>(<i>x</i>) = ∫<sub>0</sub><sup>1</sup> [<i>h</i>(<i>F</i>)/<i>f</i><sub><i>x</i></sub>(<i>F</i>) + <i>k</i>(<i>F</i>)] <i>e</i><sup>−<i>σ</i><i>t</i><sub><i>x</i></sub>(<i>F</i>)</sup> <i>dF</i>,</div>
         <p>其中 <i>t</i><sub><i>x</i></sub>(<i>F</i>) 是份额为 <i>x</i> 的路径到达能力 <i>F</i> 的日期，<i>f</i><sub><i>x</i></sub>(<i>F</i>) 是该处的速度。放慢研究会把每个日期往后推。每多一个月，前方尚存的危险乘以 <i>e</i><sup>−<i>σ</i></sup>，但这也在当前能力水平上增加一个月的状态暴露。没有安全学习，即 <i>σ</i>&nbsp;=&nbsp;0 时，只剩下暴露：在每个研究份额上 <i>V</i> 都为负，竞赛中的实验室和共同规则都不会放慢。</p>
         <p>更高的安全产出让每个月消除更多前方的危险，但也让前方剩下的危险更少。因此，在每个研究份额上，<i>V</i> 都随 <i>σ</i> 先升后降。在基准安全产出下，竞赛份额处的 <i>V</i> 接近其峰值，而在协调的低份额处早已越过峰值。安全产出提高 10%，使 <i>x</i><sub>J</sub> 处的 <i>V</i> 下降 33%，而研究份额 50% 处只下降 2%。</p>
-        <p>图中按比例调整 <i>σ</i>，保持危险函数 <i>h</i> 与 <i>k</i> 以及 <i>κ</i>、<i>π</i>、<i>r</i> 不变。更高的安全产出降低每种体制下的风险，而实验室会以更快的竞赛抵消部分收益，与第 11 步的安全规则相同。在 1.25 倍的基准安全产出下，全速风险从 75% 降到 63%。竞赛中的实验室把研究份额从 50% 提高到 61%，因此竞赛风险只降到 66%。在表 6 中更高的各档安全产出下，加快竞赛抵消了 26–34% 的安全收益。共同规则也会加速，研究份额从 0.06% 升到 0.22%，而其风险从 5.8% 降到 4.9%。竞赛在差距中所占份额保持在 91–92%。</p>
+        <p>图中按比例调整 <i>σ</i>，保持危险函数 <i>h</i> 与 <i>k</i> 以及 <i>κ</i>、<i>π</i>、<i>r</i> 不变。更高的安全产出降低每种体制下的风险，而实验室会以更快的竞赛抵消部分收益，与第 11 步的安全规则相同。在 1.25 倍的基准安全产出下，全速风险从 75% 降到 63%。竞赛中的实验室把研究份额从 50% 提高到 61%，因此竞赛风险只降到 66%。在表 8 中更高的各档安全产出下，加快竞赛抵消了 26–34% 的安全收益。共同规则也会加速，研究份额从 0.06% 升到 0.22%，而其风险从 5.8% 降到 4.9%。竞赛在差距中所占份额保持在 91–92%。</p>
         <p>较低的安全产出会把竞赛推到上限。在基准的四分之三时，<i>V</i> 在研究份额 74% 处达到峰值却未达到竞赛门槛，因此竞赛中的实验室采用 95% 的研究份额，风险为 89%。在基准的一半时，论文找不到对称均衡，因此滑块的下限设在四分之三。</p>
       </div>
       <figure class="fig">
@@ -764,7 +764,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         </div>
         <figcaption class="read">
           <p>上图（四个门槛）。黑线是滑块所设安全产出下一个月的价值；灰线是基准。门槛和颜色与第 7 步相同。更高的安全产出在低份额处使曲线下降最多，因此在基准之上，每个停止点都向右移动：竞赛中的实验室和共同规则都会加速。</p>
-          <p>下图（完全失控概率与安全产出）。灰色虚线是全速，蓝线是竞赛中的实验室，灰色点线是无竞赛，橙线是共同规则；圆点是表 6 的各行。含义体现在两个差距上。实验室加快竞赛，抵消了 26–34% 的收益，所以蓝线的降幅小于灰色虚线。蓝线始终远高于橙线，竞赛在这一差距中仍占 91–92%。</p>
+          <p>下图（完全失控概率与安全产出）。灰色虚线是全速，蓝线是竞赛中的实验室，灰色点线是无竞赛，橙线是共同规则；圆点是表 8 的各行。含义体现在两个差距上。实验室加快竞赛，抵消了 26–34% 的收益，所以蓝线的降幅小于灰色虚线。蓝线始终远高于橙线，竞赛在这一差距中仍占 91–92%。</p>
           <p>更有效的安全研究降低各情形下的风险，但不会消除竞赛。竞赛参数与第 6 步相同。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="yield"></div></details>
@@ -774,7 +774,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <!-- 13 -->
     <section class="sec" id="takeoff" aria-labelledby="h-takeoff" data-paper="title:Arrival_Dates_and_the_Value_of_a_Month app:calibration">
       <div class="prose">
-        <p class="kicker">第 13 步 · 论文第 2.4 节、附录 A 与表 8</p>
+        <p class="kicker">第 13 步 · 论文第 2.5 节、附录 A.4 与表 10</p>
         <h2 id="h-takeoff">起飞期越短，实验室竞赛越激烈，而竞赛仍能解释差距</h2>
         <p>基准起飞期为 18 个月，即从 Automated Coder 到 TED-AI。对这一阶段的预测各不相同，因此论文也在 9 到 36 个月的起飞期下求解模型。每个起飞期长度都重新拟合安全产出与研究速度，保持全速时 75% 的完全失控概率和暂停 12 个月后 40% 的概率。</p>
         <p>短起飞期把同样 75% 的概率压缩到更少的月份里，因此在每个能力水平上的每个月都更危险，加速也就节省更多暴露。一个月的价值等于因到达时安全知识更少而增加的危险，减去因在每个水平停留的月份更少而消除的危险。研究份额为 50% 时，暴露部分在 9 个月起飞期下为每月 6.4%，在 18 个月起飞期下为每月 2.6%。知识部分几乎不变，分别为 11.0% 和 10.8%。因此，在 9 个月的起飞期下，一个月的价值在研究份额 16% 处达到峰值，此后下降。</p>
@@ -794,7 +794,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         </div>
         <figcaption class="read">
           <p>上图（四个门槛）。黑线是滑块所设起飞期下一个月的价值；灰线是 18 个月的基准。门槛和颜色与第 7 步相同，<i>κ</i> 保持在基准值，细竖线标出研究份额 50%。起飞期较短时，曲线始终低于竞赛门槛，因此竞赛中的实验室采用 95% 的上限。</p>
-          <p>下图（差距份额）。蓝线是移除竞赛所弥合的竞赛与共同规则之间差距的份额；绿线是两种移除顺序的平均。两者都把 <i>κ</i> 保持在基准值，圆点是表 8 的各列。阴影带标出没有任何 <i>κ</i> 能使 50% 研究份额成为竞赛均衡的起飞期。</p>
+          <p>下图（差距份额）。蓝线是移除竞赛所弥合的竞赛与共同规则之间差距的份额；绿线是两种移除顺序的平均。两者都把 <i>κ</i> 保持在基准值，圆点是表 10 的各列。阴影带标出没有任何 <i>κ</i> 能使 50% 研究份额成为竞赛均衡的起飞期。</p>
           <p>起飞期长短改变实验室竞赛的速度，但在这些情形下对竞赛所解释的差距影响较小。竞赛参数与第 6 步相同。</p>
         </figcaption>
         <details class="math"><summary>数学细节</summary><div class="eq" data-eq="takeoff"></div></details>
@@ -809,7 +809,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
         <p>论文的基准是 AI Futures Project 给出的全速完全失控概率 75%，针对的是几乎没有安全投入的竞赛。论文把 25% 作为这一范围的下端（第 4.5 节），本步让全速概率在 5% 到 90% 之间变动。每个取值都会重新拟合安全产出与危险尺度，按与全速危险相同的比例调整暂停目标，并重新拟合 <i>κ</i>，使三家竞赛实验室选择 50% 的研究份额。</p>
         <p>重新拟合吸收了大部分变化。一个月的价值随累计危险等比例下降，竞赛实验室要越过的门槛也随之下降，竞赛中需要领先收益来解释的部分因而缩小。先移除竞赛时，它弥合竞赛与共同规则之间差距的 86%（50% 时）、69%（25% 时）、58%（20% 时）和 35%（15% 时）。滑块上的每个取值处，竞赛中的实验室承担的风险都高于共同规则。</p>
         <p>在论文范围的两端，竞赛中的实验室要越过的门槛，在 75% 时为每月 8.3%，在 25% 时为 1.7%，分别是共同规则门槛的 33 倍和 6.9 倍。竞赛与共同规则之间的完全失控概率差距从 69 个百分点降到 21 个百分点。先移除竞赛时，竞赛弥合其中的 91% 和 69%，后移除时为 39% 和 20%，两种顺序平均为 65% 和 44%。在 25% 时，单边反事实的顺序互换：没有竞赛时实验室使用 5.2% 的研究份额，没有危险外部性时使用 3.1%，而在 75% 时分别是 0.33% 和 3.1%。</p>
-        <p>存在一个下限。要使实验室以 50% 研究份额竞赛，该份额处一个月的价值必须超过无竞赛门槛 <i>N r</i>，即每月 0.75%。全速概率低于约 11.8% 时做不到：一个月的价值在 10% 时为 0.63%，在 5% 时为 0.31%。贴现与共同危险本身就已使实验室越过这一份额，竞赛无事可做，所以此时没有任何正的 <i>κ</i> 能给出 50% 的竞赛。此时图中按 <i>κ</i> = 0 绘出门槛。</p>
+        <p>存在一个下限。要使实验室以 50% 研究份额竞赛，该份额处一个月的价值必须超过无竞赛门槛 <i>N r</i>，即每月 0.75%。全速概率低于约 11.8% 时做不到：一个月的价值在 10% 时为 0.63%，在 5% 时为 0.31%。贴现与危险外部性本身就已使实验室越过这一份额，竞赛无事可做，所以此时没有任何正的 <i>κ</i> 能给出 50% 的竞赛。此时图中按 <i>κ</i> = 0 绘出门槛。</p>
       </div>
       <figure class="fig">
         <div class="fig-body">
@@ -879,7 +879,7 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     <footer>
       <p><b>论文。</b>甘犁（2026），《领先收益、共同危险与前沿人工智能的速度》（<i>Prizes, Shared Hazard, and the Speed of Frontier AI</i>），工作论文。<span data-paper-link>论文公开后将在此加入链接。</span></p>
       <p class="refs"><b>资料来源。</b>AI Futures Project（2026），“How to Pace the US Frontier: Tentative Proposals for Domestic AI Regulation”，8 月 5 日，<a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">blog.aifutures.org</a>。Sevilla, Jaime 等（2022），“Compute Trends Across Three Eras of Machine Learning”，<i>2022 International Joint Conference on Neural Networks</i>，第 1–8 页，<a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">doi.org/10.1109/IJCNN55064.2022.9891914</a>。Greenblatt, Ryan（2025），“Plans A, B, C, and D for Misalignment Risk”，Redwood Research blog，10 月 8 日，<a href="https://blog.redwoodresearch.org/p/plans-a-b-c-and-d-for-misalignment" target="_blank" rel="noopener">blog.redwoodresearch.org</a>。Samotsvety Forecasting（2022），“Samotsvety’s AI Risk Forecasts”，9 月 9 日，<a href="https://samotsvety.org/blog/2022/09/09/samotsvety-s-ai-risk-forecasts/" target="_blank" rel="noopener">samotsvety.org</a>。Grace, Katja 等（2025），“Thousands of AI Authors on the Future of AI”，<i>Journal of Artificial Intelligence Research</i> 84: 9，<a href="https://arxiv.org/abs/2401.02843" target="_blank" rel="noopener">arxiv.org/abs/2401.02843</a>。</p>
-      <p><b>本页如何运作。</b>本页在浏览器中运行论文的模型：相同的起飞技术、标定与均衡条件。在论文设定下，页面显示的每个数字都等于论文所印的数字，并由测试脚本逐一对照论文自身的结果文件加以核对。本页由论文源文件 <span class="mono">7065e675</span> 于 2026 年 11 月 1 日 生成。</p>
+      <p><b>本页如何运作。</b>本页在浏览器中运行论文的模型：相同的起飞技术、标定与均衡条件。在论文设定下，页面显示的每个数字都等于论文所印的数字，并由测试脚本逐一对照论文自身的结果文件加以核对。本页由论文源文件 <span class="mono">20c5c44d</span> 于 2026 年 11 月 2 日 生成。</p>
       <p><b>人工智能的使用。</b>本页在作者指导下使用人工智能软件（Anthropic 的 Claude）制作。作者已核对全部内容，并对其负责。</p>
     </footer>
   </main>
@@ -1456,7 +1456,7 @@ function labsFixed(m, st, N, N0) {
   return { x, hurdle, T: m.T(x), P: 1 - Math.exp(-N * H / N0) };
 }
 
-// One lab held at xbar while its N - 1 rivals choose a symmetric best response (Table 4).
+// One lab held at xbar while its N - 1 rivals choose a symmetric best response (Table 5).
 // A rival's log-payoff derivative, with the other rivals at the same share x:
 //   -H'(x)/N + r tau(x) + Pi kappa tau(x) p (1 - p) / (Pi p + B),  p = 1 / ((N - 1) + e^{-kappa (T(xbar) - T(x))}).
 // The paper selects the largest tested symmetric response; so does this function.
@@ -1505,7 +1505,7 @@ function coopWithinDelay(m, delay, s) {
 }
 
 // The model with the safety yield scaled by `mult`, holding the hazard functions h(F) and k(F) fixed
-// (labs_sigma_sensitivity.py, Table 6). makeTech's sigmaScale instead renormalizes h and k so that the
+// (labs_sigma_sensitivity.py, Table 8). makeTech's sigmaScale instead renormalizes h and k so that the
 // full-speed takeoff keeps P_full; that changes the pause target, not the productivity of safety research.
 function yieldScaled(m, mult) {
   const p = m.p, hk = [0, 0], y = Object.assign({}, m, { yieldScale: mult });
@@ -1643,7 +1643,7 @@ function calcRestraint(S, st, race) {
            paper: [race.J.x, 0.05, 0.10].map(xb => restraint(S.m, rs, xb, grid)) };
 }
 
-// Step 9: imposed safety shares (Table 3).
+// Step 9: imposed safety shares (Table 4).
 // The curves use every 2.5 points of safety share (which includes the paper's 5, 10 and 25); the slider's own
 // value is solved exactly.
 function calcRuleRow(S, st, s) {
@@ -1659,7 +1659,7 @@ function calcRules(S, st) {
   return { rows, at, now: row(st.sRule) };
 }
 
-// Step 12: the safety yield (Section 2.4, Section 4, Table 6). Each row scales sigma by `mult`, holding the
+// Step 12: the safety yield (Section 2.5, Section 4.3, Table 8). Each row scales sigma by `mult`, holding the
 // hazard functions, kappa, pi and r fixed. Racing, no contest and no externality solve their hurdles on V
 // (the race goes to the ceiling when V stays below its hurdle there); coordination maximizes the joint payoff.
 const YIELD_ROWS = [0.75, 1, 1.25, 1.5, 2];
@@ -1689,7 +1689,7 @@ function yieldRow(S, st, mult, n) {
   out.share = (out.R.P - out.E.P) / (out.R.P - out.J.P);
   const iv = V.indexOf(Math.max(...V));
   out.peakX = iv === V.length - 1 ? xmax : goldenMax(z => y.V(z, s), xs[Math.max(0, iv - 1)], xs[iv + 1], 1e-12);
-  out.risesToCap = out.peakX >= xmax - 1e-9;              // false: V peaks below the ceiling (Table 6 note)
+  out.risesToCap = out.peakX >= xmax - 1e-9;              // false: V peaks below the ceiling (Table 8 note)
   return out;
 }
 
@@ -1711,7 +1711,7 @@ function calcYieldTable(S, st) {
            dropCoop: 1 - up.V(base.J.x, s) / S.m.V(base.J.x, s), dropRace: 1 - up.V(LABS_TECH.x0, s) / S.m.V(LABS_TECH.x0, s) };
 }
 
-// Step 13: the length of the takeoff (Appendix A, Table 8; labs_parameter_robustness.py). makeTech refits the safety
+// Step 13: the length of the takeoff (Appendix A.4, Table 10; labs_parameter_robustness.py). makeTech refits the safety
 // yield and the research-speed scale to each full-speed takeoff, keeping the 75 and 40 percent targets. The race is
 // solved with kappa held at its baseline value; a second check refits kappa to the 50 percent race and asks whether
 // 50 percent is then each lab's best reply.
@@ -2125,7 +2125,7 @@ const CTL = {
   xbar: { label: '克制实验室的研究份额', min: -2, max: Math.log10(49), step: 0.01, get: () => Math.log10(100 * xbarNow()),
        set: v => { state.xbar = Math.pow(10, v) / 100; }, show: () => pc(xbarNow()) + '% 的算力', paper: '协调份额' },
   sRule: { label: '对每家实验室强制的安全份额', min: 5, max: 40, step: 1, get: () => 100 * state.sRule, set: v => { state.sRule = v / 100; },
-       show: () => pc(state.sRule) + '% 的算力', paper: '25%（表 3）' },
+       show: () => pc(state.sRule) + '% 的算力', paper: '25%（表 4）' },
   yieldMult: { label: '安全产出 σ', min: 0.75, max: 2.5, step: 0.05, get: () => state.yieldMult,
        set: v => { state.yieldMult = Math.round(100 * v) / 100; }, show: () => (S.m.sigma * state.yieldMult).toFixed(3) + ' / 月',
        paper: S.m.sigma.toFixed(3) + ' / 月', hint: () => `为论文安全产出的 ${state.yieldMult.toFixed(2)} 倍。` },
@@ -2501,7 +2501,7 @@ const RENDER = {
       { k: '领先一年后相对于一个竞争者的胜算', v: '× ' + mk.yearOdds.toFixed(1), p: '× ' + PAPER.dvKappaYearOdds },
       { k: '领先两家并驾齐驱的竞争者一年时的获胜概率', v: pc(mk.p[mk.p.length - 1], 0) + '%', p: PAPER.rrYearHeadWin + '%' },
       { k: '领先收益占终端价值的份额，π', v: mk.pi.toFixed(2), p: '0.' + PAPER.dvPiShare },
-      { k: `竞争者为 ${pc(mk.xo)}% 时的最优反应`, v: pc(mk.br, mk.br < 0.01 ? 2 : 1) + '%', p: atPaper ? '50%（表 2）' : '' },
+      { k: `竞争者为 ${pc(mk.xo)}% 时的最优反应`, v: pc(mk.br, mk.br < 0.01 ? 2 : 1) + '%', p: atPaper ? '50%（表 3）' : '' },
       { k: '行业的最优共同份额', v: likePaper('dvXCoop', 100 * mk.xj) + '%', p: PAPER.dvXCoop + '%' },
     ]);
     mathBlock('market', [
@@ -2847,7 +2847,7 @@ const RENDER = {
     const caution = document.querySelector('[data-caution="yield"]');
     caution.hidden = now.risesToCap && atPaper;
     caution.textContent = (now.risesToCap ? '' : `V 在研究份额 ${pc(now.peakX, 0)}% 处、低于上限时达到峰值，因此并非在整个区间上递增；论文以完整的最优反应搜索核对了表中各行。`) +
-                          (atPaper ? '' : '这些竞赛参数与论文不同，而表 6 保持论文参数不变。');
+                          (atPaper ? '' : '这些竞赛参数与论文不同，而表 8 保持论文参数不变。');
     mathBlock('yield', [
       { fig: '上图的黑线（一个月的价值），σ 取滑块所设的值；灰线（基准安全产出下的 V，滑块偏离基准时显示）是基准 σ 下的 V，h、k 与算力路径保持不变', eq: String.raw`H(x)=\int_0^1\Bigl[\frac{h(F)}{f_x(F)}+k(F)\Bigr]e^{-\sigma t_x(F)}\,dF\qquad V(x)=\frac{H'(x)}{\tau(x)}` },
       { fig: '上图的四条水平线（蓝：两股力量，N r + κ(N − 1)π；绿色虚线：只有竞赛，r + κ(N − 1)π/N；灰色点线：只有外部性，N r；橙色虚线：两者皆无（共同规则），r）以及黑线（一个月的价值）与它们的交点，数值求得（若 V 始终低于门槛，则交点落在 95% 的上限）', eq: String.raw`V(x_R)=N r+\kappa(N-1)\pi\qquad V(x_A)=r+\frac{\kappa(N-1)\pi}{N}\qquad V(x_E)=N r\qquad V(x_J)=r` },
