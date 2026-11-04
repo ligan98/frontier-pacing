@@ -867,9 +867,9 @@ html[lang="zh-CN"] .series-h { letter-spacing: 0.02em; }
     </section>
 
     <footer>
-      <p><b>The paper.</b> Li Gan (2026), <i>Agreements Have a Clock: Compute Growth and the Verification of AI Restraint</i>, working paper. <span data-paper-link>A link will be added when the paper is posted.</span></p>
+      <p><b>The paper.</b> Li Gan (2026), <i>Agreements Have a Clock: Compute Growth and the Verification of AI Restraint</i>, arXiv:2611.04272. <span data-paper-link><a href="https://arxiv.org/abs/2611.04272" target="_blank" rel="noopener">Read the paper.</a></span></p>
       <p class="refs"><b>Sources.</b> AI Futures Project (2026), “How to Pace the US Frontier: Tentative Proposals for Domestic AI Regulation,” August 5, <a href="https://blog.aifutures.org/p/how-to-pace-the-us-frontier" target="_blank" rel="noopener">blog.aifutures.org</a>. Larsen, Thomas, et al. (2026), “AI 2040: Plan A,” AI Futures Project, July 9, <a href="https://ai-2040.com/" target="_blank" rel="noopener">ai-2040.com</a>. Sevilla, Jaime, et al. (2022), “Compute Trends Across Three Eras of Machine Learning,” <i>2022 International Joint Conference on Neural Networks</i>, 1–8, <a href="https://doi.org/10.1109/IJCNN55064.2022.9891914" target="_blank" rel="noopener">doi.org/10.1109/IJCNN55064.2022.9891914</a>. Greenblatt, Ryan (2025), “Plans A, B, C, and D for Misalignment Risk,” Redwood Research blog, October 8, <a href="https://blog.redwoodresearch.org/p/plans-a-b-c-and-d-for-misalignment" target="_blank" rel="noopener">blog.redwoodresearch.org</a>. Samotsvety Forecasting (2022), “Samotsvety’s AI Risk Forecasts,” September 9, <a href="https://samotsvety.org/blog/2022/09/09/samotsvety-s-ai-risk-forecasts/" target="_blank" rel="noopener">samotsvety.org</a>. Grace, Katja, et al. (2025), “Thousands of AI Authors on the Future of AI,” <i>Journal of Artificial Intelligence Research</i> 84: 9, <a href="https://arxiv.org/abs/2401.02843" target="_blank" rel="noopener">arxiv.org/abs/2401.02843</a>.</p>
-      <p><b>How this page works.</b> The page runs the paper’s model in your browser: the same takeoff technology, follower block, calibration and agreement game. At the paper’s settings every number it shows equals the number the paper prints. The numbers in the text come from the paper’s own files, and a test script recomputes every number the page calculates and compares it with the paper. Built from the paper’s source <span class="mono">aff83f55</span> on November 2, 2026.</p>
+      <p><b>How this page works.</b> The page runs the paper’s model in your browser: the same takeoff technology, follower block, calibration and agreement game. At the paper’s settings every number it shows equals the number the paper prints. The numbers in the text come from the paper’s own files, and a test script recomputes every number the page calculates and compares it with the paper. Built from the paper’s source <span class="mono">972b0109</span> on November 3, 2026.</p>
       <p><b>AI use.</b> AI software (Anthropic’s Claude) was used under the author’s direction to build this page. The author checked it and is responsible for the content.</p>
     </footer>
   </main>
@@ -2222,7 +2222,7 @@ function texLines(src) {
 // ------------------------------------------------------------------ setup
 const PAPER = JSON.parse(document.getElementById('paper-numbers').textContent);
 const SETTINGS = JSON.parse(document.getElementById('settings').textContent);
-const PAPER_URL = "";
+const PAPER_URL = "https://arxiv.org/abs/2611.04272";
 const S = agrSetup(SETTINGS);
 const state = Object.assign({}, AGR_DEFAULT);
 const color = n => getComputedStyle(document.documentElement).getPropertyValue('--' + n).trim();
