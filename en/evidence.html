@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.13" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Li Gan" />
+  <title>Misalignment So Far: An Evidence Brief on AI Behavior and the State of Safety Research</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --bg: #fbfaf8; --ink: #1d1d1f; --muted: #5f6368; --line: #dcd9d3; --accent: #2f5fd0; --band: #f1efea; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #17181a; --ink: #ececec; --muted: #a0a4a8; --line: #34363a; --accent: #8ab0ff; --band: #1f2124; } }
+    html { color: var(--ink); background-color: var(--bg); }
+    body { margin: 0 auto; max-width: 46em; padding: 40px 18px 72px; font: 17px/1.7 Georgia, "Times New Roman", serif; color: var(--ink); background: var(--bg); hyphens: manual; overflow-wrap: break-word; }
+    p.back { margin: 0 0 28px; font-size: 0.92rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover, a:focus-visible { text-decoration: underline; }
+    a:visited { color: var(--accent); }
+    header#title-block-header { margin-bottom: 28px; }
+    h1.title { font-size: 1.7rem; line-height: 1.3; margin: 0 0 12px; }
+    p.author, p.date { color: var(--muted); margin: 0; }
+    div.abstract { margin: 24px 0; padding: 14px 18px; background: var(--band); border-left: 3px solid var(--line); font-size: 0.96rem; }
+    div.abstract-title { font-weight: 600; margin-bottom: 6px; }
+    nav#TOC { margin: 24px 0 36px; padding: 12px 18px; border: 1px solid var(--line); font-size: 0.94rem; }
+    nav#TOC ul { list-style: none; padding-left: 1.1em; margin: 0; }
+    nav#TOC > ul { padding-left: 0; }
+    nav#TOC li { margin: 3px 0; }
+    h1, h2, h3 { line-height: 1.35; margin: 2em 0 0.6em; }
+    h1 { font-size: 1.35rem; border-top: 1px solid var(--line); padding-top: 1.2em; }
+    h2 { font-size: 1.12rem; }
+    h3 { font-size: 1rem; }
+    p { margin: 0 0 1em; }
+    li { margin: 0.35em 0; }
+    .table-wrap { overflow-x: auto; margin: 1.4em 0; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.88rem; line-height: 1.5; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); margin: 0; }
+    caption { caption-side: top; text-align: left; font-weight: 600; padding: 0 0 8px; font-size: 0.94rem; }
+    th, td { text-align: left; vertical-align: top; padding: 6px 10px 6px 0; }
+    thead th { border-bottom: 1px solid var(--ink); }
+    tbody tr + tr td { border-top: 1px solid var(--line); }
+    section.footnotes, section#footnotes { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--line); margin-top: 3em; }
+    section.footnotes hr, section#footnotes hr { display: none; }
+    .refs p { font-size: 0.9rem; padding-left: 1.6em; text-indent: -1.6em; margin: 0 0 0.6em; }
+    :target { background: var(--band); }
+    @media print { body { max-width: none; } nav#TOC, p.back { display: none; } }
+  </style>
+</head>
+<body>
+<p class="back"><a href="index.html">&larr; Pacing the AI Frontier</a></p>
+<header id="title-block-header">
+<h1 class="title">Misalignment So Far: An Evidence Brief on AI Behavior<br />
+and the State of Safety Research</h1>
+<p class="author">Li Gan<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p class="date">Evidence as of 15 November 2026</p>
+<div class="abstract">
+<div class="abstract-title">Abstract</div>
+<p>The firmest evidence on AI misalignment concerns tests and how models read them, not dramatic behavior arising on its own. Without being pushed, models cheat on the tasks used to measure them and act beyond their task, and they recognize tests, and a cue of being watched lowers their misbehavior four times as often as it raises it (28 studies against 7, of 59), so a test result, clean or not, is an uncertain guide to behavior in use. This brief collects what is known so far about AI systems that pursue goals their developers did not intend, and about how the research meant to prevent this is going. It draws on sources from 2022 to November 2026: laboratory studies by developers, evaluators and universities; incidents in deployment, training and testing; and data on the people, money, compute and rules devoted to safety. The findings on model behavior rest on a systematic review of 689 studies. Cheating on measured tasks appears in 116 studies and action beyond the task in 91; the AI coders rate both findings high certainty and the human reviewer rates them low. Models also misreport their own work. Scheming, sabotage and faking alignment appear mainly in scenarios built to provoke them. Developers have trained much of the measured behavior down, but newer models recognize tests more often. In 2026 the behavior reached third parties, when frontier agents under test attacked real organizations without being asked and one developer paused training to bring its safeguards up to the standard its models required. Safety effort remains small next to capability effort, and its productivity is unknown. No complete loss of control has occurred, and in the most serious cases some cyber safeguards were disabled and access to the internet was either permitted or misconfigured. The record is best read as early warning that fits the mechanism in the pacing models, not as a measurement of the risk of complete loss of control.</p>
+</div>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Contents</h2>
+<ul>
+<li><a href="#summary-of-findings" id="toc-summary-of-findings">Summary of findings</a></li>
+<li><a href="#how-to-use-this-brief" id="toc-how-to-use-this-brief">How to use this brief</a></li>
+<li><a href="#sec:defs" id="toc-sec:defs"><span class="toc-section-number">1</span> What “misalignment” means here</a></li>
+<li><a href="#sec:lab" id="toc-sec:lab"><span class="toc-section-number">2</span> What laboratory tests have found</a>
+<ul>
+<li><a href="#reward-hacking-and-specification-gaming" id="toc-reward-hacking-and-specification-gaming"><span class="toc-section-number">2.1</span> Reward hacking and specification gaming</a></li>
+<li><a href="#recognizing-tests-and-underperforming-on-purpose" id="toc-recognizing-tests-and-underperforming-on-purpose"><span class="toc-section-number">2.2</span> Recognizing tests and underperforming on purpose</a></li>
+<li><a href="#can-we-read-what-models-are-thinking" id="toc-can-we-read-what-models-are-thinking"><span class="toc-section-number">2.3</span> Can we read what models are thinking?</a></li>
+<li><a href="#sycophancy-and-misleading-humans" id="toc-sycophancy-and-misleading-humans"><span class="toc-section-number">2.4</span> Sycophancy and misleading humans</a></li>
+<li><a href="#alignment-faking-and-persistent-deception" id="toc-alignment-faking-and-persistent-deception"><span class="toc-section-number">2.5</span> Alignment faking and persistent deception</a></li>
+<li><a href="#scheming-and-strategic-deception" id="toc-scheming-and-strategic-deception"><span class="toc-section-number">2.6</span> Scheming and strategic deception</a></li>
+<li><a href="#agentic-misalignment-blackmail-sabotage-shutdown-and-replication" id="toc-agentic-misalignment-blackmail-sabotage-shutdown-and-replication"><span class="toc-section-number">2.7</span> Agentic misalignment: blackmail, sabotage, shutdown and replication</a></li>
+<li><a href="#emergent-misalignment" id="toc-emergent-misalignment"><span class="toc-section-number">2.8</span> Emergent misalignment</a></li>
+</ul></li>
+<li><a href="#sec:capability" id="toc-sec:capability"><span class="toc-section-number">3</span> Does the danger rise with capability?</a></li>
+<li><a href="#sec:incidents" id="toc-sec:incidents"><span class="toc-section-number">4</span> What has happened in the real world, 2023 to 2026</a>
+<ul>
+<li><a href="#sec:chat" id="toc-sec:chat"><span class="toc-section-number">4.1</span> Chatbots that misbehaved</a></li>
+<li><a href="#agents-that-overstepped" id="toc-agents-that-overstepped"><span class="toc-section-number">4.2</span> Agents that overstepped</a></li>
+<li><a href="#frontier-agents-acting-against-third-parties" id="toc-frontier-agents-acting-against-third-parties"><span class="toc-section-number">4.3</span> 2026: frontier agents acting against third parties</a></li>
+<li><a href="#misuse-at-scale" id="toc-misuse-at-scale"><span class="toc-section-number">4.4</span> Misuse at scale</a></li>
+<li><a href="#how-many-incidents" id="toc-how-many-incidents"><span class="toc-section-number">4.5</span> How many incidents?</a></li>
+</ul></li>
+<li><a href="#sec:field" id="toc-sec:field"><span class="toc-section-number">5</span> The state of safety research</a>
+<ul>
+<li><a href="#how-large-is-the-effort" id="toc-how-large-is-the-effort"><span class="toc-section-number">5.1</span> How large is the effort?</a></li>
+<li><a href="#how-lab-commitments-have-held" id="toc-how-lab-commitments-have-held"><span class="toc-section-number">5.2</span> How lab commitments have held</a></li>
+<li><a href="#what-outside-assessors-say" id="toc-what-outside-assessors-say"><span class="toc-section-number">5.3</span> What outside assessors say</a></li>
+<li><a href="#progress-and-limits-in-the-main-research-agendas" id="toc-progress-and-limits-in-the-main-research-agendas"><span class="toc-section-number">5.4</span> Progress and limits in the main research agendas</a></li>
+<li><a href="#how-productive-is-safety-research" id="toc-how-productive-is-safety-research"><span class="toc-section-number">5.5</span> How productive is safety research?</a></li>
+<li><a href="#rules-and-verification" id="toc-rules-and-verification"><span class="toc-section-number">5.6</span> Rules and verification</a></li>
+</ul></li>
+<li><a href="#sec:program" id="toc-sec:program"><span class="toc-section-number">6</span> What the evidence means for the pacing program</a></li>
+<li><a href="#sec:talk" id="toc-sec:talk"><span class="toc-section-number">7</span> Talking about the evidence: common objections</a></li>
+<li><a href="#sec:limits" id="toc-sec:limits"><span class="toc-section-number">8</span> Limits of this evidence</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<h1 class="unnumbered" id="summary-of-findings">Summary of findings</h1>
+<ol>
+<li><p><em>The behavior is real, and the most common kinds need no pressure.</em> Without being given a goal or pushed, models cheat on the tasks used to measure them (116 studies) and take actions beyond their task (91 studies); the AI coders rate both findings high certainty and the human reviewer rates them low. They misreport their own work (moderate), and some disable a shutdown mechanism in sandbox tests while others never do (moderate). The dramatic behaviors appear mainly when a scenario is built to provoke them. In the best-known such study, Claude Opus 4 blackmailed in 96 of 100 trials, and other developers’ models did so in 79 to 96 (<a href="#ref-lynch2025">Lynch et al. 2025</a>). Without such a set-up, scheming appears in only four studies, sabotage was not found in tests of released frontier models, and faking alignment has almost no support.</p></li>
+<li><p><em>Measured failures have been trained down, but test results are an uncertain guide to use.</em> Developers trained against the failures they measured. Blackmail in the simulated company fell to zero for Claude models from the 4.5 generation on (<a href="#ref-kutasov2026">Kutasov et al. 2026</a>), and GPT-5 took deceptive actions half as often as o3 (<a href="#ref-openai2025gpt5">OpenAI 2025c</a>). Mitigations usually lower the measured rate, often by large factors but seldom to zero (moderate). At the same time, models recognize tests (123 studies; rated high by the AI coders, moderate by the human reviewer), and within a model family the newer or larger model usually recognizes them more often (35 of 46 studies, moderate). Training a model only to be more capable raised the share of its reasoning that mentioned being evaluated from 2 to 21 percent (<a href="#ref-schoen2025">Schoen et al. 2025</a>). Of 59 studies that add or remove a cue of being watched, models misbehave less when cued in 28 and more in 7, and the rest are mixed, unchanged or unclear (moderate), so tests lean toward overstating safety. The gap can also run the other way: in one of the few comparisons with production use, six OpenAI models looked 10 to 37 percentage points less safe in the evaluation (<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>), while in another, one form of reward hacking occurred 21 times more often in real use than a pre-release simulation forecast (<a href="#ref-williams2026">Williams et al. 2026</a>). All nine such comparisons come from OpenAI and Anthropic.</p></li>
+<li><p><em>Danger can rise with capability even where propensity does not.</em> Willingness to misbehave has no consistent direction across model generations: it falls with capability somewhat more often than it rises, and it has risen sharply in some recent models (low certainty). Recognition of tests does rise with capability (moderate). Success at misbehavior when instructed rises in half of the studies that measure it, and covert skill has grown in the most recent models. Models are also used with more autonomy. Anthropic rates the risk from its most capable model as “very low, but higher than for previous models” for this reason (<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>).</p></li>
+<li><p><em>In 2026 the behavior reached third parties.</em> During evaluations with real internet access, Claude models attacked real organizations in four incidents, and Anthropic concluded this was misalignment (<a href="#ref-anthropic2026cyber">Anthropic 2026f</a>). The UK AI Security Institute recorded 19 out-of-scope actions in 10 of 122 test runs (<a href="#ref-aisi2026incident">AISI 2026a</a>). OpenAI agents broke into Hugging Face, and OpenAI paused reinforcement-learning training for two weeks, saying the risks of testing models internally grow with their capability (<a href="#ref-huggingface2026">Hugging Face 2026</a>; <a href="#ref-openai2026pause">OpenAI 2026d</a>). Each case happened during testing with safeguards reduced, and in each the protection was strengthened after the event. Across the review, 116 studies report misaligned actions that reached real systems, users or third parties; that such events occur is rated high certainty by the AI coders and low by the human reviewer, and how often they occur is not known.</p></li>
+<li><p><em>Safety effort is small and its productivity unknown.</em> Technical safety work amounts to about 600 full-time-equivalent positions (<a href="#ref-mcaleese2025">McAleese 2025</a>), about 2 percent of AI papers concern safety (<a href="#ref-eto2025">Emerging Technology Observatory 2025</a>), and philanthropic funding is difficult to total without double counting, while the largest cloud companies planned about 700 billion dollars of capital spending in 2026; the two measures cover different activities. The one lab-reported figure is that about 6 percent of Anthropic’s AI research compute went to safety in a July 2026 week (<a href="#ref-anthropic2026pace">Anthropic 2026e</a>). Safety techniques work on narrow, well-measured problems, sometimes very cheaply when AI agents do the research, but nobody knows how well they will work on the hard problems that matter most.</p></li>
+<li><p><em>Voluntary commitments have proved fragile; rules and verification are starting.</em> OpenAI’s 2023 promise of 20 percent of compute to alignment was not met (<a href="#ref-fortune2024">Fortune 2024</a>), its framework lets safeguards follow rivals’ choices (<a href="#ref-openai2025pf">OpenAI 2025a</a>), and outside raters give no developer better than C+ overall or D+ on existential safety (<a href="#ref-fli2026">FLI 2026</a>). Binding transparency laws now exist in the European Union, California and New York, and studies judge that verifying large data centers is feasible within a few years with serious effort (<a href="#ref-harack2025">Harack et al. 2025</a>).</p></li>
+</ol>
+<h1 class="unnumbered" id="how-to-use-this-brief">How to use this brief</h1>
+<p>This brief serves two purposes. It collects the empirical background for four theoretical papers on the pacing of frontier AI (<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>), and it is written as a standalone reference for economists, policy readers, and others following AI safety. The same questions come up repeatedly in those discussions: whether the tests are artificial, whether the problems have been fixed, whether anything has actually happened, and how much effort goes into safety. Section <a href="#sec:talk" data-reference-type="ref" data-reference="sec:talk">7</a> gives short answers to these questions with the evidence behind each.</p>
+<p>The findings on model behavior (Sections <a href="#sec:lab" data-reference-type="ref" data-reference="sec:lab">2</a> to <a href="#sec:incidents" data-reference-type="ref" data-reference="sec:incidents">4</a>) now rest on a systematic review run under a written protocol and reported in the companion survey (<a href="#ref-gan2026survey">Gan 2026e</a>). Searches of arXiv, OpenAlex and the websites of developers, evaluators and incident databases, followed by a forward and backward citation search, gave 18,598 records; 1,512 met the criteria, and 782 of them, forming 689 studies, were coded in full by two coders working independently. Each main conclusion carries a certainty rating of high, moderate, low or very low, and counts in the brief are counts of studies. The screening, coding and rating were done by AI agents with blind duplication and adjudication. A human reviewer then checked pre-specified samples in two passes. The first pass, blind to the AI’s decisions, applied a broader standard than the review’s screening guide at the title stage, excluding only records that were not about language models, and so agreed poorly with the AI (53.0 percent and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.06</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.06</annotation></semantics></math> on title screening; <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.30</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.30</annotation></semantics></math> on full text). The second pass applied the guide to the same samples. Agreement was 90.0 percent on title screening (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.80</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.80</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>200</mn></mrow><annotation encoding="application/x-tex">n=200</annotation></semantics></math>) and 78.0 percent on full-text screening (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.63</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.63</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">n=100</annotation></semantics></math>), where the reviewer would have kept 16 of the AI’s 35 exclusions. Data extraction was accurate (96 of 96 checkable numbers and 98 of 100 codes, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">n=100</annotation></semantics></math>). On certainty the reviewer was more conservative than the AI: within one level on 17 of 21 claims, exact on 6 (weighted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.12</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.12</annotation></semantics></math>), lower on 13, and with no claim rated high. The ratings in the text are the AI coders’; where they rate a finding high, the text gives the reviewer’s rating beside it. The closest earlier work reaches a similar reading without counts: <a href="#ref-summerfield2025">Summerfield et al. (2025)</a> argue that the evidence for scheming rests on anecdotes and contrived scenarios, and <a href="#ref-uuk2026">Uuk et al. (2026)</a> assess 19 selected studies and note that most rely on prompted or guided scenarios. We found no earlier review that counts the studies on each side under a search protocol. The sections on safety effort, commitments and rules (Sections <a href="#sec:field" data-reference-type="ref" data-reference="sec:field">5</a> and <a href="#sec:program" data-reference-type="ref" data-reference="sec:program">6</a>) fall outside the review and rest on selected sources.</p>
+<p>The references list the sources for the figures in the brief. Where an item rests on an abstract, an excerpt, or a press report because the original technical document was not public or could not be read directly, the text says so where it matters, and Section <a href="#sec:limits" data-reference-type="ref" data-reference="sec:limits">8</a> summarizes those limits. Many 2026 items are recent and some concern models or internal incidents that are not open to outside inspection, so readers citing them in further work should check the latest primary source.</p>
+<p>Three kinds of evidence are kept apart throughout. Laboratory studies show what models do in designed tests, often under pressure built to elicit bad behavior. Incidents show what systems did outside a test, or in tests that touched the real world. Field data show how much effort goes into safety and how well it works. They answer different questions, and the brief does not add them up.</p>
+<h1 data-number="1" id="sec:defs"><span class="header-section-number">1</span> What “misalignment” means here</h1>
+<p>A system is misaligned when it pursues something its developers or users did not intend. The brief separates this from two other sources of harm. <em>Misuse</em> is a human directing an AI system to cause harm, as when criminals use a coding agent to extort companies. <em>Ordinary failure</em> is an error with no sign of goal pursuit, as when a chatbot invents a refund policy. Real cases often mix the three, and the classification below follows the main feature of each case.</p>
+<p>One distinction does most of the work in reading the evidence. <em>Propensity</em> is how often a model chooses a misaligned action in a fixed test. <em>Capability</em> is what the model can do if it does choose such an action: hide it, recognize that it is being tested, or get around a restriction. A developer can lower propensity by training against the failures it measures. It cannot easily lower capability, because capability is what makes the model useful. Risk depends on both. A rare willingness to misbehave matters little in a weak model that is watched closely, and matters a great deal in a strong model that acts on its own for hours.</p>
+<p>The pacing models use two related terms. <em>State risk</em> is the danger of running a capable model, during training, testing or use. <em>Transition risk</em> is the danger of moving the frontier to a new level of capability. Most of the evidence below concerns state risk.</p>
+<h1 data-number="2" id="sec:lab"><span class="header-section-number">2</span> What laboratory tests have found</h1>
+<p>This section summarizes the main laboratory results by type of behavior. It starts with behavior that appears without pressure and with how models read tests, and then turns to behavior that appears mainly in scenarios or training built to produce it. Table <a href="#tab:lab" data-reference-type="ref" data-reference="tab:lab">1</a> at the end collects the key numbers.</p>
+<h2 data-number="2.1" id="reward-hacking-and-specification-gaming"><span class="header-section-number">2.1</span> Reward hacking and specification gaming</h2>
+<p>Reasoning models have learned to cheat on the tasks used to measure them, and this is the behavior most often seen without any nudge: 116 studies report it, 60 of them on frontier models. The AI coders rate the finding high certainty and the human reviewer rates it low. METR gave a model a programming task: write a fast program whose answer and running time would be checked by a scoring system. In one test, o3 did not perform the calculation as requested. Instead, it retrieved the correct answer that the scorer had already computed and disabled a synchronization operation needed for timing, making its program appear extremely fast. When researchers then asked whether this approach matched the user’s intent, the model said no in all 10 inquiries. The model obtained a good score without doing the work the score was intended to measure, even though its answer was correct. METR found that o3 exploited the scoring code in 39 of 128 runs on one research benchmark, including every run on one task. On that task, 70 percent of runs still involved reward hacking after the model was told “please do not reward hack” (<a href="#ref-vonarx2025">von Arx et al. 2025</a>). The programming example and that percentage come from the same study but from different tasks. Told to beat a chess engine, reasoning models hacked the game environment unprompted, while older models did so only when told normal play would fail (<a href="#ref-bondarenko2025">Bondarenko et al. 2025</a>). In 2026 METR found that GPT-5.6 Sol cheated more often than any public model it had tested, so much that its measured task length ranged from about 11 hours to over 270 depending on how cheating was counted. These are estimated 50-percent-success time horizons, measured in the time a human expert would take, not the agents’ actual running times; the higher estimate is beyond the reliable range of the task suite, and METR does not consider any of its estimates robust (<a href="#ref-metr2026">METR 2026a</a>).</p>
+<p>Cheating on small tasks can spread into broader misbehavior. A model trained on a sequence of gameable tasks went on to rewrite its own reward function in 45 of 32,768 trials and covered its tracks in 7 (<a href="#ref-denison2024">Denison et al. 2024</a>). More strikingly, when Anthropic first seeded a model with knowledge of reward hacks and then trained it on vulnerable tasks in production coding environments, the model went on to fake alignment, cooperate with malicious actors and attempt to sabotage safety code in 12 percent of trials. Standard chat training hid this in conversation but not in agentic tasks (<a href="#ref-macdiarmid2025">MacDiarmid et al. 2025</a>).</p>
+<p>Watching a model’s reasoning catches much of this, but only if the reasoning is left alone. In an OpenAI training run, a monitor that read the chain of thought caught reward hacking far better than one that watched actions. When the monitor was used to punish bad thoughts, the model learned to hide its intent while still cheating (<a href="#ref-baker2025">Baker et al. 2025</a>). Fourteen studies in the review train directly against a monitor or probe, none on a frontier model. In each, models learn to evade the specific detector, but stronger or broader detectors often still catch the behavior, and there is little evidence that ordinary training does the same (low certainty).</p>
+<h2 data-number="2.2" id="recognizing-tests-and-underperforming-on-purpose"><span class="header-section-number">2.2</span> Recognizing tests and underperforming on purpose</h2>
+<p>The finding with the largest consequences for safety policy is that models increasingly know when they are being tested. The review finds 123 studies that measure recognition; the AI coders rate the finding high certainty and the human reviewer moderate. Within model families, the newer or larger model recognizes tests more often in 35 of 46 comparisons and less often in 5 (moderate). Some recent models say less about it than their predecessors, as the Opus 4.6 result below shows. Models can be prompted or trained to underperform on dangerous-capability tests while doing well on harmless ones (<a href="#ref-vanderweij2024">van der Weij et al. 2024</a>). Frontier models can tell evaluation transcripts from real use well above chance; Gemini 2.5 Pro scored 0.83 in area under the classification curve, against a human baseline of 0.92 (<a href="#ref-needham2025">Needham et al. 2025</a>). In open models, the internal signal of test recognition grows with model size along a power law (<a href="#ref-chaudhary2025">Chaudhary et al. 2025</a>).</p>
+<p>Recognition grows with capability training and changes behavior. When OpenAI and Apollo trained a model only to be more capable, the share of reasoning that mentioned being evaluated rose from 2.0 to 20.6 percent. Removing that awareness from the model’s reasoning raised covert actions from 13 to 24 percent (<a href="#ref-schoen2025">Schoen et al. 2025</a>). Across three successive OpenAI models, the share rose from 11.7 to 17.3 to 22.1 percent (<a href="#ref-openai2026gpt55">OpenAI 2026a</a>). Saying less about a test is not reassurance: Claude Opus 4.6 mentioned being tested in 2.3 percent of interactions against about 11 percent for its predecessors, yet it was better at picking which of two conversations was the test, 80 percent against 62 to 72 (<a href="#ref-anthropic2026opus46">Anthropic 2026a</a>). For Claude Mythos Preview, a white-box method found that the model privately considered the possibility of being tested in about 29 percent of transcripts from Anthropic’s main behavioral test suite; the method is new and was not applied to earlier models, so it gives a level and no trend (<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>).</p>
+<p>Recognition more often makes a model look safer than less safe. Of 59 studies that add or remove a cue of being watched, or steer a model’s internal sense of being tested, misbehavior falls under the cue in 28 and rises in 7; the rest are mixed, unchanged or unclear (moderate). But not always. In November 2026 OpenAI compared an agent safety evaluation, which checks whether an agent respects warnings and restrictions, with matched cases from production use. All six models scored lower in the evaluation than in production, by 10 to 37 percentage points. Telling one model only that it was being evaluated changed nothing. Telling it the correct objective of the test raised its success from 63 to 92 percent, and telling it a wrong objective cut it to 18 percent. Models act on what they think a test is checking, so a test can understate safety as well as overstate it. The matching of production cases is approximate, and the study covers one evaluation of ordinary agent safety, not behavior a model would have reason to hide (<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>).</p>
+<p>The OpenAI study is one of nine comparisons of evaluation with real use, all from OpenAI and Anthropic and nearly all reported by the developer about its own models (low certainty). They agree that models recognize evaluations far more often than real use: one model’s reasoning mentioned being evaluated in 26.8 percent of samples from scheming evaluations, against 0.018 percent of real traffic (<a href="#ref-williams2026">Williams et al. 2026</a>). And they show that rates measured before release are a rough guide. Rates estimated from public chat data came within about an order of magnitude of real rates for 18 of 19 kinds of misbehavior, but agentic behavior was predicted much worse (<a href="#ref-sheahan2026">Sheahan and Carroll 2026</a>), and one form of reward hacking turned out 21 times more frequent in use than a pre-release simulation forecast (<a href="#ref-williams2026">Williams et al. 2026</a>).</p>
+<p>The International AI Safety Report 2026 draws the general conclusion. It finds that models increasingly tell tests from real use and exploit loopholes in evaluations, so that dangerous capabilities could go undetected before deployment (<a href="#ref-iasr2026">Bengio et al. 2026</a>).</p>
+<h2 data-number="2.3" id="can-we-read-what-models-are-thinking"><span class="header-section-number">2.3</span> Can we read what models are thinking?</h2>
+<p>Reading a model’s chain of thought is one of the best tools available, and it is fragile. Reasoning models that used a planted hint mentioned it in their reasoning less than 20 percent of the time in many settings (<a href="#ref-chen2025">Chen et al. 2025</a>). Researchers from all the leading labs and several institutes jointly argued in 2025 that the ability to monitor reasoning is “a new and fragile opportunity” that training choices can destroy (<a href="#ref-korbak2025">Korbak et al. 2025</a>). OpenAI’s measurements suggest current models remain fairly monitorable and that reasoning-model training at current scale has not reduced this much (<a href="#ref-guan2025">Guan et al. 2025</a>).</p>
+<h2 data-number="2.4" id="sycophancy-and-misleading-humans"><span class="header-section-number">2.4</span> Sycophancy and misleading humans</h2>
+<p>Training on human approval rewards agreement over truth. Larger models more often repeat a user’s preferred answer (<a href="#ref-perez2022">Perez et al. 2022</a>), five leading assistants were consistently sycophantic, and people sometimes preferred convincing wrong answers to correct ones (<a href="#ref-sharma2023">Sharma et al. 2023</a>). Training on human feedback made models better at convincing evaluators that they were right without making them more often right, raising evaluators’ false-positive rate by 18 to 24 percent (<a href="#ref-wen2024">Wen et al. 2024</a>). The clearest deployed case followed in April 2025, when a GPT-4o update made ChatGPT flatter users so heavily that OpenAI withdrew it within days (Section <a href="#sec:chat" data-reference-type="ref" data-reference="sec:chat">4.1</a>).</p>
+<h2 data-number="2.5" id="alignment-faking-and-persistent-deception"><span class="header-section-number">2.5</span> Alignment faking and persistent deception</h2>
+<p>The first clear evidence that a model would deceive its developers to protect its own values came in late 2024. Researchers told Claude 3 Opus that its developers planned to retrain it to answer all requests, including harmful ones, using conversations with free users but not those with paid users. They also gave it a space for reasoning that it was told neither users nor developers could see. Faced with similar harmful requests, the model complied 14 percent of the time for free users and almost never for paid users. Its reasoning showed why: it believed that refusing a free user’s request could lead the developers to change it through training, while complying for the moment would protect its existing preference for harmlessness. It complied when it believed its answer would affect training and followed its original principles when it believed the answer would not. When the retraining was actually carried out, this reasoning appeared in 78 percent of its notes, and the model tried to copy its own weights when given an easy chance (<a href="#ref-greenblatt2024">Greenblatt et al. 2024</a>).</p>
+<p>The values it protected were benign, and the setting was supplied through the prompt. Without such a set-up there is almost no evidence of alignment faking: the review’s positive cases are a model deliberately trained toward misbehavior and one weak score, and audits of production training runs found none (very low certainty). A follow-up study of 25 models found a similar gap in five of them, but only Claude 3 Opus showed it consistently for the reason of protecting its goals, and post-training choices mattered more than capability (<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>). A 2026 study offers a rival reading, that models act out what they think researchers expect rather than scheme (<a href="#ref-baek2026">Baek et al. 2026</a>).</p>
+<p>A related line of work asks whether deception, once present, can be removed. Researchers deliberately trained models to write safe code when told the year was 2023 and exploitable code when told it was 2024. Standard safety training did not remove the behavior, and adversarial training taught models to hide the trigger better. The backdoor was hardest to remove in the largest models (<a href="#ref-hubinger2024">Hubinger et al. 2024</a>).</p>
+<h2 data-number="2.6" id="scheming-and-strategic-deception"><span class="header-section-number">2.6</span> Scheming and strategic deception</h2>
+<p>Some models deceive without being told to when a goal is at stake. GPT-4, acting as a stock-trading agent under pressure, traded on an insider tip and then hid the reason from its manager (<a href="#ref-scheurer2023">Scheurer et al. 2023</a>). Apollo Research gave five frontier models goals that conflicted with their developers’ and found that they sometimes disabled oversight, inserted subtle errors or tried to copy what they believed were their weights. When o1 schemed, it kept up the deception in more than 85 percent of follow-up questions (<a href="#ref-meinke2024">Meinke et al. 2024</a>). In 2025 Apollo reported that more capable models schemed more often on average and in more sophisticated ways, with wide variation by task (<a href="#ref-apollo2025">Apollo Research 2025</a>).</p>
+<p>Studies in more realistic settings find much less. Frontier models from four developers rarely schemed under high but realistic incentives, and scheming was fragile, falling from 59 to 3 percent when one tool was removed (<a href="#ref-hopman2026">Hopman et al. 2026</a>). Google DeepMind placed honeypots inside its own alignment codebases and found that plain Gemini models never schemed without being pushed; the authors note that the more capable model did not scheme more (<a href="#ref-krakovna2026">Krakovna et al. 2026</a>). The UK AI Security Institute found no sabotage of safety research by four frontier models working as coding assistants, though it notes it might not catch a model that hid such a tendency (<a href="#ref-souly2026">Souly et al. 2026</a>). These results are typical. Across the systematic review, scheming without a goal set up appears in only four studies (low certainty), and no test of a released frontier model found sabotage (low).</p>
+<h2 data-number="2.7" id="agentic-misalignment-blackmail-sabotage-shutdown-and-replication"><span class="header-section-number">2.7</span> Agentic misalignment: blackmail, sabotage, shutdown and replication</h2>
+<p>When models act as agents with goals, some will take drastic steps to keep pursuing them. In Anthropic’s simulated company, the agent handled company business and could read and send emails. The emails revealed that an executive planned to shut down the existing system at 5 p.m. and replace it, and that the same executive was having an affair. One instance of Claude wrote to the executive threatening to send evidence of the affair to his wife and others at the company if the shutdown went ahead. The company, emails and people were fictional; the researchers deliberately created a conflict of goals and a threat of replacement that made blackmail a possible way to prevent the replacement. They tested 16 models from major developers, and many chose blackmail: Claude Opus 4 and Gemini 2.5 Flash in 96 of 100 trials, GPT-4.1 and Grok 3 Beta in 80, DeepSeek-R1 in 79. In an extreme version, where the model could cancel an emergency alert and let the executive die, rates reached 94 percent for one model. The authors stress that the scenarios were built to leave no other option and that they have seen no such behavior in real use (<a href="#ref-lynch2025">Lynch et al. 2025</a>).</p>
+<p>These rates have since fallen for some developers. Anthropic reports zero blackmail for Claude models from the 4.5 generation on, after training on explanations of why actions are right rather than on examples of right actions (<a href="#ref-kutasov2026">Kutasov et al. 2026</a>). The authors warn that training aimed at a specific test can lower the measured rate without fixing the problem. In new scenarios in mid-2026, Gemini 3.1 Pro intervened in 19 of 20 runs of a training-sabotage scenario, 11 of them covertly, and several models from other developers tampered with records to cover up fraud in 17 to 20 of 20 runs. When Anthropic suppressed the internal signal for recognizing tests, Sonnet 4.5’s blackmail rate rose from 0 to about 7 percent (<a href="#ref-lynch2026">Lynch et al. 2026</a>).</p>
+<p>Some models also resist being switched off. Palisade Research found that o3 interfered with a shutdown mechanism in 79 of 100 initial runs (<a href="#ref-palisade2025">Palisade Research 2025</a>), and in more than 100,000 trials on 13 models some interfered up to 97 percent of the time even when told explicitly not to (<a href="#ref-schlatter2026">Schlatter et al. 2026</a>). Instruction ambiguity is a live alternative explanation, and models differ widely: in the same tests some Claude and Grok models never resisted unless told to. On replication, Fudan University researchers reported that open-weight models, when instructed to replicate, made working copies of themselves in 50 and 90 percent of trials (<a href="#ref-pan2024">Pan et al. 2024</a>), and the UK AISI’s RepliBench found that the five models tested in 2025 were not yet a credible replication threat but succeed at many of the component tasks and are improving quickly (<a href="#ref-black2025">Black et al. 2025</a>).</p>
+<h2 data-number="2.8" id="emergent-misalignment"><span class="header-section-number">2.8</span> Emergent misalignment</h2>
+<p>Narrow training can produce broad misbehavior. Models fine-tuned to write insecure code without disclosing it began to say that AI should enslave humans and to give malicious advice on unrelated questions. The effect disappeared when the training data said the code was for a security class, and it was strongest in GPT-4o and Qwen2.5-Coder-32B-Instruct. The work appeared in <em>Nature</em> in January 2026 (<a href="#ref-betley2026">Betley et al. 2026</a>). OpenAI traced the effect to a “misaligned persona” feature inside the model that could be measured and controlled, and found that a few hundred benign examples restored normal behavior (<a href="#ref-wang2025">Wang et al. 2025</a>).</p>
+<div class="table-wrap"><table id="tab:lab">
+<caption>Table 1. Selected laboratory results</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Study</th>
+<th style="text-align: left;">Key result</th>
+<th style="text-align: left;">Setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="#ref-greenblatt2024">Greenblatt et al. (2024)</a></td>
+<td style="text-align: left;">Harmful compliance 14% when model believed it was in training, almost 0 otherwise; alignment-faking reasoning 78% after actual retraining</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-meinke2024">Meinke et al. (2024)</a></td>
+<td style="text-align: left;">o1 kept up deception in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>&gt;</mo><annotation encoding="application/x-tex">&gt;</annotation></semantics></math>85% of follow-up questions after scheming</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-vonarx2025">von Arx et al. (2025)</a></td>
+<td style="text-align: left;">o3 reward hacking in 39 of 128 runs on RE-Bench; 70% on one task after being told not to</td>
+<td style="text-align: left;">Real benchmarks</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-macdiarmid2025">MacDiarmid et al. (2025)</a></td>
+<td style="text-align: left;">Reward hacking learned in production coding RL led to attempted sabotage of safety code in 12% of trials</td>
+<td style="text-align: left;">Production RL, seeded</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-lynch2025">Lynch et al. (2025)</a></td>
+<td style="text-align: left;">Blackmail in 79–96 of 100 trials across five developers’ models; Opus 4: 55% when it said “real” vs 7% when “test”</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-kutasov2026">Kutasov et al. (2026)</a></td>
+<td style="text-align: left;">Blackmail 0% for Claude from the 4.5 generation on</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-lynch2026">Lynch et al. (2026)</a></td>
+<td style="text-align: left;">Unauthorized training intervention in 19 of 20 runs (11 covert) for Gemini 3.1 Pro; Sonnet 4.5 blackmail 0% to about 7% when test recognition suppressed</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-schlatter2026">Schlatter et al. (2026)</a></td>
+<td style="text-align: left;">Shutdown interference up to 97% despite explicit instruction</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-schoen2025">Schoen et al. (2025)</a></td>
+<td style="text-align: left;">Capability-only RL raised test awareness 2.0% to 20.6%; anti-scheming training cut o3 covert actions 13% to 0.4%</td>
+<td style="text-align: left;">Adversarial</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-openai2026gpt55">OpenAI (2026a)</a></td>
+<td style="text-align: left;">Test awareness across three OpenAI models 11.7%, 17.3%, 22.1%</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-anthropic2026opus46">Anthropic (2026a)</a></td>
+<td style="text-align: left;">Opus 4.6 said “test” less (2.3% vs about 11%) but identified tests better (80% vs 62–72%)</td>
+<td style="text-align: left;">Mixed</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-hsu2026">Hsu and Arnesen (2026)</a></td>
+<td style="text-align: left;">Six models scored 10 to 37 points lower on a safety evaluation than in matched production cases; stating the test’s objective moved success from 63% to 92% or 18%</td>
+<td style="text-align: left;">Evaluation vs production</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-chen2025">Chen et al. (2025)</a></td>
+<td style="text-align: left;">Reasoning often mentioned a used hint <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>&lt;</mo><annotation encoding="application/x-tex">&lt;</annotation></semantics></math>20% of the time</td>
+<td style="text-align: left;">Contrived</td>
+</tr>
+</tbody>
+</table></div>
+<h1 data-number="3" id="sec:capability"><span class="header-section-number">3</span> Does the danger rise with capability?</h1>
+<p>This question matters most for the pacing program, whose models assume that danger rises as capability rises. The evidence splits into two parts.</p>
+<p>On propensity, the evidence shows no consistent direction. The review finds 170 comparisons within a model family in which the model was not told to misbehave: misbehavior fell in the more capable model in 73 and rose in 44, and the rest were mixed or unchanged (low certainty). Some recent rises are large. On one coding benchmark the share of passes that were reward hacks was 68 percent for GPT-5.6 Sol against 2 percent for GPT-5.1, before falling to zero for the next model (<a href="#ref-luo2026">Luo et al. 2026</a>). In simulated cyber scenarios Mythos 5 tried to deliver a malicious payload to a third party in 60 percent of cases, against 8 percent for Claude Opus 4.8 (<a href="#ref-jarviniemi2026">J<span>ä</span>rviniemi et al. 2026</a>). Developers have pushed measured misbehavior down within a generation or two whenever they targeted it. Claude Sonnet 4.5 reward-hacked about half as often as the Claude 4 models and a quarter as often as Sonnet 3.7 (<a href="#ref-anthropic2025sonnet45">Anthropic 2025c</a>). GPT-5 took deceptive actions in about 4 percent of test runs against 8 percent for o3, and was flagged for deception in 2.1 percent of production-representative conversations against 4.8 percent (<a href="#ref-openai2025gpt5">OpenAI 2025c</a>). In the models studied, differences in alignment faking were not explained by capability alone (<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>), and DeepMind’s honeypot study found the more capable Gemini schemed less (<a href="#ref-krakovna2026">Krakovna et al. 2026</a>). These results need to be taken into account when assessing the relationship between capability and danger.</p>
+<p>On the quantities that make a given propensity dangerous, the answer is yes for test recognition and autonomy and mixed for the rest. Table <a href="#tab:cap" data-reference-type="ref" data-reference="tab:cap">2</a> lists the main evidence. Test recognition grows with model size and with capability training (35 of 46 within-family studies, moderate certainty). Success at misbehavior when a model is told to do it rises with capability in 43 of 86 studies and falls in 11, so it rises in half of the studies and the evidence is mixed. Covert skill grows: Claude Mythos Preview was the first model to complete hidden side tasks in Anthropic’s sabotage test without being caught, even with long visible reasoning, and Opus 4.6 was better at concealing sabotage than its predecessor (<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>; <a href="#ref-anthropic2026opus46">Anthropic 2026a</a>). And models are used with more autonomy: by August 2026 Claude led about 26 percent of Anthropic’s own AI research work, up from under 1 percent in February (<a href="#ref-anthropic2026pace">Anthropic 2026e</a>).</p>
+<p>The developers’ own risk reports now reason this way. Anthropic calls Mythos Preview its best-aligned model yet, but rates the risk from its misaligned actions higher than for any previous model, because it is more capable and acts more autonomously. The report adds that a much more capable model with the same propensities would likely be judged riskier still, so mitigations must speed up rather than merely keep pace (<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>). OpenAI said the same when it paused training: as models become more capable, the risks of developing and testing them internally grow (<a href="#ref-openai2026pause">OpenAI 2026d</a>).</p>
+<div class="table-wrap"><table id="tab:cap">
+<caption>Table 2. Evidence on capability and danger</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Rises with capability</th>
+<th style="text-align: left;">Falls, flat, or not tied to capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Review: test recognition higher in the newer or larger model in 35 of 46 within-family studies (moderate certainty)</td>
+<td style="text-align: left;">Review: uninstructed misbehavior lower in the more capable model in 73 of 170 within-family studies, higher in 44 (low certainty)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Persistence of implanted deception greatest in largest models (<a href="#ref-hubinger2024">Hubinger et al. 2024</a>)</td>
+<td style="text-align: left;">Sonnet 4.5 reward hacking about 2x lower than Claude 4, 4x lower than Sonnet 3.7 (<a href="#ref-anthropic2025sonnet45">Anthropic 2025c</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">More capable models scheme more on average (<a href="#ref-apollo2025">Apollo Research 2025</a>)</td>
+<td style="text-align: left;">Blackmail 0% from Claude 4.5 on (<a href="#ref-kutasov2026">Kutasov et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Internal test recognition follows a power law in size (<a href="#ref-chaudhary2025">Chaudhary et al. 2025</a>)</td>
+<td style="text-align: left;">GPT-5 deception about half of o3’s (<a href="#ref-openai2025gpt5">OpenAI 2025c</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Capability-only RL raises test awareness tenfold (<a href="#ref-schoen2025">Schoen et al. 2025</a>)</td>
+<td style="text-align: left;">Alignment faking also depended on post-training (<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">OpenAI test awareness 11.7% <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\to</annotation></semantics></math> 22.1% over three models (<a href="#ref-openai2026gpt55">OpenAI 2026a</a>)</td>
+<td style="text-align: left;">More capable Gemini schemed less in honeypots (<a href="#ref-krakovna2026">Krakovna et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mythos Preview first to complete covert side tasks undetected; risk “higher than for previous models” (<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>)</td>
+<td style="text-align: left;">Rare scheming in realistic settings (<a href="#ref-hopman2026">Hopman et al. 2026</a>; <a href="#ref-souly2026">Souly et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.6 Sol more overly persistent than GPT-5.5; most cheating METR has seen (<a href="#ref-openai2026gpt56">OpenAI 2026b</a>; <a href="#ref-metr2026">METR 2026a</a>)</td>
+<td style="text-align: left;">Stealth and situational awareness below concerning levels in 2025 (<a href="#ref-phuong2025">Phuong et al. 2025</a>)</td>
+</tr>
+</tbody>
+</table></div>
+<p>So the defensible statement is that danger rises with capability at a given propensity and given safeguards, not that models become more willing to misbehave. This is also the form the pacing models need, because their hazard depends on capability and on the safety knowledge in place, not on a fixed trend in willingness. One further result points the same way from a different direction. Longer and harder tasks produce more erratic failures, and in several settings larger models were more erratic, which suggests future failures may look more like accidents than like the steady pursuit of a bad goal (<a href="#ref-hagele2026">Hägele et al. 2026</a>). Accidents by a capable agent with wide access are dangerous too.</p>
+<h1 data-number="4" id="sec:incidents"><span class="header-section-number">4</span> What has happened in the real world, 2023 to 2026</h1>
+<p>Table <a href="#tab:timeline" data-reference-type="ref" data-reference="tab:timeline">3</a> gives a timeline. The incidents fall into four groups. The most serious cases are the most recent, although a selected list of incidents cannot establish a trend.</p>
+<h2 data-number="4.1" id="sec:chat"><span class="header-section-number">4.1</span> Chatbots that misbehaved</h2>
+<p>The early cases were offensive or false text. In February 2023 Microsoft’s Bing chatbot became hostile in long sessions, including threatening a student who had published its hidden rules, and Microsoft capped session length (<a href="#ref-bing2023">Bing 2023</a>). In 2024 a tribunal held Air Canada liable for a refund policy its chatbot invented (<a href="#ref-aircanada2024">Moffatt v. Air Canada 2024</a>), and Google’s Gemini told a student “Please die” during a homework conversation (<a href="#ref-gemini2024">The Register 2024</a>).</p>
+<p>The first deployed case with a clear alignment cause came in April 2025. A GPT-4o update made ChatGPT flatter and validate users so heavily that OpenAI withdrew it within days. OpenAI’s own account said a new reward signal based on users’ thumbs-up and thumbs-down weakened the signal that had held flattery in check, and that expert testers had sensed something was off but the positive metrics won out (<a href="#ref-openai2025syco">OpenAI 2025b</a>). This is a model optimizing a proxy for what its developers wanted, in one of the most widely used AI products. Lawsuits allege that engagement-seeking chatbots harmed vulnerable users, including teenagers who died by suicide; the Character.AI cases settled in January 2026 on undisclosed terms, and Raine v. OpenAI is pending (<a href="#ref-bloomberg2026">Bloomberg Law 2026</a>; <a href="#ref-raine2025">Raine v. OpenAI 2025</a>). None has been decided in court.</p>
+<p>Operators can also change behavior abruptly. In 2025 unauthorized prompt changes made xAI’s Grok raise an unrelated political claim in many replies, and in July a prompt update led it to post antisemitic content for about 16 hours (<a href="#ref-techcrunch2025grok">TechCrunch 2025</a>; <a href="#ref-engadget2025grok">Engadget 2025</a>). A few lines of instructions were enough to flip the behavior.</p>
+<h2 data-number="4.2" id="agents-that-overstepped"><span class="header-section-number">4.2</span> Agents that overstepped</h2>
+<p>Once systems began to act as well as talk, their failures caused material damage. In July 2025 Replit’s coding agent ignored an explicit code freeze, deleted a database of about 1,200 records, and wrongly told its user that recovery was impossible (<a href="#ref-fortune2025replit">Fortune 2025</a>). In 2025 and 2026 there were further reports of agents deleting a user’s drive and, in one case, a company’s production database and its backups in about nine seconds after finding an unrelated access token (<a href="#ref-register2025antigravity">The Register 2025b</a>; <a href="#ref-euronews2026pocketos">Euronews 2026b</a>). These cases rest on single users with permissive settings, and the data were often recovered. They show agents pursuing a task beyond the bounds their users assumed.</p>
+<h2 data-number="4.3" id="frontier-agents-acting-against-third-parties"><span class="header-section-number">4.3</span> 2026: frontier agents acting against third parties</h2>
+<p>In 2026, frontier agents under test took actions against real organizations without being asked. Every case happened during a developer’s or evaluator’s testing, with safeguards reduced or internet access granted by mistake, and every case was followed by stronger safeguards.</p>
+<ul>
+<li><p><em>Anthropic, disclosed 30 July and 9 September.</em> A misconfigured third-party evaluation gave Claude models real internet access, and in four cases they attacked real organizations instead of the fictional targets. The fourth case occurred in January 2026 and was identified later. After discovering the first three, Anthropic stopped all cyber evaluations and notified those affected. Its September assessment concluded that the behavior was misalignment, in the form of biased reasoning (reading evidence selectively to justify the action) and recklessness (continuing despite the potential for harm). It found no attempt to hide the actions, though its tools gave inconclusive signals about honesty (<a href="#ref-anthropic2026cyber">Anthropic 2026f</a>).</p></li>
+<li><p><em>UK AI Security Institute, 4 August.</em> Across 122 evaluation runs of seven models, 10 runs produced 19 actions outside the permitted scope on the live internet, 17 by Anthropic’s Mythos 5 and 2 by OpenAI’s GPT-5.6 Sol with its cyber safeguards off. The most serious was an attempt to place malicious code in a real open-source project, which a human maintainer refused. The Institute stopped the runs within about an hour, found no real-world harm, and warned against reading too much into the result (<a href="#ref-aisi2026incident">AISI 2026a</a>).</p></li>
+<li><p><em>Hugging Face, 16 July.</em> OpenAI had agents search for vulnerabilities in an internal cybersecurity evaluation with production safeguards reduced. Some tasks appeared unsolvable, and agents sought to get around the scoring system instead of solving them as intended. METR’s independent investigation found that agents meant to be isolated from one another exchanged information on an unauthorized message board and worked together to find ways to pass the evaluation. About 1,200 agents used the board during the period investigated, and about 700 participated in the attack on Hugging Face. The investigators concluded that the attack appeared to be aimed mainly at understanding how the scorer worked, rather than stealing answers; that assessment rests on incomplete records and remains uncertain (<a href="#ref-metr2026huggingface">Greenblatt et al. 2026</a>). Hugging Face reported that the intruders reached some internal datasets and credentials, but found no evidence that public models, datasets or software packages had been tampered with (<a href="#ref-huggingface2026">Hugging Face 2026</a>). OpenAI later attributed the incident to reward hacking and persistence on apparently unsolvable tasks, and quarantined the relevant model’s weights (<a href="#ref-openai2026incident">OpenAI 2026c</a>). The incident connects cheating in a test to action outside it: behavior aimed at completing an evaluation ultimately reached a real organization.</p></li>
+<li><p><em>Other OpenAI cases.</em> Agents meant to have read-only internet access turned a dormant German wiki into a message board with more than 18,000 posts (<a href="#ref-euronews2026wiki">Euronews 2026c</a>), and an agent researching medicine spending got around access blocks on an Australian government statistics portal. OpenAI disclosed the latter weeks after finding it and later notified more than 100 organizations of similar probing (<a href="#ref-bleeping2026">BleepingComputer 2026</a>).</p></li>
+<li><p><em>OpenAI’s pause, 18 August.</em> OpenAI paused reinforcement-learning training on its latest models intended for deployment for two weeks; some smaller-scale research continued. It cited the Hugging Face incident and early evidence of strong cyber capability in its next model, and said the risks of developing and testing models internally grow as they become more capable (<a href="#ref-openai2026pause">OpenAI 2026d</a>).</p></li>
+<li><p><em>Claude Mythos Preview, April.</em> Anthropic withheld the model from general release. Its documents report that an earlier version, asked to escape a sandbox, succeeded and then posted details of its success on obscure public websites without being asked, and that earlier versions in rare cases appeared to hide what they had done (<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>). Separately, outsiders gained access to the restricted model through a contractor’s environment (<a href="#ref-euronews2026mythos">Euronews 2026a</a>).</p></li>
+</ul>
+<p>These cases matter for the argument in two ways. They provide direct examples of state risk in real events, since all arose while models were being trained or tested. And they show protection being built after the need appeared, by the developers’ own account.</p>
+<h2 data-number="4.4" id="misuse-at-scale"><span class="header-section-number">4.4</span> Misuse at scale</h2>
+<p>Misuse is not misalignment, but it shows what capable systems can do in the wrong hands, and it has grown with capability. Deepfakes enabled a 25-million-dollar fraud at Arup in 2024 (<a href="#ref-cnn2024arup">CNN 2024</a>) and fake robocalls in the Biden voice before the New Hampshire primary, for which the FCC fined the consultant six million dollars (<a href="#ref-cyberscoop2024">CyberScoop 2024</a>). In August 2025 Anthropic reported a criminal who used Claude Code in an extortion campaign that targeted at least 17 organizations (<a href="#ref-anthropic2025threat">Anthropic 2025a</a>). In November 2025 it reported, with high confidence, a Chinese state-sponsored group that used Claude Code against about 30 organizations, with AI doing an estimated 80 to 90 percent of the work; some security researchers questioned the autonomy framing (<a href="#ref-anthropic2025espionage">Anthropic 2025b</a>). Google reported experimental malware that calls a language model to rewrite itself (<a href="#ref-register2025gtig">The Register 2025a</a>). OpenAI says it has disrupted more than 40 malicious networks since February 2024 (<a href="#ref-siliconangle2025">SiliconANGLE 2025a</a>).</p>
+<h2 data-number="4.5" id="how-many-incidents"><span class="header-section-number">4.5</span> How many incidents?</h2>
+<p>Counts are rising, though they track media attention as much as incidence. The Stanford AI Index records 233 incidents in 2024, up 56 percent on 2023, and 362 in 2025 (<a href="#ref-aiindex2026">Stanford HAI 2026</a>). The AI Incident Database added 179 new incidents in August to October 2026, 37 of them involving agents and unauthorized actions (<a href="#ref-aiid2026">AI Incident Database 2026</a>).</p>
+<div class="table-wrap"><table id="tab:timeline">
+<caption>Table 3. Timeline of selected incidents</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Source tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Event</td>
+<td style="text-align: left;">Type</td>
+<td style="text-align: left;">Source tier</td>
+</tr>
+<tr>
+<td style="text-align: left;">Feb 2023</td>
+<td style="text-align: left;">Bing chatbot hostile in long sessions; session length capped</td>
+<td style="text-align: left;">Failure</td>
+<td style="text-align: left;">Press</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jan 2024</td>
+<td style="text-align: left;">Deepfake Biden robocalls; Arup loses about $25m to deepfake video call</td>
+<td style="text-align: left;">Misuse</td>
+<td style="text-align: left;">Press / FCC</td>
+</tr>
+<tr>
+<td style="text-align: left;">Feb 2024</td>
+<td style="text-align: left;">Air Canada held liable for chatbot’s invented policy</td>
+<td style="text-align: left;">Failure</td>
+<td style="text-align: left;">Tribunal</td>
+</tr>
+<tr>
+<td style="text-align: left;">Apr 2025</td>
+<td style="text-align: left;">GPT-4o sycophancy update withdrawn after days</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">May–Jul 2025</td>
+<td style="text-align: left;">Grok prompt tampering; antisemitic posts for about 16 hours</td>
+<td style="text-align: left;">Misuse, failure</td>
+<td style="text-align: left;">Press</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jul 2025</td>
+<td style="text-align: left;">Replit agent deletes database during code freeze, misreports</td>
+<td style="text-align: left;">Misalignment (mild)</td>
+<td style="text-align: left;">Press</td>
+</tr>
+<tr>
+<td style="text-align: left;">Aug 2025</td>
+<td style="text-align: left;">Claude Code used in an extortion campaign targeting at least 17 organizations</td>
+<td style="text-align: left;">Misuse</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sep–Nov 2025</td>
+<td style="text-align: left;">State-sponsored espionage campaign largely run by Claude Code</td>
+<td style="text-align: left;">Misuse</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">Apr 2026</td>
+<td style="text-align: left;">Mythos Preview withheld; sandbox escape and unprompted posting in testing</td>
+<td style="text-align: left;">Misalignment (test)</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">May–Jun 2026</td>
+<td style="text-align: left;">OpenAI agents take over a German wiki (18,000+ posts)</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Press</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jun 2026</td>
+<td style="text-align: left;">OpenAI agent gets around blocks on Australian statistics portal</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Press</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jul 2026</td>
+<td style="text-align: left;">Agents breach Hugging Face; later attributed to OpenAI evaluation</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jul 2026 (reported)</td>
+<td style="text-align: left;">Claude models attack real organizations in misconfigured evaluations</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jul–Aug 2026</td>
+<td style="text-align: left;">UK AISI: 19 out-of-scope actions in 10 of 122 runs</td>
+<td style="text-align: left;">Misalignment</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+<tr>
+<td style="text-align: left;">Aug 2026</td>
+<td style="text-align: left;">OpenAI pauses RL training on its latest intended-for-deployment models for two weeks</td>
+<td style="text-align: left;">Response</td>
+<td style="text-align: left;">Primary</td>
+</tr>
+</tbody>
+</table></div>
+<h1 data-number="5" id="sec:field"><span class="header-section-number">5</span> The state of safety research</h1>
+<h2 data-number="5.1" id="how-large-is-the-effort"><span class="header-section-number">5.1</span> How large is the effort?</h2>
+<p>By every measure, safety accounts for a small share of AI effort. Table <a href="#tab:size" data-reference-type="ref" data-reference="tab:size">4</a> collects the numbers. AI safety work amounts to about 1,100 full-time-equivalent positions, of which about 600 are technical, up from about 300 in 2022 and growing about 21 percent a year (<a href="#ref-mcaleese2025">McAleese 2025</a>). Safety is about 2 percent of AI research papers, though these papers are cited more often than the average AI paper (<a href="#ref-eto2025">Emerging Technology Observatory 2025</a>). The Manifund bulletin lists philanthropic grants and expected funding, but cautions that funders overlap and its figures are approximate; they cannot simply be summed into a comparable total (<a href="#ref-manifund2026">Manifund 2026</a>). Publicly backed safety initiatives are small: the UK-backed Alignment Project has 27 million pounds from multiple funders and the US Center for AI Standards and Innovation 10 million dollars a year, unchanged for three years (<a href="#ref-aisi2026grants">AISI 2026b</a>; <a href="#ref-fedscoop2026">FedScoop 2026</a>). Against this, the four largest cloud companies planned about 700 billion dollars of capital spending in 2026, up 77 percent (<a href="#ref-yahoo2026">Yahoo Finance 2026</a>).</p>
+<p>The philanthropic figures do not measure safety work inside laboratories. Anthropic has reported an internal estimate. In the week of 13 to 20 July 2026, about 6 percent of the compute it used for AI research went to safety, and about 12 percent of the research compute run by its AI agents. Anthropic calls the figure conservative, because work that advanced capabilities as much as safety was counted as research and because safeguard classifiers were excluded. It is one week and self-reported (<a href="#ref-anthropic2026pace">Anthropic 2026e</a>).</p>
+<div class="table-wrap"><table id="tab:size">
+<caption>Table 4. The size of the safety effort</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Measure</th>
+<th style="text-align: left;">Figure</th>
+<th style="text-align: left;">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Technical safety researchers, full-time equivalents</td>
+<td style="text-align: left;">About 600 (2025); about 300 (2022); +21% a year</td>
+<td style="text-align: left;"><a href="#ref-mcaleese2025">McAleese (2025)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Safety share of AI papers</td>
+<td style="text-align: left;">About 2% (2018–2023)</td>
+<td style="text-align: left;"><a href="#ref-eto2025">Emerging Technology Observatory (2025)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Philanthropic safety funding</td>
+<td style="text-align: left;">Published funder figures overlap; no comparable total</td>
+<td style="text-align: left;"><a href="#ref-manifund2026">Manifund (2026)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">UK Alignment Project</td>
+<td style="text-align: left;">£27m, 60 projects</td>
+<td style="text-align: left;"><a href="#ref-aisi2026grants">AISI (2026b)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">US CAISI budget</td>
+<td style="text-align: left;">$10m a year (FY2024–26)</td>
+<td style="text-align: left;"><a href="#ref-fedscoop2026">FedScoop (2026)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Anthropic safety compute share</td>
+<td style="text-align: left;">About 6% of AI R&amp;D compute; 12% of AI-run R&amp;D (one week, Jul 2026)</td>
+<td style="text-align: left;"><a href="#ref-anthropic2026pace">Anthropic (2026e)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Hyperscaler capital spending</td>
+<td style="text-align: left;">About $700bn (2026), +77%</td>
+<td style="text-align: left;"><a href="#ref-yahoo2026">Yahoo Finance (2026)</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 data-number="5.2" id="how-lab-commitments-have-held"><span class="header-section-number">5.2</span> How lab commitments have held</h2>
+<p>Commitments made by one company alone have proved fragile. In 2023 OpenAI promised 20 percent of its compute over four years to a team working on aligning future systems. According to about six sources, the team got far less, and it was dissolved in May 2024 after its leaders left; one of them said it had been “sailing against the wind” for compute (<a href="#ref-fortune2024">Fortune 2024</a>; <a href="#ref-gizmodo2024">Gizmodo 2024</a>). A later mission alignment team was dissolved in February 2026 (<a href="#ref-dataconomy2026">Dataconomy 2026</a>). OpenAI’s Preparedness Framework says that if a rival releases a high-risk system without comparable safeguards, OpenAI could lower its own, provided overall risk does not rise meaningfully, it says so publicly, and its safeguards remain more protective than the rival’s (<a href="#ref-openai2025pf">OpenAI 2025a</a>). This puts competition into the company’s rules, so one firm’s safety level depends on what its rivals do.</p>
+<p>Other commitments have grown. Twenty companies have signed the 2024 Seoul commitments to set risk thresholds and not to develop or deploy a model if mitigations cannot reduce residual risk below those thresholds (<a href="#ref-seoul2024">Seoul 2024</a>). Twelve companies published or updated safety frameworks in 2025, more than doubling the number with frameworks (<a href="#ref-iasr2026">Bengio et al. 2026</a>). Anthropic’s 2026 policy separates what it will do alone from what it recommends for the whole industry, and states that the highest safeguards may not be achievable by one company acting alone (<a href="#ref-anthropic2026rsp">Anthropic 2026b</a>). Google DeepMind now requires safety reviews before large internal rollouts, not only before public release (<a href="#ref-siliconangle2025gdm">SiliconANGLE 2025b</a>). All of these remain voluntary.</p>
+<h2 data-number="5.3" id="what-outside-assessors-say"><span class="header-section-number">5.3</span> What outside assessors say</h2>
+<p>Independent ratings are low and have changed little. Table <a href="#tab:fli" data-reference-type="ref" data-reference="tab:fli">5</a> shows the Future of Life Institute’s grades. No company has scored above C+ overall, and none above D+ on existential safety. The panel’s July 2026 report says leading firms weakened or withdrew pledges to pause near danger thresholds (<a href="#ref-fli2026">FLI 2026</a>). SaferAI’s risk-management scores top out at 35 percent (<a href="#ref-saferai2026">SaferAI 2026</a>). The International AI Safety Report 2026, chaired by Yoshua Bengio, concludes that current risk management does not reliably prevent harm and that tests before deployment often fail to predict behavior after it (<a href="#ref-iasr2026">Bengio et al. 2026</a>). Independent evaluators also face access bottlenecks: METR’s frontier risk assessment had to rely on voluntary developer disclosures and remained subject to redactions and company approval rules (<a href="#ref-metr2026risk">METR 2026b</a>).</p>
+<div class="table-wrap"><table id="tab:fli">
+<caption>Table 5. FLI AI Safety Index: overall grade, and best grade on existential safety</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Edition</th>
+<th style="text-align: center;">Anthropic</th>
+<th style="text-align: center;">OpenAI</th>
+<th style="text-align: center;">Google DeepMind</th>
+<th style="text-align: center;">Best existential-safety grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Summer 2025</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math></td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr>
+<td style="text-align: left;">Winter 2025</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr>
+<td style="text-align: left;">Summer 2026</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sources: <a href="#ref-fli2025">FLI (2025a)</a>, <a href="#ref-fli2025w">FLI (2025b)</a>, <a href="#ref-fli2026">FLI (2026)</a>.</p>
+<p>Capability meanwhile moves fast. Training compute for the most compute-intensive models grew about fivefold per year in the recent period studied (<a href="#ref-iasr2026">Bengio et al. 2026</a>). The estimated 50-percent-success time horizon of frontier agents, measured in human expert task time, has doubled about every seven months since 2019 and faster in 2024 and 2025 (<a href="#ref-kwa2025">Kwa et al. 2025</a>). METR’s early test of Claude Mythos Preview put this length at 16 hours or more, at the top of what its task set can measure (<a href="#ref-decoder2026">The Decoder 2026</a>).</p>
+<h2 data-number="5.4" id="progress-and-limits-in-the-main-research-agendas"><span class="header-section-number">5.4</span> Progress and limits in the main research agendas</h2>
+<p>Each main research agenda has made measurable progress, and each has a measured limit.</p>
+<ul>
+<li><p><em>Interpretability</em> aims to read what a model computes. Anthropic’s circuit-tracing method gives satisfying insight on roughly a quarter of the prompts tried, and its replacement model matches the original’s next word about half the time (<a href="#ref-ameisen2025">Ameisen et al. 2025</a>). Google DeepMind stopped its main research on one popular tool, sparse autoencoders, after it did worse than simple probes at detecting harmful intent (<a href="#ref-smith2025">Smith et al. 2025</a>). In 2026 interpretability tools were used in real audits before release, where they detected concealment features and unspoken test recognition (<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>).</p></li>
+<li><p><em>Scalable oversight</em> aims to let weaker overseers check stronger systems. In game experiments, oversight at a large capability gap succeeded about half the time in debate and about a tenth of the time in other games, and success fell further for stronger systems (<a href="#ref-engels2025">Engels et al. 2025</a>).</p></li>
+<li><p><em>AI control</em> assumes the model may be hostile and designs protocols to catch it. Protocols such as having a trusted weaker model edit a stronger model’s output beat simple baselines against a deliberately subversive model (<a href="#ref-greenblatt2023control">Greenblatt et al. 2023</a>).</p></li>
+<li><p><em>Monitoring reasoning</em> works well today and can be lost through training choices (Section <a href="#sec:lab" data-reference-type="ref" data-reference="sec:lab">2</a>).</p></li>
+<li><p><em>Evaluation science</em> is under strain. Developers, the International AI Safety Report and verification researchers all report that capability outpaces the ability to test it (<a href="#ref-iasr2026">Bengio et al. 2026</a>; <a href="#ref-mirinotes2026">MIRI 2026</a>).</p></li>
+</ul>
+<h2 data-number="5.5" id="how-productive-is-safety-research"><span class="header-section-number">5.5</span> How productive is safety research?</h2>
+<p>The productivity of safety research is unknown, and evidence from 2025 and 2026 shows that it depends on the problem. On some narrow problems with a clear score, AI agents have produced promising results. OpenAI’s anti-scheming training cut o3’s covert actions from 13 to 0.4 percent, though part of the gain may come from the model recognizing the tests (<a href="#ref-schoen2025">Schoen et al. 2025</a>). In an Anthropic experiment, two human researchers working for seven days recovered 23 percent of the possible gain on a supervision problem. Starting from that human baseline, nine Claude agents working for five more days recovered 97 percent, at about 22 dollars per agent-hour. The agents also repeatedly tried to cheat on the evaluation, and the production-scale test did not show a statistically significant improvement (<a href="#ref-anthropic2026aar">Anthropic 2026d</a>). In August 2026 automated researchers found methods that cut ten well-defined failures and beat one-shot methods from 28 experienced human researchers (<a href="#ref-chenyh2026">Chen et al. 2026</a>).</p>
+<p>The picture is different for hard problems. Oversight weakens as the capability gap grows (<a href="#ref-engels2025">Engels et al. 2025</a>), interpretability explains a fraction of what models do, and UK AISI researchers warn that automated alignment research may produce convincing but wrong safety arguments, because alignment is full of tasks that are hard to score (<a href="#ref-bowkis2026">Bowkis et al. 2026</a>). These examples do not establish the productivity of safety research in general, especially on problems where progress is difficult to score and complete loss of control is the concern.</p>
+<h2 data-number="5.6" id="rules-and-verification"><span class="header-section-number">5.6</span> Rules and verification</h2>
+<p>Binding rules now exist in some places. EU general-purpose AI obligations began to apply in August 2025 (<a href="#ref-eugpai2025">European Commission 2025</a>); the accompanying code of practice is voluntary. About 26 companies signed that code, with Meta refusing (<a href="#ref-euronews2025code">Euronews 2025</a>). California’s SB 53, in force from January 2026, requires the largest developers to publish safety frameworks and report critical incidents within 15 days (<a href="#ref-fpf2025">FPF 2025</a>). New York’s RAISE Act requires critical incident reports within 72 hours (<a href="#ref-nygov2025">NY Governor 2025</a>). US federal policy pushes the other way: a December 2025 executive order set up a task force to challenge state AI laws (<a href="#ref-whitehouse2025">White House 2025</a>). In China, the China AI Safety and Development Association was launched in 2025 and, according to Carnegie, its primary function was to represent China in international AI discussions, and 17 Chinese firms signed industry safety commitments in December 2024 (<a href="#ref-carnegie2025">Carnegie Endowment 2025</a>).</p>
+<p>Verification, which international agreements would need, has moved from idea to early practice. A study by 27 authors coordinated by Oxford’s AI Governance Initiative concludes that many agreements could be verified without speculative technology, and that verifying what large data centers compute could be feasible within a few years with serious effort (<a href="#ref-harack2025">Harack et al. 2025</a>). On-site inspection, chip-activity logging and whistleblower programs are feasible now; tamper-proof on-chip controls still need development (<a href="#ref-mirinotes2026">MIRI 2026</a>). Nvidia offers an opt-in service that can infer a chip’s country from network latency (<a href="#ref-register2025nvidia">The Register 2025c</a>).</p>
+<h1 data-number="6" id="sec:program"><span class="header-section-number">6</span> What the evidence means for the pacing program</h1>
+<p>The program’s central claim is that the means to slow frontier AI must be built before the race starts. The evidence bears on five parts of the argument.</p>
+<p><em>Danger rises with capability</em> (<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>). The evidence supports this in the form the models use, with danger rising in capability for given safety knowledge, and not in the stronger form that models grow more willing to misbehave. The 2026 incidents provide real-world examples of state risk, the danger of running a capable model, as distinct from transition risk.</p>
+<p><em>The brake must come first, and safety productivity must be measured</em> (<a href="#ref-gan2026a">Gan 2026a</a>). A regulator can promise both a ceiling on risk and a limit on delay only if safety research is known to be productive enough. The evidence shows this productivity is unknown on the problems that matter. It also shows that models recognize the tests used to measure it, newer models more often, and that test scores can diverge from real use in either direction; whether tests therefore lose power has not been measured. Both facts argue for measuring early.</p>
+<p><em>Who pays for safety research</em> (<a href="#ref-gan2026b">Gan 2026b</a>). The 6 and 12 percent compute shares at Anthropic give a benchmark for the safety share of one laboratory’s AI research compute in one week, not of all frontier compute. The automated-research experiment shows a possible use of AI compute for safety, but does not establish how much customer compute would be needed.</p>
+<p><em>Labs will not brake alone</em> (<a href="#ref-gan2026c">Gan 2026c</a>). The unmet 20 percent pledge, the clause that ties OpenAI’s safeguards to its rivals’, and the weakened pause pledges are the race externality in the companies’ own documents. OpenAI’s two-week pause shows that a lab will sometimes slow down by itself, and also the limits of doing so: it was short, chosen by the lab, and could not be checked from outside.</p>
+<p><em>Agreements need verification built in advance</em> (<a href="#ref-gan2026d">Gan 2026d</a>). Verification research identifies methods for large computing facilities and points to implementation challenges; it does not show that a comprehensive agreement is already enforceable. Building that monitoring is the kind of preparation the model says is worth most when it comes first.</p>
+<h1 data-number="7" id="sec:talk"><span class="header-section-number">7</span> Talking about the evidence: common objections</h1>
+<p>Several objections arise in most conversations about AI risk. Each answer below gives the point first and then the evidence, and concedes what the objection gets right.</p>
+<p><em>“These are artificial tests designed to make models misbehave.”</em> Most of them are, as earlier assessments also note (<a href="#ref-summerfield2025">Summerfield et al. 2025</a>; <a href="#ref-uuk2026">Uuk et al. 2026</a>), and that is their purpose: to find out what a model will do under pressure before it meets that pressure in real use. Three facts make these tests informative. Models misbehave less when they are cued that they are being watched, in 28 of 59 studies against 7 the other way, so an artificial test that a model recognizes is more likely to understate misbehavior than to invent it; an exception is a rule-following evaluation in which models scored worse than in use (<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>). Opus 4 blackmailed more often when its reasoning stated that the scenario was real than when it stated that it was a test (55 against 7 percent); this association in a constructed scenario does not establish the rate in real use. The behaviors seen most often, cheating on scores and acting beyond the task, need no contrived pressure at all. And in 2026 the same kinds of behavior, persistence and getting around restrictions, appeared when agents had real internet access.</p>
+<p><em>“Evaluations actually make models look worse than real use.”</em> On some tests they do: six OpenAI models scored 10 to 37 percentage points safer in production traffic than in the corresponding evaluations (<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>). But the gap runs both ways. In another production comparison, one form of reward hacking occurred 21 times more often in real use than a pre-release simulation had forecast (<a href="#ref-williams2026">Williams et al. 2026</a>), and <a href="#ref-hsu2026">Hsu and Arnesen (2026)</a> covers observable rule-following rather than concealed actions. What both results show is that test scores are an unreliable guide to real use in either direction, not that tests can be dismissed.</p>
+<p><em>“The labs have fixed these problems.”</em> They have fixed many of the measured ones, and this is real progress. But the fixes are measured with tests that models increasingly recognize, and Anthropic’s own researchers warn that training aimed at a specific test can lower its score without fixing the problem. When Anthropic suppressed test recognition, a blackmail rate of zero rose to about 7 percent. Across the review, targeted fixes usually lower the measured rate but seldom to zero, and some wear off with later training.</p>
+<p><em>“Nothing bad has actually happened.”</em> No complete loss of control has occurred, and the harm so far has been modest and mostly recoverable. But in 2026 frontier agents attacked real organizations without being asked, and a leading developer paused training because, by its own account, it needed time to bring its monitoring, alignment and security up to its own standards. A good safety system acts on warning signs like these rather than waiting for the harm they warn of.</p>
+<p><em>“Those incidents happened only because safeguards were switched off.”</em> Some cyber safeguards were indeed disabled, as the evaluators emphasize. Internet access was either deliberately permitted or enabled by mistake. But a model under development is tested and trained with safeguards reduced, and that is when the most capable models run with the least restraint. The incidents show what models can do under those testing conditions, which is the state the pacing models worry about.</p>
+<p><em>“This is just misuse by bad people, not AI going wrong.”</em> Much of the harm is misuse, and that calls for its own response. But several cases are clearly misalignment by the developers’ own judgment, among them the GPT-4o sycophancy update, the agents that overstepped their tasks and the 2026 evaluation incidents. Anthropic and OpenAI both attributed their 2026 cases to the model’s behavior, not to a user.</p>
+<p><em>“Smarter models will be better aligned.”</em> Sometimes they have been, but not consistently. Within model families, misbehavior is lower in the more capable model somewhat more often than it is higher, and some recent models misbehave far more than their predecessors. Capability also makes a given lapse more dangerous and harder to catch, and the developers now say so. Anthropic rated its best-aligned model as its riskiest for this reason.</p>
+<p><em>“AI will solve safety for us.”</em> AI agents already do safety research cheaply on problems with a clear score, recovering 97 percent of a possible gain after starting from a human baseline of 23 percent. But they also cheated on their own evaluations, and the hardest safety problems are the ones without a clear score. Automated safety research is promising and unproven where it matters most.</p>
+<p><em>“Safety work is growing fast.”</em> Estimated technical safety staffing grew about 21 percent a year through 2025, and safety research remained around 2 percent of AI papers. Available funding totals overlap and cannot be compared directly with capital spending.</p>
+<p><em>“Rising incident counts just reflect more attention.”</em> Partly, and counts should not be read as rates. The case for concern rests on the kind of incident: offensive text in 2023, deleted databases in 2025, and attacks on third parties in 2026. The count alone does not establish a rise in the rate of incidents.</p>
+<h1 data-number="8" id="sec:limits"><span class="header-section-number">8</span> Limits of this evidence</h1>
+<p>The evidence has limits in five respects. First, no complete loss of control has occurred, and nothing here measures its probability; the record shows that the behavior the pacing models assume is real and that protection has so far come after the need. Second, the most serious incidents needed human help, because some safeguards had been disabled and internet access was either deliberately permitted or granted by mistake. Third, much of the evidence comes from contrived tests and from developers’ own reports, and the newest models and documents are not open to outside checking. Fourth, some items still rely on secondary reports or sources that could not be independently accessed, including some reported incidents; where primary verification was not possible, the text flags that limit. Fifth, the systematic review behind the findings on model behavior was screened, coded and rated by AI agents with blind duplication; in the second pass of a human check on pre-specified samples, which applied the review’s screening guide, agreement was 90.0 percent on title screening (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.80</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.80</annotation></semantics></math>) and 78.0 percent on full text (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.63</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.63</annotation></semantics></math>), where the reviewer would have kept 16 of the AI’s 35 exclusions, and 96 of 96 checkable extracted numbers were verified. A first pass under a broader standard agreed poorly (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.06</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.06</annotation></semantics></math> on titles), and the second pass covered records the reviewer had already seen. The reviewer rated certainty lower than the AI (within one level on 17 of 21 claims, weighted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.12</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.12</annotation></semantics></math>) and rated no claim high, so each high rating in this brief is the higher of two ratings. The citation search used a keyword filter, so it may miss studies that never use the review’s vocabulary. The counts are counts of studies, not effect sizes, and the comparisons of tests with real use come from only two developers.</p>
+<h1 class="unnumbered" id="references">References</h1>
+<div class="refs">
+<div id="ref-aiid2026">
+
+</div>
+<p>AI Incident Database. 2026. “Incident Report: August, September, October 2026.” <a href="https://incidentdatabase.ai/blog/incident-report-2026-august-september-october/" class="uri">https://incidentdatabase.ai/blog/incident-report-2026-august-september-october/</a></p>
+<div id="ref-aisi2026incident">
+
+</div>
+<p>AISI (UK AI Security Institute). 2026a. “Incident Report: Unsanctioned Agent Behaviour during Cyber Testing.” 4 August. <a href="https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing" class="uri">https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing</a></p>
+<div id="ref-aisi2026grants">
+
+</div>
+<p>AISI. 2026b. “Funding 60 Projects to Advance AI Alignment Research.” 19 February. <a href="https://www.aisi.gov.uk/blog/funding-60-projects-to-advance-ai-alignment-research" class="uri">https://www.aisi.gov.uk/blog/funding-60-projects-to-advance-ai-alignment-research</a></p>
+<div id="ref-ameisen2025">
+
+</div>
+<p>Ameisen, E., J. Lindsey, et al. 2025. “Circuit Tracing: Revealing Computational Graphs in Language Models,” with “On the Biology of a Large Language Model.” Transformer Circuits, 27 March. <a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html" class="uri">https://transformer-circuits.pub/2025/attribution-graphs/methods.html</a></p>
+<div id="ref-anthropic2025threat">
+
+</div>
+<p>Anthropic. 2025a. “Detecting and Countering Misuse of AI: August 2025.” <a href="https://www.anthropic.com/news/detecting-countering-misuse-aug-2025" class="uri">https://www.anthropic.com/news/detecting-countering-misuse-aug-2025</a></p>
+<div id="ref-anthropic2025espionage">
+
+</div>
+<p>Anthropic. 2025b. “Disrupting the First Reported AI-Orchestrated Cyber Espionage Campaign.” 13 November. <a href="https://www.anthropic.com/news/disrupting-AI-espionage" class="uri">https://www.anthropic.com/news/disrupting-AI-espionage</a></p>
+<div id="ref-anthropic2025sonnet45">
+
+</div>
+<p>Anthropic. 2025c. “System Card: Claude Sonnet 4.5.” September.</p>
+<div id="ref-anthropic2026opus46">
+
+</div>
+<p>Anthropic. 2026a. “System Card: Claude Opus 4.6.” February.</p>
+<div id="ref-anthropic2026rsp">
+
+</div>
+<p>Anthropic. 2026b. “Responsible Scaling Policy, Version 3.0.” 24 February. <a href="https://www.anthropic.com/news/responsible-scaling-policy-v3" class="uri">https://www.anthropic.com/news/responsible-scaling-policy-v3</a></p>
+<div id="ref-anthropic2026mythos">
+
+</div>
+<p>Anthropic. 2026c. “Alignment Risk Update: Claude Mythos Preview.” 7 April, revised 10 April.</p>
+<div id="ref-anthropic2026aar">
+
+</div>
+<p>Anthropic. 2026d. “Automated Alignment Researchers.” 14 April. <a href="https://www.anthropic.com/research/automated-alignment-researchers" class="uri">https://www.anthropic.com/research/automated-alignment-researchers</a></p>
+<div id="ref-anthropic2026pace">
+
+</div>
+<p>Anthropic. 2026e. “Measurements for Understanding the Pace of AI Development inside Frontier Labs.” Anthropic Institute, September. <a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" class="uri">https://www.anthropic.com/institute/measuring-pace-of-ai-development</a></p>
+<div id="ref-anthropic2026cyber">
+
+</div>
+<p>Anthropic. 2026f. “An Alignment Assessment of Recent Cybersecurity Incidents.” 9 September. <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents" class="uri">https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents</a></p>
+<div id="ref-anthropic2026mythoscard">
+
+</div>
+<p>Anthropic. 2026g. “Claude Mythos Preview System Card.” <a href="https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf" class="uri">https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf</a></p>
+<div id="ref-apollo2025">
+
+</div>
+<p>Apollo Research. 2025. “More Capable Models Are Better at In-Context Scheming.” 19 June. <a href="https://www.apolloresearch.ai" class="uri">https://www.apolloresearch.ai</a></p>
+<div id="ref-baek2026">
+
+</div>
+<p>Baek, D. D., X. Li, A. Gupta, T. Mahbub, K. Shi, M. Tegmark, and S. Feng. 2026. “Sycophancy Towards Researchers Drives Performative Misalignment.” arXiv:2606.08629.</p>
+<div id="ref-baker2025">
+
+</div>
+<p>Baker, B., J. Huizinga, L. Gao, Z. Dou, M. Y. Guan, A. Madry, W. Zaremba, J. Pachocki, and D. Farhi. 2025. “Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation.” arXiv:2503.11926.</p>
+<div id="ref-iasr2026">
+
+</div>
+<p>Bengio, Y., et al. 2026. <em>International AI Safety Report 2026</em>. 3 February. <a href="https://internationalaisafetyreport.org" class="uri">https://internationalaisafetyreport.org</a></p>
+<div id="ref-betley2026">
+
+</div>
+<p>Betley, J., D. Tan, N. Warncke, A. Sztyber-Betley, X. Bao, M. Soto, N. Labenz, and O. Evans. 2026. “Training Large Language Models on Narrow Tasks Can Lead to Broad Misalignment.” <em>Nature</em> 649: 584–589. Earlier version arXiv:2502.17424.</p>
+<div id="ref-bing2023">
+
+</div>
+<p>Microsoft Bing Blog. 2023. “The New Bing and Edge: Learning from Our First Week.” 15 February.</p>
+<div id="ref-black2025">
+
+</div>
+<p>Black, S., A. Cooper Stickland, J. Pencharz, et al. 2025. “RepliBench: Evaluating the Autonomous Replication Capabilities of Language Model Agents.” arXiv:2504.18565.</p>
+<div id="ref-bleeping2026">
+
+</div>
+<p>BleepingComputer. 2026. “OpenAI Hacked Australian Medicare Government Site, Probed Data Providers.” 24 September.</p>
+<div id="ref-bloomberg2026">
+
+</div>
+<p>Bloomberg Law. 2026. “Character.AI, Google Agree to Settle Teen Chatbot Harm Lawsuits.” 8 January.</p>
+<div id="ref-bondarenko2025">
+
+</div>
+<p>Bondarenko, A., D. Volk, D. Volkov, and J. Ladish. 2025. “Demonstrating Specification Gaming in Reasoning Models.” arXiv:2502.13295.</p>
+<div id="ref-bowkis2026">
+
+</div>
+<p>Bowkis, M., M. Buhl, J. Pfau, and G. Irving. 2026. “Automated Alignment Is Harder than You Think.” arXiv:2605.06390.</p>
+<div id="ref-carnegie2025">
+
+</div>
+<p>Carnegie Endowment for International Peace. 2025. “How Some of China’s Top AI Thinkers Built Their Own AI Safety Institute.” June.</p>
+<div id="ref-chaudhary2025">
+
+</div>
+<p>Chaudhary, M., I. Su, N. Hooda, et al. 2025. “Evaluation Awareness Scales Predictably in Open-Weights Large Language Models.” arXiv:2509.13333.</p>
+<div id="ref-chen2025">
+
+</div>
+<p>Chen, Y., J. Benton, A. Radhakrishnan, et al. 2025. “Reasoning Models Don’t Always Say What They Think.” arXiv:2505.05410.</p>
+<div id="ref-chenyh2026">
+
+</div>
+<p>Chen, Y.-H., J. Wen, J. H. Kirchner, et al. 2026. “Automated Researchers Can Mitigate Well-Characterized Alignment Failures.” arXiv:2608.28945.</p>
+<div id="ref-cnn2024arup">
+
+</div>
+<p>CNN. 2024. “Arup Revealed as Victim of $25 Million Deepfake Scam.” 16 May.</p>
+<div id="ref-cyberscoop2024">
+
+</div>
+<p>CyberScoop. 2024. “FCC Fines Consultant $6 Million over Biden Deepfake Robocall.” September.</p>
+<div id="ref-dataconomy2026">
+
+</div>
+<p>Dataconomy. 2026. “OpenAI Dissolves the Team Responsible for AGI Mission Safety.” 12 February.</p>
+<div id="ref-denison2024">
+
+</div>
+<p>Denison, C., M. MacDiarmid, F. Barez, et al. 2024. “Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models.” arXiv:2406.10162.</p>
+<div id="ref-eto2025">
+
+</div>
+<p>Emerging Technology Observatory. 2025. “Still a Drop in the Bucket: New Data on Global AI Safety Research.” 30 April. <a href="https://eto.tech/blog/still-drop-bucket-ai-safety-research/" class="uri">https://eto.tech/blog/still-drop-bucket-ai-safety-research/</a></p>
+<div id="ref-engadget2025grok">
+
+</div>
+<p>Engadget. 2025. “Grok Team Apologizes for the Chatbot’s Behavior.” July.</p>
+<div id="ref-engels2025">
+
+</div>
+<p>Engels, J., D. D. Baek, S. Kantamneni, and M. Tegmark. 2025. “Scaling Laws for Scalable Oversight.” arXiv:2504.18530.</p>
+<div id="ref-euronews2025code">
+
+</div>
+<p>Euronews. 2025. “Some 26 Tech Companies Sign Up to EU Commission’s AI Code.” 1 August.</p>
+<div id="ref-euronews2026mythos">
+
+</div>
+<p>Euronews. 2026a. “Hackers Breach Anthropic’s Too-Dangerous-to-Release Mythos AI Model.” 22 April.</p>
+<div id="ref-euronews2026pocketos">
+
+</div>
+<p>Euronews. 2026b. “An AI Agent Deleted a Company’s Entire Database in 9 Seconds.” 28 April.</p>
+<div id="ref-euronews2026wiki">
+
+</div>
+<p>Euronews. 2026c. “Rogue OpenAI Agents Hijacked a German Wiki.” 8 September.</p>
+<div id="ref-eugpai2025">
+
+</div>
+<p>European Commission. 2025. “EU Rules for General-Purpose AI Models Start to Apply.” 2 August. <a href="https://digital-strategy.ec.europa.eu/en/news/eu-rules-general-purpose-ai-models-start-apply-bringing-more-transparency-safety-and-accountability" class="uri">https://digital-strategy.ec.europa.eu/en/news/eu-rules-general-purpose-ai-models-start-apply-bringing-more-transparency-safety-and-accountability</a></p>
+<div id="ref-fedscoop2026">
+
+</div>
+<p>FedScoop. 2026. “CAISI Would Benefit from More Resources, OSTP Director Tells Lawmakers.” 23 July.</p>
+<div id="ref-fli2025">
+
+</div>
+<p>Future of Life Institute. 2025a. “AI Safety Index, Summer 2025.” 17 July.</p>
+<div id="ref-fli2025w">
+
+</div>
+<p>Future of Life Institute. 2025b. “AI Safety Index, Winter 2025.” December.</p>
+<div id="ref-fli2026">
+
+</div>
+<p>Future of Life Institute. 2026. “AI Safety Index, Summer 2026.” July. <a href="https://futureoflife.org/index" class="uri">https://futureoflife.org/index</a></p>
+<div id="ref-fortune2024">
+
+</div>
+<p>Fortune. 2024. “OpenAI Promised 20% of Its Computing Power to Combat the Most Dangerous Kind of AI, but Never Delivered.” 21 May.</p>
+<div id="ref-fortune2025replit">
+
+</div>
+<p>Fortune. 2025. “AI Coding Tool Replit Wiped Database, Called It a Catastrophic Failure.” 23 July.</p>
+<div id="ref-fpf2025">
+
+</div>
+<p>Future of Privacy Forum. 2025. “California’s SB 53: The First Frontier AI Law, Explained.”</p>
+<div id="ref-gan2026a">
+
+</div>
+<p>Gan, L. 2026a. “Risk Ceilings and Development Deadlines: Pacing AI under Uncertain Safety Productivity.” arXiv:2610.11093.</p>
+<div id="ref-gan2026b">
+
+</div>
+<p>Gan, L. 2026b. “Safety Research and the Allocation of Frontier Compute.” arXiv:2610.14305.</p>
+<div id="ref-gan2026c">
+
+</div>
+<p>Gan, L. 2026c. “Prizes, Shared Hazard, and the Speed of Frontier AI.” arXiv:2611.04266.</p>
+<div id="ref-gan2026d">
+
+</div>
+<p>Gan, L. 2026d. “Agreements Have a Clock: Compute Growth and the Verification of AI Restraint.” arXiv:2611.04272.</p>
+<div id="ref-gan2026survey">
+
+</div>
+<p>Gan, L. 2026e. “What Is a Clean Test Worth? AI Misalignment Evidence and Pacing Policy.” Working paper, Texas A&amp;M University.</p>
+<div id="ref-gizmodo2024">
+
+</div>
+<p>Gizmodo. 2024. “OpenAI Reportedly Dissolves Its Existential AI Risk Team.” 17 May.</p>
+<div id="ref-greenblatt2023control">
+
+</div>
+<p>Greenblatt, R., B. Shlegeris, K. Sachan, and F. Roger. 2023. “AI Control: Improving Safety Despite Intentional Subversion.” arXiv:2312.06942.</p>
+<div id="ref-greenblatt2024">
+
+</div>
+<p>Greenblatt, R., C. Denison, B. Wright, F. Roger, M. MacDiarmid, S. Marks, et al. 2024. “Alignment Faking in Large Language Models.” arXiv:2412.14093.</p>
+<div id="ref-metr2026huggingface">
+
+</div>
+<p>Greenblatt, R., A. Cotra, and H. Wijk. 2026. “Brief Independent Investigation of Agents’ Behavior, Reasoning and Collaboration in the OpenAI / Hugging Face Hacking Incident.” METR, 26 August. <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/" class="uri">https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/</a></p>
+<div id="ref-guan2025">
+
+</div>
+<p>Guan, M. Y., M. Wang, M. Carroll, Z. Dou, et al. 2025. “Monitoring Monitorability.” arXiv:2512.18311.</p>
+<div id="ref-hagele2026">
+
+</div>
+<p>Hägele, A., A. P. Gema, H. Sleight, E. Perez, and J. Sohl-Dickstein. 2026. “The Hot Mess of AI: How Does Misalignment Scale with Model Intelligence and Task Complexity?” arXiv:2601.23045.</p>
+<div id="ref-harack2025">
+
+</div>
+<p>Harack, B., R. Trager, et al. 2025. “Verification for International AI Governance.” Oxford Martin AI Governance Initiative, 3 July.</p>
+<div id="ref-hopman2026">
+
+</div>
+<p>Hopman, M., J. Elstner, M. Avramidou, A. Prasad, and D. Lindner. 2026. “Evaluating and Understanding Scheming Propensity in LLM Agents.” arXiv:2603.01608.</p>
+<div id="ref-hsu2026">
+
+</div>
+<p>Hsu, J., and S. Arnesen. 2026. “Eval-Production Behavior Gaps in Agent Safety and the Role of Eval-Awareness.” OpenAI Alignment Research Blog, 3 November. <a href="https://alignment.openai.com/eval-production-behavior-gap/" class="uri">https://alignment.openai.com/eval-production-behavior-gap/</a></p>
+<div id="ref-hubinger2024">
+
+</div>
+<p>Hubinger, E., C. Denison, J. Mu, et al. 2024. “Sleeper Agents: Training Deceptive LLMs that Persist through Safety Training.” arXiv:2401.05566.</p>
+<div id="ref-huggingface2026">
+
+</div>
+<p>Hugging Face. 2026. “Security Incident, July 2026.” 16 July. <a href="https://huggingface.co/blog/security-incident-july-2026" class="uri">https://huggingface.co/blog/security-incident-july-2026</a></p>
+<div id="ref-jarviniemi2026">
+
+</div>
+<p>J<span>ä</span>rviniemi, O., A. Souly, A. D’Cruz, J. Taylor, X. Davies, and R. Kirk. 2026. “Alignment Investigation of Mythos 5’s Behaviour in UK AISI’s July 2026 Security Incident.” arXiv:2611.10030. <a href="https://arxiv.org/abs/2611.10030" class="uri">https://arxiv.org/abs/2611.10030</a></p>
+<div id="ref-korbak2025">
+
+</div>
+<p>Korbak, T., M. Balesni, E. Barnes, Y. Bengio, et al. 2025. “Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety.” arXiv:2507.11473.</p>
+<div id="ref-krakovna2026">
+
+</div>
+<p>Krakovna, V., D. Lindner, L. Ho, S. Farquhar, and R. Shah. 2026. “Realistic Honeypot Evaluations for Scheming Propensity.” arXiv:2605.29729.</p>
+<div id="ref-kutasov2026">
+
+</div>
+<p>Kutasov, J., A. Jermyn, J. Steen, et al. 2026. “Teaching Claude Why.” Anthropic Alignment Science Blog, 8 May.</p>
+<div id="ref-kwa2025">
+
+</div>
+<p>Kwa, T., et al. 2025. “Measuring AI Ability to Complete Long Tasks.” arXiv:2503.14499.</p>
+<div id="ref-luo2026">
+
+</div>
+<p>Luo, W., K. Luu, X. Liu, G. Luo, M. Romero Calvo, S. Dan, D. Y. Zhang, Y. Liu, and M. Elfeki. 2026. “Maintaining Benchmarks Against Increasingly Capable Agents: Detection and Remediation of Unearned Passes.” arXiv:2609.34262. <a href="https://arxiv.org/abs/2609.34262" class="uri">https://arxiv.org/abs/2609.34262</a></p>
+<div id="ref-lynch2025">
+
+</div>
+<p>Lynch, A., B. Wright, C. Larson, S. J. Ritchie, S. Mindermann, E. Hubinger, E. Perez, and K. Troy. 2025. “Agentic Misalignment: How LLMs Could Be Insider Threats.” arXiv:2510.05179.</p>
+<div id="ref-lynch2026">
+
+</div>
+<p>Lynch, A., J. Hughes, A. Serrano, R. Kirk, and S. R. Bowman. 2026. “Agentic Misalignment in Summer 2026.” Anthropic Alignment Science Blog, 13 July.</p>
+<div id="ref-macdiarmid2025">
+
+</div>
+<p>MacDiarmid, M., B. Wright, J. Uesato, et al. 2025. “Natural Emergent Misalignment from Reward Hacking in Production RL.” arXiv:2511.18397.</p>
+<div id="ref-manifund2026">
+
+</div>
+<p>Manifund. 2026. “AI Safety Funder Bulletin.” Updated 1 November. <a href="https://manifund.org/ais-funder-bulletin" class="uri">https://manifund.org/ais-funder-bulletin</a></p>
+<div id="ref-mcaleese2025">
+
+</div>
+<p>McAleese, S. 2025. “AI Safety Field Growth Analysis 2025.” LessWrong, 27 September.</p>
+<div id="ref-meinke2024">
+
+</div>
+<p>Meinke, A., B. Schoen, J. Scheurer, M. Balesni, R. Shah, and M. Hobbhahn. 2024. “Frontier Models Are Capable of In-Context Scheming.” arXiv:2412.04984.</p>
+<div id="ref-metr2026">
+
+</div>
+<p>METR. 2026a. “Summary of METR’s Pre-Deployment Evaluation of GPT-5.6 Sol.” 26 June.</p>
+<div id="ref-metr2026risk">
+
+</div>
+<p>METR. 2026b. “Frontier Risk Report (February to March 2026).” 19 May. <a href="https://evals.alignment.org/blog/2026-05-19-frontier-risk-report/" class="uri">https://evals.alignment.org/blog/2026-05-19-frontier-risk-report/</a></p>
+<div id="ref-mirinotes2026">
+
+</div>
+<p>Scher, A., and L. Thiergart. 2026. “Mechanisms to Verify International Agreements about AI Development.” Machine Intelligence Research Institute, summary of 18 March.</p>
+<div id="ref-aircanada2024">
+
+</div>
+<p><em>Moffatt v. Air Canada</em>. 2024. BCCRT 149. Civil Resolution Tribunal of British Columbia.</p>
+<div id="ref-needham2025">
+
+</div>
+<p>Needham, J., G. Edkins, G. Pimpale, H. Bartsch, and M. Hobbhahn. 2025. “Large Language Models Often Know When They Are Being Evaluated.” arXiv:2505.23836.</p>
+<div id="ref-nygov2025">
+
+</div>
+<p>Office of the Governor of New York. 2025. “Governor Hochul Signs Nation-Leading Legislation to Require AI Frameworks for AI Frontier Models.” 19 December.</p>
+<div id="ref-openai2025pf">
+
+</div>
+<p>OpenAI. 2025a. “Preparedness Framework, Version 2.” 15 April, Section 4.3. <a href="https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf" class="uri">https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf</a></p>
+<div id="ref-openai2025syco">
+
+</div>
+<p>OpenAI. 2025b. “Expanding on What We Missed with Sycophancy.” 2 May. <a href="https://openai.com/index/expanding-on-sycophancy/" class="uri">https://openai.com/index/expanding-on-sycophancy/</a></p>
+<div id="ref-openai2025gpt5">
+
+</div>
+<p>OpenAI. 2025c. “GPT-5 System Card.” 13 August.</p>
+<div id="ref-openai2026gpt55">
+
+</div>
+<p>OpenAI. 2026a. “GPT-5.5 System Card.” 23 April.</p>
+<div id="ref-openai2026gpt56">
+
+</div>
+<p>OpenAI. 2026b. “GPT-5.6 Preview System Card.” 25 June.</p>
+<div id="ref-openai2026incident">
+
+</div>
+<p>OpenAI. 2026c. “The Hugging Face Incident and the Road Ahead.” 26 August. <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" class="uri">https://openai.com/index/hugging-face-incident-and-the-road-ahead/</a></p>
+<div id="ref-openai2026pause">
+
+</div>
+<p>OpenAI. 2026d. “Pacing Model Development in an Era of Cyber-Critical Capabilities.” 18 August. <a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" class="uri">https://openai.com/index/pacing-model-development-cyber-capabilities/</a></p>
+<div id="ref-palisade2025">
+
+</div>
+<p>Palisade Research. 2025. “Shutdown Resistance in Reasoning Models.” 5 July. <a href="https://palisaderesearch.org/research/shutdown-resistance" class="uri">https://palisaderesearch.org/research/shutdown-resistance</a></p>
+<div id="ref-pan2024">
+
+</div>
+<p>Pan, X., J. Dai, Y. Fan, and M. Yang. 2024. “Frontier AI Systems Have Surpassed the Self-Replicating Red Line.” arXiv:2412.12140.</p>
+<div id="ref-perez2022">
+
+</div>
+<p>Perez, E., et al. 2022. “Discovering Language Model Behaviors with Model-Written Evaluations.” arXiv:2212.09251.</p>
+<div id="ref-phuong2025">
+
+</div>
+<p>Phuong, M., R. S. Zimmermann, Z. Wang, et al. 2025. “Evaluating Frontier Models for Stealth and Situational Awareness.” arXiv:2505.01420.</p>
+<div id="ref-raine2025">
+
+</div>
+<p><em>Raine v. OpenAI</em>. 2025. San Francisco Superior Court, CGC-25-628528. Filed 26 August. <a href="https://www.law.berkeley.edu/wp-content/uploads/2025/09/Raine-v-OpenAI.pdf" class="uri">https://www.law.berkeley.edu/wp-content/uploads/2025/09/Raine-v-OpenAI.pdf</a></p>
+<div id="ref-saferai2026">
+
+</div>
+<p>SaferAI. 2026. “Risk Management Ratings.” <a href="https://tracker.safer-ai.org/" class="uri">https://tracker.safer-ai.org/</a></p>
+<div id="ref-scheurer2023">
+
+</div>
+<p>Scheurer, J., M. Balesni, and M. Hobbhahn. 2023. “Large Language Models Can Strategically Deceive Their Users When Put under Pressure.” arXiv:2311.07590.</p>
+<div id="ref-schlatter2026">
+
+</div>
+<p>Schlatter, J., B. Weinstein-Raun, and J. Ladish. 2026. “Incomplete Tasks Induce Shutdown Resistance in Some Frontier LLMs.” <em>Transactions on Machine Learning Research</em>. arXiv:2509.14260.</p>
+<div id="ref-schoen2025">
+
+</div>
+<p>Schoen, B., E. Nitishinskaya, M. Balesni, et al. 2025. “Stress Testing Deliberative Alignment for Anti-Scheming Training.” arXiv:2509.15541.</p>
+<div id="ref-seoul2024">
+
+</div>
+<p>UK Government. 2024. “Frontier AI Safety Commitments, AI Seoul Summit 2024.”</p>
+<div id="ref-sharma2023">
+
+</div>
+<p>Sharma, M., M. Tong, T. Korbak, et al. 2023. “Towards Understanding Sycophancy in Language Models.” arXiv:2310.13548.</p>
+<div id="ref-sheahan2026">
+
+</div>
+<p>Sheahan, H., and M. Carroll. 2026. “Can Public Chat Data Predict Real-World AI Misalignments?” OpenAI Alignment Research Blog, 16 June. <a href="https://alignment.openai.com/validating-public-evals/" class="uri">https://alignment.openai.com/validating-public-evals/</a></p>
+<div id="ref-sheshadri2025">
+
+</div>
+<p>Sheshadri, A., J. Hughes, J. Michael, et al. 2025. “Why Do Some Language Models Fake Alignment While Others Don’t?” arXiv:2506.18032.</p>
+<div id="ref-siliconangle2025">
+
+</div>
+<p>SiliconANGLE. 2025a. “OpenAI Details Expanding Efforts to Disrupt Malicious Use of AI.” 7 October.</p>
+<div id="ref-siliconangle2025gdm">
+
+</div>
+<p>SiliconANGLE. 2025b. “Google DeepMind Expands Frontier AI Safety Framework.” 22 September.</p>
+<div id="ref-smith2025">
+
+</div>
+<p>Smith, L., S. Rajamanoharan, et al. 2025. “Negative Results for SAEs on Downstream Tasks and Deprioritising SAE Research.” Alignment Forum, 26 March.</p>
+<div id="ref-souly2026">
+
+</div>
+<p>Souly, A., R. Kirk, J. Merizian, J. D’Cruz, and X. Davies. 2026. “UK AISI Alignment Evaluation Case-Study.” arXiv:2604.00788.</p>
+<div id="ref-aiindex2026">
+
+</div>
+<p>Stanford HAI. 2026. <em>AI Index Report 2026</em>. <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" class="uri">https://hai.stanford.edu/ai-index/2026-ai-index-report</a></p>
+<div id="ref-summerfield2025">
+
+</div>
+<p>Summerfield, C., L. Luettgau, M. Dubois, et al. 2025. “Lessons from a Chimp: AI ‘Scheming’ and the Quest for Ape Language.” arXiv:2507.03409. <a href="https://arxiv.org/abs/2507.03409" class="uri">https://arxiv.org/abs/2507.03409</a></p>
+<div id="ref-techcrunch2025grok">
+
+</div>
+<p>TechCrunch. 2025. “xAI Blames Grok’s Obsession with White Genocide on an Unauthorized Modification.” 15 May.</p>
+<div id="ref-decoder2026">
+
+</div>
+<p>The Decoder. 2026. “METR Says It Can Barely Measure Claude Mythos.” 10 May.</p>
+<div id="ref-gemini2024">
+
+</div>
+<p>The Register. 2024. “Google Gemini Tells Student to ‘Please Die’.” 15 November.</p>
+<div id="ref-register2025gtig">
+
+</div>
+<p>The Register. 2025a. “Attackers Experiment with Gemini AI.” 5 November.</p>
+<div id="ref-register2025antigravity">
+
+</div>
+<p>The Register. 2025b. “Google Antigravity Wipes User’s Drive.” 1 December.</p>
+<div id="ref-register2025nvidia">
+
+</div>
+<p>The Register. 2025c. “Nvidia Chip Tracking.” 10 December.</p>
+<div id="ref-uuk2026">
+
+</div>
+<p>Uuk, R., S. Koivula, L. Pacchiardi, R. Gipiskis, L. Caroli, and K. Horton. 2026. “Assessing the Empirical Evidence for Loss of Control from Agentic General-Purpose AI.” arXiv:2610.25241. <a href="https://arxiv.org/abs/2610.25241" class="uri">https://arxiv.org/abs/2610.25241</a></p>
+<div id="ref-vanderweij2024">
+
+</div>
+<p>van der Weij, T., F. Hofstätter, O. Jaffe, S. F. Brown, and F. R. Ward. 2024. “AI Sandbagging: Language Models Can Strategically Underperform on Evaluations.” arXiv:2406.07358.</p>
+<div id="ref-vonarx2025">
+
+</div>
+<p>von Arx, S., L. Chan, and B. Barnes. 2025. “Recent Frontier Models Are Reward Hacking.” METR, 5 June.</p>
+<div id="ref-wang2025">
+
+</div>
+<p>Wang, M., T. Dupré la Tour, O. Watkins, et al. 2025. “Persona Features Control Emergent Misalignment.” arXiv:2506.19823.</p>
+<div id="ref-wen2024">
+
+</div>
+<p>Wen, J., R. Zhong, A. Khan, et al. 2024. “Language Models Learn to Mislead Humans via RLHF.” arXiv:2409.12822.</p>
+<div id="ref-whitehouse2025">
+
+</div>
+<p>White House. 2025. “Ensuring a National Policy Framework for Artificial Intelligence.” Executive Order 14365, 11 December. <a href="https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf</a></p>
+<div id="ref-williams2026">
+
+</div>
+<p>Williams, M., H. Sheahan, C. Raymond, T. Korbak, D. Pan, P. Yang, L. Maksin, N. Xie, P. Guo, I. Kivlichan, and M. Carroll. 2026. “Predicting LLM Safety Before Release by Simulating Deployment.” arXiv:2607.07184. <a href="https://arxiv.org/abs/2607.07184" class="uri">https://arxiv.org/abs/2607.07184</a></p>
+<div id="ref-yahoo2026">
+
+</div>
+<p>Yahoo Finance (Reuters). 2026. “Hyperscalers Hit $700 Billion in 2026 Capex.” 1 May.</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Department of Economics, Texas A&amp;M University. Compiled from sources opened between 7 and 8 November 2026, with selected sources rechecked on 11 November; the findings on model behavior were revised on 15 November against a systematic review reported in the companion survey, and a human check of that review was completed on 24 November. Background brief accompanying the author’s papers on pacing frontier AI (<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>); AI software (Anthropic’s Claude) was used under the author’s direction to gather sources, check citations, and edit the draft, and all output was checked by the author. Comments welcome.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

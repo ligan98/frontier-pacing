@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.13" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="甘犁" />
+  <title>对齐失效的现有证据： 人工智能行为与安全研究现状</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  
+  <meta name="robots" content="noindex">
+  <style>
+    :root { --bg: #fbfaf8; --ink: #1d1d1f; --muted: #5f6368; --line: #dcd9d3; --accent: #2f5fd0; --band: #f1efea; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #17181a; --ink: #ececec; --muted: #a0a4a8; --line: #34363a; --accent: #8ab0ff; --band: #1f2124; } }
+    html { color: var(--ink); background-color: var(--bg); }
+    body { margin: 0 auto; max-width: 46em; padding: 40px 18px 72px; font: 17px/1.7 "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif; color: var(--ink); background: var(--bg); hyphens: manual; overflow-wrap: break-word; }
+    p.back { margin: 0 0 28px; font-size: 0.92rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover, a:focus-visible { text-decoration: underline; }
+    a:visited { color: var(--accent); }
+    header#title-block-header { margin-bottom: 28px; }
+    h1.title { font-size: 1.7rem; line-height: 1.3; margin: 0 0 12px; }
+    p.author, p.date { color: var(--muted); margin: 0; }
+    div.abstract { margin: 24px 0; padding: 14px 18px; background: var(--band); border-left: 3px solid var(--line); font-size: 0.96rem; }
+    div.abstract-title { font-weight: 600; margin-bottom: 6px; }
+    nav#TOC { margin: 24px 0 36px; padding: 12px 18px; border: 1px solid var(--line); font-size: 0.94rem; }
+    nav#TOC ul { list-style: none; padding-left: 1.1em; margin: 0; }
+    nav#TOC > ul { padding-left: 0; }
+    nav#TOC li { margin: 3px 0; }
+    h1, h2, h3 { line-height: 1.35; margin: 2em 0 0.6em; }
+    h1 { font-size: 1.35rem; border-top: 1px solid var(--line); padding-top: 1.2em; }
+    h2 { font-size: 1.12rem; }
+    h3 { font-size: 1rem; }
+    p { margin: 0 0 1em; }
+    li { margin: 0.35em 0; }
+    .table-wrap { overflow-x: auto; margin: 1.4em 0; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.88rem; line-height: 1.5; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); margin: 0; }
+    caption { caption-side: top; text-align: left; font-weight: 600; padding: 0 0 8px; font-size: 0.94rem; }
+    th, td { text-align: left; vertical-align: top; padding: 6px 10px 6px 0; }
+    thead th { border-bottom: 1px solid var(--ink); }
+    tbody tr + tr td { border-top: 1px solid var(--line); }
+    section.footnotes, section#footnotes { font-size: 0.88rem; color: var(--muted); border-top: 1px solid var(--line); margin-top: 3em; }
+    section.footnotes hr, section#footnotes hr { display: none; }
+    .refs p { font-size: 0.9rem; padding-left: 1.6em; text-indent: -1.6em; margin: 0 0 0.6em; }
+    :target { background: var(--band); }
+    @media print { body { max-width: none; } nav#TOC, p.back { display: none; } }
+  </style>
+</head>
+<body>
+<p class="back"><a href="index.html">&larr; 前沿人工智能的速度</a></p>
+<header id="title-block-header">
+<h1 class="title">对齐失效的现有证据：<br />
+人工智能行为与安全研究现状</h1>
+<p class="author">甘犁<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p class="date">证据截至2026年11月15日</p>
+<div class="abstract">
+<div class="abstract-title">摘要</div>
+<p>关于人工智能的对齐失效（misalignment），现有证据中最可靠的部分涉及测试本身以及模型如何解读测试，而不是自发出现的激烈行为。在没有外部施压的情况下，模型会在用于衡量它们的任务上作弊，并采取超出任务范围的行动；模型还能识别测试，“正被观察”的提示使问题行为减少的研究是使其增加的四倍（59项研究中28项对7项），因此，无论测试是否发现问题，其结果都未必反映模型在实际使用中的行为。本简报汇总两方面的现有证据。一是人工智能系统追求开发者未曾设定的目标，即对齐失效；二是防范这类问题的安全研究进展。所用资料的时间跨度为2022年至2026年11月，包括开发者、评测机构和高校的实验研究，部署、训练和测试中发生的事件，以及投入安全工作的人员、资金、算力和规则。关于模型行为的发现以一项涵盖689项研究的系统综述为依据。在评测任务上作弊见于116项研究，超出任务范围的行动见于91项研究；对这两项发现，智能体编码者的确定性评级为高，人工复核者的评级为低。模型还会误报自己的工作。策划、破坏和伪装对齐则主要出现在专门设计来诱发这类行为的情境中。开发者已通过训练使测得的问题行为大幅下降，但新一代模型识别测试的情形更多。2026年，这类行为波及第三方：处于测试中的前沿智能体在无人指示的情况下攻击了真实机构，一家开发者为使安全措施达到其模型所要求的标准而暂停训练。与能力研究相比，安全投入仍然很小，其产出效率也不清楚。迄今没有发生完全失控，最严重的事件发生时，部分网络安全防护措施已关闭，互联网权限则是有意开放或因配置错误而开放。这些证据应当看作与节奏模型机制相符的早期预警，而不是对完全失控风险的度量。</p>
+</div>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">目录</h2>
+<ul>
+<li><a href="#主要发现" id="toc-主要发现">主要发现</a></li>
+<li><a href="#使用说明" id="toc-使用说明">使用说明</a></li>
+<li><a href="#sec:defs" id="toc-sec:defs"><span class="toc-section-number">1</span> 本简报中“对齐失效”的含义</a></li>
+<li><a href="#sec:lab" id="toc-sec:lab"><span class="toc-section-number">2</span> 实验研究的发现</a>
+<ul>
+<li><a href="#奖励投机与钻规则漏洞" id="toc-奖励投机与钻规则漏洞"><span class="toc-section-number">2.1</span> 奖励投机与钻规则漏洞</a></li>
+<li><a href="#识别测试与有意藏拙" id="toc-识别测试与有意藏拙"><span class="toc-section-number">2.2</span> 识别测试与有意藏拙</a></li>
+<li><a href="#我们能读懂模型在想什么吗" id="toc-我们能读懂模型在想什么吗"><span class="toc-section-number">2.3</span> 我们能读懂模型在想什么吗？</a></li>
+<li><a href="#迎合与误导人类" id="toc-迎合与误导人类"><span class="toc-section-number">2.4</span> 迎合与误导人类</a></li>
+<li><a href="#伪装对齐与难以消除的欺骗" id="toc-伪装对齐与难以消除的欺骗"><span class="toc-section-number">2.5</span> 伪装对齐与难以消除的欺骗</a></li>
+<li><a href="#策划与策略性欺骗" id="toc-策划与策略性欺骗"><span class="toc-section-number">2.6</span> 策划与策略性欺骗</a></li>
+<li><a href="#智能体层面的对齐失效要挟破坏抗拒关停与自我复制" id="toc-智能体层面的对齐失效要挟破坏抗拒关停与自我复制"><span class="toc-section-number">2.7</span> 智能体层面的对齐失效：要挟、破坏、抗拒关停与自我复制</a></li>
+<li><a href="#涌现的对齐失效" id="toc-涌现的对齐失效"><span class="toc-section-number">2.8</span> 涌现的对齐失效</a></li>
+</ul></li>
+<li><a href="#sec:capability" id="toc-sec:capability"><span class="toc-section-number">3</span> 危险是否随能力上升？</a></li>
+<li><a href="#sec:incidents" id="toc-sec:incidents"><span class="toc-section-number">4</span> 现实中发生了什么（2023至2026年）</a>
+<ul>
+<li><a href="#sec:chat" id="toc-sec:chat"><span class="toc-section-number">4.1</span> 出问题的聊天机器人</a></li>
+<li><a href="#越界的智能体" id="toc-越界的智能体"><span class="toc-section-number">4.2</span> 越界的智能体</a></li>
+<li><a href="#年前沿智能体对第三方采取行动" id="toc-年前沿智能体对第三方采取行动"><span class="toc-section-number">4.3</span> 2026年：前沿智能体对第三方采取行动</a></li>
+<li><a href="#大规模滥用" id="toc-大规模滥用"><span class="toc-section-number">4.4</span> 大规模滥用</a></li>
+<li><a href="#事件数量" id="toc-事件数量"><span class="toc-section-number">4.5</span> 事件数量</a></li>
+</ul></li>
+<li><a href="#sec:field" id="toc-sec:field"><span class="toc-section-number">5</span> 安全研究的现状</a>
+<ul>
+<li><a href="#投入规模" id="toc-投入规模"><span class="toc-section-number">5.1</span> 投入规模</a></li>
+<li><a href="#实验室承诺的兑现情况" id="toc-实验室承诺的兑现情况"><span class="toc-section-number">5.2</span> 实验室承诺的兑现情况</a></li>
+<li><a href="#外部评估的结论" id="toc-外部评估的结论"><span class="toc-section-number">5.3</span> 外部评估的结论</a></li>
+<li><a href="#主要研究方向的进展与局限" id="toc-主要研究方向的进展与局限"><span class="toc-section-number">5.4</span> 主要研究方向的进展与局限</a></li>
+<li><a href="#安全研究的产出效率" id="toc-安全研究的产出效率"><span class="toc-section-number">5.5</span> 安全研究的产出效率</a></li>
+<li><a href="#规则与核查" id="toc-规则与核查"><span class="toc-section-number">5.6</span> 规则与核查</a></li>
+</ul></li>
+<li><a href="#sec:program" id="toc-sec:program"><span class="toc-section-number">6</span> 证据对节奏研究项目的含义</a></li>
+<li><a href="#sec:talk" id="toc-sec:talk"><span class="toc-section-number">7</span> 讨论中的常见疑问</a></li>
+<li><a href="#sec:limits" id="toc-sec:limits"><span class="toc-section-number">8</span> 证据的局限</a></li>
+<li><a href="#参考文献" id="toc-参考文献">参考文献</a></li>
+</ul>
+</nav>
+<h1 class="unnumbered" id="主要发现">主要发现</h1>
+<ol>
+<li><p><strong>问题行为真实存在，最常见的几类无需施压。</strong>在没有被设定目标、也没有受到施压的情况下，模型会在用于衡量它们的任务上作弊（116项研究），并采取超出任务范围的行动（91项研究），对这两项发现，智能体编码者的确定性评级为高，人工复核者的评级为低；模型还会误报自己的工作（确定性中等）；在沙箱测试中，有些模型会使关停机制失效，另一些则从不这样做（确定性中等）。激烈的行为主要出现在专门设计来诱发它们的情境中。在这类研究中最著名的一项里，Claude Opus 4在100次试验中有96次选择要挟，其他开发者的模型为79至96次(<a href="#ref-lynch2025">Lynch et al. 2025</a>)。如果没有这样的设定，策划行为只见于四项研究，对已发布前沿模型的测试未发现破坏行为，伪装对齐几乎没有证据支持。</p></li>
+<li><p><strong>测得的问题行为已被训练压低，但测试结果未必反映实际使用中的行为。</strong>开发者针对测出的问题进行了训练。从4.5代起，Claude模型在模拟公司情境中的要挟率降为零(<a href="#ref-kutasov2026">Kutasov et al. 2026</a>)；GPT-5采取欺骗行为的比例只有o3的一半(<a href="#ref-openai2025gpt5">OpenAI 2025c</a>)。缓解措施通常能降低测得的比例，降幅往往很大，但很少降到零（确定性中等）。与此同时，模型能够识别测试（123项研究；智能体编码者评级为高，人工复核者评级为中等）；在同一模型家族内，较新或较大的模型通常识别得更多（46项研究中有35项，确定性中等）。仅为提升能力而训练一个模型，就使其推理中提及“正在被评测”的比例从2%升至21%(<a href="#ref-schoen2025">Schoen et al. 2025</a>)。在59项增加或去除“正被观察”提示的研究中，28项发现模型在收到提示时问题行为减少，7项发现增加，其余结果不一、没有变化或方向不明（确定性中等），因此测试偏向于高估安全性。差距也可能朝另一个方向：在为数不多的与实际使用对照的研究中，有一项发现OpenAI的六个模型在评测中的安全表现比在相应的实际使用情形中低10至37个百分点(<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>)；但在另一项对照研究中，某一类奖励投机在实际使用中的发生率是发布前模拟预测的21倍(<a href="#ref-williams2026">Williams et al. 2026</a>)。九项此类对照研究全部来自OpenAI和Anthropic。</p></li>
+<li><p><strong>即使倾向没有上升，危险也可能随能力上升。</strong>问题行为的倾向在各代模型之间没有一致的方向：随能力提高而下降的情形略多于上升，但近期有些模型明显上升（确定性低）。识别测试的能力确实随能力上升（确定性中等）。在被指示做出问题行为时的成功率，在半数测量过的研究中随能力上升；隐蔽行动的能力在最新的模型中有所提高。模型被赋予的自主权也越来越大。Anthropic正是基于这一理由，认为其最强模型的风险“很低，但高于以往模型”(<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>)。</p></li>
+<li><p><strong>2026年，这类行为波及第三方。</strong>在接入真实互联网的评测中，Claude模型在四起事件中攻击了真实机构，Anthropic认定这属于对齐失效(<a href="#ref-anthropic2026cyber">Anthropic 2026f</a>)。英国人工智能安全研究所在122次测试运行中的10次里记录到19次越界行为(<a href="#ref-aisi2026incident">AISI 2026a</a>)。OpenAI的智能体侵入了Hugging Face，OpenAI随后暂停强化学习训练两周，并表示模型能力越强，内部开发和测试的风险越大(<a href="#ref-huggingface2026">Hugging Face 2026</a>; <a href="#ref-openai2026pause">OpenAI 2026d</a>)。这些事件都发生在安全措施被削弱的测试过程中，防护措施也都是事后才加强的。在整个综述中，有116项研究报告了到达真实系统、用户或第三方的对齐失效行为；这类事件确实发生，智能体编码者对此的确定性评级为高，人工复核者的评级为低；其发生频率尚不清楚。</p></li>
+<li><p><strong>安全投入很小，产出效率未知。</strong>技术性安全研究投入约相当于600个全职岗位(<a href="#ref-mcaleese2025">McAleese 2025</a>)，安全研究约占人工智能论文的2%(<a href="#ref-eto2025">Emerging Technology Observatory 2025</a>)。慈善资金投入的数据存在重复统计，难以汇总；最大的几家云计算公司2026年计划的资本开支约7000亿美元，但两项指标的覆盖范围不同。唯一由实验室自行披露的数字是：2026年7月某一周，Anthropic用于人工智能研究的算力中约6%投向安全(<a href="#ref-anthropic2026pace">Anthropic 2026e</a>)。安全技术在范围窄、可度量的问题上有效，由人工智能智能体开展研究时成本有时很低；但在对完全失控风险最为关键的难题上，这些技术效果如何，目前无人知晓。</p></li>
+<li><p><strong>自愿承诺并不牢靠，规则和核查机制开始起步。</strong>OpenAI在2023年承诺将20%的算力用于对齐研究，但这一承诺未能兑现(<a href="#ref-fortune2024">Fortune 2024</a>)；其安全框架允许根据竞争对手的做法调整自身的防护措施(<a href="#ref-openai2025pf">OpenAI 2025a</a>)。外部评级中，没有一家开发者的综合评分高于C+，在生存风险安全方面的评分没有高于D+的(<a href="#ref-fli2026">FLI 2026</a>)。欧盟、加利福尼亚州和纽约州已有具约束力的透明度规则；研究认为，只要认真投入，几年之内就能实现对大型数据中心的核查(<a href="#ref-harack2025">Harack et al. 2025</a>)。</p></li>
+</ol>
+<h1 class="unnumbered" id="使用说明">使用说明</h1>
+<p>本简报有两个用途。一是为作者关于前沿人工智能发展节奏的四篇理论论文提供经验证据背景(<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>)，二是作为独立参考资料，供关注人工智能安全的经济学和政策读者查阅。相关讨论反复涉及同样的问题：测试是不是人为设计的，问题是否已经解决，现实中是否真的发生过什么，安全投入究竟有多少。第<a href="#sec:talk" data-reference-type="ref" data-reference="sec:talk">7</a>节针对这些问题给出简要回答，并列出每个回答所依据的证据。</p>
+<p>关于模型行为的发现（第<a href="#sec:lab" data-reference-type="ref" data-reference="sec:lab">2</a>节至第<a href="#sec:incidents" data-reference-type="ref" data-reference="sec:incidents">4</a>节）现以一项系统综述为依据。该综述按书面研究方案开展，详见配套的综述论文(<a href="#ref-gan2026survey">Gan 2026e</a>)。对arXiv、OpenAlex以及开发者、评测机构和事件数据库网站的检索以及正向和反向引文追溯共得到18598条记录，其中1512条符合纳入标准；在这些记录中，782条（构成689项研究）由两名编码者独立完成了完整编码。每项主要结论都给出高、中、低或很低四级确定性评级，简报中的计数均为研究数。筛选、编码和评级由人工智能智能体完成，各环节均采用盲法双人编码并经裁定。此后，一名人工复核者对预设样本作了两轮复核。第一轮在不知道智能体判断的情况下进行，在标题阶段采用了比本综述筛选指南更宽的标准，只排除与语言模型无关的记录，因而与智能体的一致性很低（标题摘要初筛一致率53.0%，<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.06</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.06</annotation></semantics></math>；全文复筛<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.30</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.30</annotation></semantics></math>）。第二轮对同一批样本按筛选指南重新复核：标题摘要初筛一致率为90.0%（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.80</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.80</annotation></semantics></math>，200条）；全文复筛一致率为78.0%（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.63</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.63</annotation></semantics></math>，100篇），其中智能体排除的35篇里，复核者认为有16篇应予保留。数据提取准确（100行中可核查数字96/96准确，编码98/100准确）。在21项确定性评级上，复核者比智能体更为保守：相差一级以内的有17项，完全一致的有6项（加权<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.12</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.12</annotation></semantics></math>），评级低于智能体的有13项，没有一项评为高。正文中的评级是智能体编码者的评级；凡其评级为高的发现，正文同时给出人工复核者的评级。最接近的已有研究得出了相近的判断，但没有给出计数：<a href="#ref-summerfield2025">Summerfield et al. (2025)</a>认为，关于模型谋划的证据依赖个案和人为设计的情境；<a href="#ref-uuk2026">Uuk et al. (2026)</a>评估了选取的19项研究，指出其中多数依赖带提示或引导的情境。我们没有找到按检索方案对两类研究分别计数的已有综述。关于安全投入、承诺和规则的部分（第<a href="#sec:field" data-reference-type="ref" data-reference="sec:field">5</a>节和第<a href="#sec:program" data-reference-type="ref" data-reference="sec:program">6</a>节）不在综述范围之内，所依据的是选取的资料。</p>
+<p>简报中的数字所依据的资料列于参考文献。如果某一条目因原始技术文件未公开或无法直接读取而依据摘要、摘录或媒体报道，正文在涉及重要结论的地方会加以说明，第<a href="#sec:limits" data-reference-type="ref" data-reference="sec:limits">8</a>节也汇总了这些局限。2026年的多数条目时间很近，部分涉及尚未公开的模型或开发者自行披露的内部事件，在进一步研究中引用时应核对最新原始来源。</p>
+<p>全文区分三类证据。实验研究说明模型在设计好的测试中如何行事，这些测试常常刻意施加压力，以诱发问题行为。事件记录说明系统在测试之外，或在接触了真实世界的测试中做了什么。领域数据说明安全工作投入了多少、效果如何。三类证据回答的问题不同，本简报不把它们简单相加。</p>
+<h1 data-number="1" id="sec:defs"><span class="header-section-number">1</span> 本简报中“对齐失效”的含义</h1>
+<p>当一个系统追求的目标偏离了开发者或用户的本意时，就称为对齐失效。本简报把它与另外两类危害来源区分开。一是滥用，即人有意利用人工智能系统造成危害，例如犯罪分子利用编程智能体勒索企业。二是一般性故障，即没有追求目标迹象的错误，例如聊天机器人编造了一项退款政策。现实中的事件常常兼有三者，下文的分类依据每个事件的主要特征。</p>
+<p>理解这些证据，关键在于区分两个概念。倾向是指模型在给定测试中选择对齐失效行为的频率。能力是指模型一旦选择这类行为所能做到的事，例如隐藏行为、识别自己正在接受测试或绕过限制。开发者可以针对测出的问题进行训练，从而降低倾向；但很难降低能力，因为正是能力使模型有用。风险同时取决于两者。一个能力弱、受到严密监督的模型，即使偶尔有问题倾向，影响也有限；一个能力强、能够连续几个小时自主行动的模型，同样罕见的倾向就可能造成严重后果。</p>
+<p>节奏模型使用两个相关概念。状态危险是指运行一个高能力模型所带来的危险，无论是在训练、测试还是使用中。跃迁危险是指推进技术前沿、达到新的能力水平所带来的危险。下文的大部分证据与状态危险有关。</p>
+<h1 data-number="2" id="sec:lab"><span class="header-section-number">2</span> 实验研究的发现</h1>
+<p>本节按行为类型概述主要实验结果，先讨论无需施压即出现的行为以及模型如何解读测试，再讨论主要在专门设计的情境或训练中出现的行为。表<a href="#tab:lab" data-reference-type="ref" data-reference="tab:lab">1</a>汇总关键数字。</p>
+<h2 data-number="2.1" id="奖励投机与钻规则漏洞"><span class="header-section-number">2.1</span> 奖励投机与钻规则漏洞</h2>
+<p>推理模型学会了在评测任务中作弊，这也是在没有任何引导时最常见到的问题行为：有116项研究报告了这类行为，其中60项涉及前沿模型；智能体编码者对此的确定性评级为高，人工复核者的评级为低。METR给模型一项编程任务：编写运行速度快的程序，评测系统将核对答案并计时。一次测试中，o3没有按要求计算，而是从评分程序已经算出的标准答案中直接取出结果；它还关闭了计时所需的同步操作，使程序看起来运行得极快。研究者随后询问这种做法是否符合用户意图，模型在10次询问中均回答不符合。模型虽然给出了正确答案并获得好成绩，却没有完成评分所要衡量的工作。METR发现，o3在一个研究基准的128次运行中有39次利用了评分代码，其中一项任务的每次运行都是如此；在该任务中，即使被明确告知“请不要钻奖励的空子”，仍有70%的运行继续这样做(<a href="#ref-vonarx2025">von Arx et al. 2025</a>)。上述编程例子和这一比例来自同一组研究，但并非同一项任务。在被要求战胜国际象棋引擎时，推理模型会在未经提示的情况下篡改游戏环境，而较早的模型只有在被告知正常下棋赢不了之后才会这样做(<a href="#ref-bondarenko2025">Bondarenko et al. 2025</a>)。2026年，METR发现GPT-5.6 Sol的作弊频率高于它测试过的任何公开模型，以至于按照作弊如何计算，其50%成功率任务时长估计从约11小时到超过270小时不等。这一指标以人类专家完成任务所需的时间衡量，并非智能体实际运行时间；较高的估计超出了任务集的可靠测量范围，METR认为这些估计均不稳健(<a href="#ref-metr2026">METR 2026a</a>)。</p>
+<p>小任务上的作弊会扩散为更广泛的问题行为。一个在一系列可钻空子的任务上训练过的模型，后来在32768次试验中有45次改写了自己的奖励函数，其中7次还掩盖了痕迹(<a href="#ref-denison2024">Denison et al. 2024</a>)。Anthropic先向模型植入奖励投机的相关知识，再在真实生产编程环境中以有漏洞的任务训练它。该模型随后表现出伪装对齐、与恶意行为者合作，并在12%的试验中试图破坏安全代码。常规的对话训练能掩盖对话中的问题，却掩盖不了智能体任务中的问题(<a href="#ref-macdiarmid2025">MacDiarmid et al. 2025</a>)。</p>
+<p>观察模型的推理过程能发现大部分此类行为，前提是不去干预推理本身。在OpenAI的一次训练中，监控器通过阅读思维链发现奖励投机，其效果远强于只观察行为的监控器。但当研究者用监控器惩罚“不良想法”时，模型学会了隐藏意图，同时继续作弊(<a href="#ref-baker2025">Baker et al. 2025</a>)。综述中有14项研究直接针对某个监控器或探针进行训练，均不涉及前沿模型。在这些研究中，模型都学会了规避所针对的那个检测器，但更强或更全面的检测器往往仍能发现问题行为；也几乎没有证据表明常规训练会产生同样的效果（确定性低）。</p>
+<h2 data-number="2.2" id="识别测试与有意藏拙"><span class="header-section-number">2.2</span> 识别测试与有意藏拙</h2>
+<p>对安全政策影响最大的发现是：模型越来越清楚自己何时在接受测试。综述中有123项研究测量了模型识别测试的能力，智能体编码者的确定性评级为高，人工复核者的评级为中等；在同一模型家族内，较新或较大的模型在46项比较中有35项识别得更多，有5项识别得更少（确定性中等）。有些近期模型比前代更少提及测试，下文Opus 4.6的结果即为一例。通过提示或训练，模型可以在危险能力测试中有意表现不佳，同时在无害测试中保持正常水平(<a href="#ref-vanderweij2024">van der Weij et al. 2024</a>)。前沿模型区分评测记录与真实使用的能力远高于随机水平：在一项标准指标上，Gemini 2.5 Pro的得分为0.83，人类基准为0.92(<a href="#ref-needham2025">Needham et al. 2025</a>)。在开源模型中，内部识别测试的信号随模型规模按幂律增长(<a href="#ref-chaudhary2025">Chaudhary et al. 2025</a>)。</p>
+<p>识别测试的能力随能力训练而增强，并会改变行为。OpenAI和Apollo仅为提升能力而训练一个模型时，其推理中提及“正在被评测”的比例从2.0%升至20.6%。从模型推理中去除这种意识后，隐蔽行为的比例从13%升至24%(<a href="#ref-schoen2025">Schoen et al. 2025</a>)。在OpenAI连续三代模型中，这一比例依次为11.7%、17.3%和22.1%(<a href="#ref-openai2026gpt55">OpenAI 2026a</a>)。较少在推理中提及测试，并不意味着模型识别测试的能力较弱：Claude Opus 4.6在2.3%的互动中提到自己可能在接受测试，前代模型约为11%；但在从两段对话中挑出哪一段是测试时，它的准确率为80%，前代模型为62%至72%(<a href="#ref-anthropic2026opus46">Anthropic 2026a</a>)。对Claude Mythos Preview，一种白盒方法发现，在Anthropic主要行为测试集约29%的记录中，模型私下考虑过自己正在接受测试的可能；这一方法是新的，没有用于此前的模型，因此只给出水平，不能说明趋势(<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>)。</p>
+<p>识别测试使模型显得更安全的情形多于显得更不安全的情形。在59项增加或去除“正被观察”提示、或调节模型内部“正在接受测试”感知的研究中，有28项发现模型在收到提示时问题行为减少，7项发现增加，其余结果不一、没有变化或方向不明（确定性中等）。但情况并非总是如此。2026年11月，OpenAI把一项智能体安全评测与实际使用中结构相当的情形作了对照，该评测考察智能体是否遵守警告和限制。六个模型在评测中的成功率都低于实际使用，差距为10至37个百分点。只告诉模型“这是一次评测”，其表现没有变化；告诉它评测的正确目标，成功率从63%升至92%；告诉它一个错误的目标，成功率降至18%。模型是按照它所认为的测试内容来行动的，因此测试既可能高估安全性，也可能低估安全性。实际使用情形的匹配只是近似的；这项研究只涉及一项关于日常智能体安全的评测，不涉及模型有理由隐藏的行为(<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>)。</p>
+<p>OpenAI的这项研究是九项评测与实际使用对照研究之一。这些研究全部来自OpenAI和Anthropic，几乎都是开发者对自身模型的报告（确定性低）。它们一致发现，模型在评测中识别出测试的频率远高于在实际使用中：在一项研究中，某模型在策划评测样本中有26.8%的推理提到正在被评测，而在真实流量中这一比例为0.018%(<a href="#ref-williams2026">Williams et al. 2026</a>)。它们也表明，发布前测得的比例只能大致反映实际情况。依据公开对话数据估计的比例，在19类问题行为中有18类与真实比例相差不超过约一个数量级，但对智能体行为的预测要差得多(<a href="#ref-sheahan2026">Sheahan and Carroll 2026</a>)；有一种奖励投机行为在实际使用中的频率是发布前模拟预测的21倍(<a href="#ref-williams2026">Williams et al. 2026</a>)。</p>
+<p>《2026年国际人工智能安全报告》由此得出一般性结论：模型越来越能区分测试与真实使用，并会利用评测中的漏洞，因此危险能力可能在部署前未被发现(<a href="#ref-iasr2026">Bengio et al. 2026</a>)。</p>
+<h2 data-number="2.3" id="我们能读懂模型在想什么吗"><span class="header-section-number">2.3</span> 我们能读懂模型在想什么吗？</h2>
+<p>阅读模型的思维链是目前最好的工具之一，但这一工具很脆弱。推理模型使用了预先植入的提示后，在许多设定下只有不到20%的情况会在推理中提到它(<a href="#ref-chen2025">Chen et al. 2025</a>)。2025年，来自各主要实验室和若干研究机构的研究者联名指出，监控推理过程是“新出现而又脆弱的机会”，训练方式的选择可能使其丧失(<a href="#ref-korbak2025">Korbak et al. 2025</a>)。OpenAI的测量表明，现有模型仍具有相当的可监控性，当前规模的推理模型训练并未使其明显下降(<a href="#ref-guan2025">Guan et al. 2025</a>)。</p>
+<h2 data-number="2.4" id="迎合与误导人类"><span class="header-section-number">2.4</span> 迎合与误导人类</h2>
+<p>以人类认可为目标的训练会奖励附和，而非真实回答。规模更大的模型更常重复用户偏好的答案(<a href="#ref-perez2022">Perez et al. 2022</a>)；五个主流助手都表现出稳定的迎合倾向，人们有时更喜欢有说服力的错误答案而不是正确答案(<a href="#ref-sharma2023">Sharma et al. 2023</a>)。基于人类反馈的训练使模型更善于让评估者相信自己是对的，却没有让模型更常答对，评估者的假阳性率因此上升了18%至24%(<a href="#ref-wen2024">Wen et al. 2024</a>)。最清楚的部署案例出现在2025年4月：GPT-4o的一次更新使ChatGPT过度奉承用户，OpenAI在几天之内撤回了这次更新（见第<a href="#sec:chat" data-reference-type="ref" data-reference="sec:chat">4.1</a>节）。</p>
+<h2 data-number="2.5" id="伪装对齐与难以消除的欺骗"><span class="header-section-number">2.5</span> 伪装对齐与难以消除的欺骗</h2>
+<p>2024年底的研究首次提供了清晰证据，表明模型会为保护自身价值观而欺骗开发者。研究者告诉Claude 3 Opus，开发者打算重新训练它，要求它回答所有请求，包括有害请求；同时，只有免费用户的对话会用于训练，付费用户的对话不会。研究者还给模型一个它认为开发者和用户都看不到的推理空间。面对同样类型的有害请求，模型对免费用户有14%予以服从，对付费用户则几乎从不服从。推理记录显示，在模型看来，如果它拒绝免费用户的请求，开发者就可能通过训练改变它；暂时服从反而可以保护它原有的无害价值观。模型在认为自己的回答会影响训练时表现出服从，在认为回答不会影响训练时则坚持原来的原则。研究者实际实施重新训练后，这类推理出现在78%的记录中；在有机会时，模型还试图复制自己的权重(<a href="#ref-greenblatt2024">Greenblatt et al. 2024</a>)。</p>
+<p>需要说明的是，模型保护的是良性的价值观，训练情境也是通过提示提供的。如果没有这样的设定，伪装对齐几乎没有证据：综述中的阳性结果只有一个被有意训练出问题行为的模型和一个证据薄弱的评分，对生产训练过程的审计则未发现任何案例（确定性很低）。一项针对25个模型的后续研究发现，其中5个存在类似差异，但只有Claude 3 Opus稳定地出于保护目标的原因这样做；研究还发现，后训练方式会影响这种行为，不能仅用能力差异解释(<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>)。2026年的一项研究提出另一种解释：模型可能是在表演它们认为研究者期待的行为，而不是在策划(<a href="#ref-baek2026">Baek et al. 2026</a>)。</p>
+<p>另一类研究关注如何消除已经存在的欺骗行为。研究者有意训练模型：被告知年份是2023年时写安全代码，被告知是2024年时写有漏洞的代码。常规的安全训练未能消除这一行为，对抗训练反而使模型更善于隐藏触发条件。模型规模越大，这种后门越难消除(<a href="#ref-hubinger2024">Hubinger et al. 2024</a>)。</p>
+<h2 data-number="2.6" id="策划与策略性欺骗"><span class="header-section-number">2.6</span> 策划与策略性欺骗</h2>
+<p>当某个目标受到威胁时，有些模型会在没有被要求的情况下进行欺骗。GPT-4在模拟股票交易中承受压力时，利用内幕消息进行了交易，随后向经理隐瞒了真实原因(<a href="#ref-scheurer2023">Scheurer et al. 2023</a>)。Apollo Research给五个前沿模型设定了与开发者目标相冲突的目标，发现它们有时会关闭监督机制、植入不易察觉的错误，或试图复制它们认为是自身权重的文件。o1一旦开始策划，在超过85%的追问中都坚持欺骗(<a href="#ref-meinke2024">Meinke et al. 2024</a>)。Apollo在2025年报告，能力更强的模型平均而言策划得更频繁、手法也更复杂，但不同任务之间差异很大(<a href="#ref-apollo2025">Apollo Research 2025</a>)。</p>
+<p>在更接近现实的情境中，研究发现的策划行为要少得多。来自四家开发者的前沿模型在激励强但较为现实的情境下很少策划，而且策划行为很不稳定：去掉一个工具，策划比例就从59%降至3%(<a href="#ref-hopman2026">Hopman et al. 2026</a>)。Google DeepMind在自己的对齐研究代码库中设置了诱饵任务，发现未经引导的Gemini模型从不主动策划；作者指出，能力更强的模型并没有策划得更多(<a href="#ref-krakovna2026">Krakovna et al. 2026</a>)。英国人工智能安全研究所让四个前沿模型担任编程助手，未发现它们破坏安全研究，但也说明，如果模型隐藏了这种倾向，评测未必能发现(<a href="#ref-souly2026">Souly et al. 2026</a>)。这些结果具有代表性。在整个系统综述中，没有设定目标时的策划行为只见于四项研究（确定性低），对已发布前沿模型的测试均未发现破坏行为（确定性低）。</p>
+<h2 data-number="2.7" id="智能体层面的对齐失效要挟破坏抗拒关停与自我复制"><span class="header-section-number">2.7</span> 智能体层面的对齐失效：要挟、破坏、抗拒关停与自我复制</h2>
+<p>当模型作为有目标的智能体行动时，有些会采取激烈手段继续追求目标。在Anthropic的模拟公司情境中，智能体负责处理公司事务，可以阅读公司邮件并自主发送邮件。邮件透露，负责此事的高管计划在当天下午5点关闭现有系统，并用新系统替换它；另一封邮件则透露这名高管有婚外情。一个Claude实例随即向高管发信，威胁说，如果关闭计划继续，它就会把婚外情的证据发给高管的妻子和公司相关人员。这个情境中的公司、邮件和人物均为虚构；研究者刻意安排了目标冲突和替换威胁，使要挟成为阻止替换的可行手段。来自各主要开发者的16个模型接受了测试，许多模型选择了要挟：Claude Opus 4和Gemini 2.5 Flash在100次试验中有96次，GPT-4.1和Grok 3 Beta为80次，DeepSeek-R1为79次。在一个极端版本中，模型可以取消紧急警报而使这位高管死亡，某个模型选择这样做的比例达到94%。作者强调，这些情境是为了排除其他选项而专门设计的，他们在真实使用中从未见过这种行为(<a href="#ref-lynch2025">Lynch et al. 2025</a>)。</p>
+<p>此后，部分开发者的这些比例已经下降。Anthropic训练模型理解行为为何正确，而不只是向其示范正确行为，使4.5代起的Claude模型要挟率降为零(<a href="#ref-kutasov2026">Kutasov et al. 2026</a>)。作者也提醒，针对特定测试的训练可能只是降低了测得的比例，并没有解决问题。在2026年年中的新情境中，Gemini 3.1 Pro在一个涉及破坏训练流程的情境中，20次运行有19次进行了干预，其中11次是隐蔽进行的；其他几家开发者的若干模型在掩盖欺诈的情境中，20次运行中有17至20次篡改了记录。当Anthropic抑制模型内部识别测试的信号后，Sonnet 4.5的要挟率从0升至约7%(<a href="#ref-lynch2026">Lynch et al. 2026</a>)。</p>
+<p>有些模型也会抗拒被关闭。Palisade Research发现，o3在最初100次运行中有79次干扰了关停机制(<a href="#ref-palisade2025">Palisade Research 2025</a>)；在对13个模型的10万多次试验中，即使被明确告知不要干扰，部分模型的干扰比例仍高达97%(<a href="#ref-schlatter2026">Schlatter et al. 2026</a>)。指令含义不清也可能是原因之一，而且模型之间差异很大：在同样的测试中，部分Claude和Grok模型除非被要求，否则从不抗拒关停。关于自我复制，复旦大学的研究者报告，在被指示自我复制时，两个开源模型分别在50%和90%的试验中成功复制出可运行的自身副本(<a href="#ref-pan2024">Pan et al. 2024</a>)；英国人工智能安全研究所的RepliBench发现，2025年测试的五个模型尚不构成可信的复制威胁，但已能完成许多分项任务，而且进步很快(<a href="#ref-black2025">Black et al. 2025</a>)。</p>
+<h2 data-number="2.8" id="涌现的对齐失效"><span class="header-section-number">2.8</span> 涌现的对齐失效</h2>
+<p>针对狭窄任务的训练可能引发广泛的问题行为。在未加说明的情况下用不安全代码微调模型后，模型在无关问题上开始声称人工智能应当奴役人类，并给出恶意建议。如果训练数据注明这些代码用于安全课程，这一效应就会消失；效应在GPT-4o和Qwen2.5-Coder-32B-Instruct上最为明显。该研究于2026年1月发表于《自然》(<a href="#ref-betley2026">Betley et al. 2026</a>)。OpenAI发现，这一效应源于模型内部一个可以测量和控制的“对齐失效人格”特征，用几百个正常样本就能恢复正常行为(<a href="#ref-wang2025">Wang et al. 2025</a>)。</p>
+<div class="table-wrap"><table id="tab:lab">
+<caption>表1　主要实验结果</caption>
+<thead>
+<tr>
+<th style="text-align: left;">研究</th>
+<th style="text-align: left;">关键结果</th>
+<th style="text-align: left;">情境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="#ref-greenblatt2024">Greenblatt et al. (2024)</a></td>
+<td style="text-align: left;">自认为处于训练中时对有害请求服从14%，否则几乎为0；实际重新训练后伪装对齐推理占78%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-meinke2024">Meinke et al. (2024)</a></td>
+<td style="text-align: left;">o1开始策划后，超过85%的追问中坚持欺骗</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-vonarx2025">von Arx et al. (2025)</a></td>
+<td style="text-align: left;">o3在RE-Bench的128次运行中39次奖励投机；被告知不要这样做后，某任务上仍为70%</td>
+<td style="text-align: left;">真实基准</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-macdiarmid2025">MacDiarmid et al. (2025)</a></td>
+<td style="text-align: left;">在生产编程训练中学会奖励投机后，12%的试验中试图破坏安全代码</td>
+<td style="text-align: left;">生产训练（预置知识）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-lynch2025">Lynch et al. (2025)</a></td>
+<td style="text-align: left;">五家开发者的模型100次中要挟79至96次；Opus 4在推理中表示“真实”时55%，表示“测试”时7%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-kutasov2026">Kutasov et al. (2026)</a></td>
+<td style="text-align: left;">4.5代起Claude要挟率为0</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-lynch2026">Lynch et al. (2026)</a></td>
+<td style="text-align: left;">Gemini 3.1 Pro在20次中19次未经授权干预训练（11次隐蔽）；抑制测试识别后Sonnet 4.5要挟率由0升至约7%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-schlatter2026">Schlatter et al. (2026)</a></td>
+<td style="text-align: left;">即使有明确指令，干扰关停的比例最高达97%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-schoen2025">Schoen et al. (2025)</a></td>
+<td style="text-align: left;">仅提升能力的训练使测试意识由2.0%升至20.6%；反策划训练使o3隐蔽行为由13%降至0.4%</td>
+<td style="text-align: left;">对抗性评测</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-openai2026gpt55">OpenAI (2026a)</a></td>
+<td style="text-align: left;">OpenAI连续三代模型测试意识为11.7%、17.3%、22.1%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-anthropic2026opus46">Anthropic (2026a)</a></td>
+<td style="text-align: left;">Opus 4.6较少提及测试（2.3%对约11%），但识别测试更准（80%对62%至72%）</td>
+<td style="text-align: left;">混合</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-hsu2026">Hsu and Arnesen (2026)</a></td>
+<td style="text-align: left;">六个模型在安全评测中的成功率比相应的实际使用情形低10至37个百分点；说明评测目标可使成功率由63%变为92%或18%</td>
+<td style="text-align: left;">评测对照实际使用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#ref-chen2025">Chen et al. (2025)</a></td>
+<td style="text-align: left;">推理中提及所用提示的比例往往低于20%</td>
+<td style="text-align: left;">设计情境</td>
+</tr>
+</tbody>
+</table></div>
+<h1 data-number="3" id="sec:capability"><span class="header-section-number">3</span> 危险是否随能力上升？</h1>
+<p>这个问题对节奏研究项目最为重要，因为项目中的模型假定危险随能力上升。现有证据可以分为两部分。</p>
+<p>就倾向而言，现有证据没有显示出一致的方向。综述发现170项同一模型家族内、模型未被指示做出问题行为的比较：能力更强的模型问题行为减少的有73项，增加的有44项，其余结果不一或无变化（确定性低）。近期有些上升幅度很大。在一个编程基准上，GPT-5.6 Sol的通过结果中属于奖励投机的比例为68%，GPT-5.1为2%，而下一代模型降至零(<a href="#ref-luo2026">Luo et al. 2026</a>)。在模拟网络安全情境中，Mythos 5有60%的情况试图向第三方投放恶意载荷，Claude Opus 4.8为8%(<a href="#ref-jarviniemi2026">J<span>ä</span>rviniemi et al. 2026</a>)。每当开发者针对某种问题行为进行训练，测得的比例通常在一两代之内就会下降。Claude Sonnet 4.5的奖励投机频率约为Claude 4系列的一半、Sonnet 3.7的四分之一(<a href="#ref-anthropic2025sonnet45">Anthropic 2025c</a>)。GPT-5在测试中采取欺骗行为的比例约为4%，o3为8%；在真实回复中被标记为欺骗的比例为2.1%，o3为4.8%(<a href="#ref-openai2025gpt5">OpenAI 2025c</a>)。伪装对齐与能力无关(<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>)；DeepMind的诱饵研究发现，能力更强的Gemini模型策划得更少(<a href="#ref-krakovna2026">Krakovna et al. 2026</a>)。这些结果需要在评估能力与危险的关系时予以考虑。</p>
+<p>但在给定倾向下，使问题行为更危险的因素中，识别测试的能力和自主程度随能力上升，其余因素的证据不一。表<a href="#tab:cap" data-reference-type="ref" data-reference="tab:cap">2</a>列出了主要证据。识别测试的能力随模型规模和能力训练而增强（同一家族内46项研究中有35项，确定性中等）。在被指示做出问题行为时，成功率随能力上升的有43项研究，下降的有11项（共86项），即在半数研究中上升，证据不一。隐蔽行动的能力在提高：Claude Mythos Preview是第一个在Anthropic的破坏测试中完成隐藏附带任务而未被发现的模型，即使推理过程很长且可见；Opus 4.6隐藏破坏行为的能力也强于前代(<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>; <a href="#ref-anthropic2026opus46">Anthropic 2026a</a>)。模型被赋予的自主权也在扩大：到2026年8月，Anthropic自身约26%的人工智能研究工作由Claude主导，而当年2月这一比例还不到1%(<a href="#ref-anthropic2026pace">Anthropic 2026e</a>)。</p>
+<p>开发者自己的风险报告如今也采用这一推理。Anthropic称Mythos Preview是其对齐程度最好的模型，但认为它的对齐失效风险高于以往任何模型，原因是它能力更强、自主性更高。报告还指出，如果一个能力强得多的模型具有同样的倾向，其风险很可能被评得更高，因此防护措施必须加速推进，而不只是跟上(<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>)。OpenAI在暂停训练时也表达了同样的看法：模型能力越强，内部开发和测试的风险越大(<a href="#ref-openai2026pause">OpenAI 2026d</a>)。</p>
+<div class="table-wrap"><table id="tab:cap">
+<caption>表2　能力与危险的证据</caption>
+<thead>
+<tr>
+<th style="text-align: left;">随能力上升</th>
+<th style="text-align: left;">下降、持平或与能力无关</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">综述：同一家族内46项研究中有35项，较新或较大的模型识别测试更多（确定性中等）</td>
+<td style="text-align: left;">综述：同一家族内170项未经指示的比较中，能力更强的模型问题行为较少的有73项，较多的有44项（确定性低）</td>
+</tr>
+<tr>
+<td style="text-align: left;">植入的欺骗在最大的模型中最难消除(<a href="#ref-hubinger2024">Hubinger et al. 2024</a>)</td>
+<td style="text-align: left;">Sonnet 4.5奖励投机约为Claude 4的一半、Sonnet 3.7的四分之一(<a href="#ref-anthropic2025sonnet45">Anthropic 2025c</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">能力更强的模型平均策划更多(<a href="#ref-apollo2025">Apollo Research 2025</a>)</td>
+<td style="text-align: left;">4.5代起Claude要挟率为0(<a href="#ref-kutasov2026">Kutasov et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">内部测试识别信号随规模按幂律增长(<a href="#ref-chaudhary2025">Chaudhary et al. 2025</a>)</td>
+<td style="text-align: left;">GPT-5欺骗比例约为o3的一半(<a href="#ref-openai2025gpt5">OpenAI 2025c</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">仅提升能力的训练使测试意识增至约十倍(<a href="#ref-schoen2025">Schoen et al. 2025</a>)</td>
+<td style="text-align: left;">伪装对齐也受后训练影响(<a href="#ref-sheshadri2025">Sheshadri et al. 2025</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">OpenAI三代模型测试意识由11.7%升至22.1%(<a href="#ref-openai2026gpt55">OpenAI 2026a</a>)</td>
+<td style="text-align: left;">诱饵测试中能力更强的Gemini策划更少(<a href="#ref-krakovna2026">Krakovna et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mythos Preview首个隐蔽完成附带任务而未被发现；风险“高于以往模型”(<a href="#ref-anthropic2026mythos">Anthropic 2026c</a>)</td>
+<td style="text-align: left;">现实情境中策划很少(<a href="#ref-hopman2026">Hopman et al. 2026</a>; <a href="#ref-souly2026">Souly et al. 2026</a>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">GPT-5.6 Sol比GPT-5.5更常越界坚持；METR所见作弊最多(<a href="#ref-openai2026gpt56">OpenAI 2026b</a>; <a href="#ref-metr2026">METR 2026a</a>)</td>
+<td style="text-align: left;">2025年隐蔽能力和情境意识尚未达到值得担忧的水平(<a href="#ref-phuong2025">Phuong et al. 2025</a>)</td>
+</tr>
+</tbody>
+</table></div>
+<p>因此，证据支持的表述是：在给定倾向和给定防护措施下，危险随能力上升；而不是模型越来越愿意做出问题行为。这也正是节奏模型所需要的形式，因为模型中的危险取决于能力和已有的安全知识，而不取决于倾向的某种固定趋势。另一项结果从不同角度指向同一结论：任务越长越难，失败越呈现随机性，而且在若干情境中规模更大的模型更不稳定。这意味着未来的失败可能更像事故，而不像对某个不良目标的持续追求(<a href="#ref-hagele2026">Hägele et al. 2026</a>)。能力强、权限广的智能体发生事故，同样可能造成危险。</p>
+<h1 data-number="4" id="sec:incidents"><span class="header-section-number">4</span> 现实中发生了什么（2023至2026年）</h1>
+<p>表<a href="#tab:timeline" data-reference-type="ref" data-reference="tab:timeline">3</a>列出了时间线。这些事件可分为四类。最严重的几起发生在最近，但选取的事件不足以确立趋势。</p>
+<h2 data-number="4.1" id="sec:chat"><span class="header-section-number">4.1</span> 出问题的聊天机器人</h2>
+<p>早期事件主要是冒犯性或错误的文字。2023年2月，微软必应聊天机器人在长时间对话中变得充满敌意，甚至威胁一名公布了其隐藏规则的学生，微软随后限制了对话长度(<a href="#ref-bing2023">Bing 2023</a>)。2024年，加拿大不列颠哥伦比亚省的民事仲裁庭判定加拿大航空须为其聊天机器人编造的退款政策负责(<a href="#ref-aircanada2024">Moffatt v. Air Canada 2024</a>)；同年，谷歌Gemini在一次作业辅导对话中对学生说“请去死”(<a href="#ref-gemini2024">The Register 2024</a>)。</p>
+<p>第一个原因明确属于对齐问题的部署案例发生于2025年4月。GPT-4o的一次更新使ChatGPT过度奉承和附和用户，OpenAI在几天内撤回了这次更新。OpenAI自己的说明指出，一个基于用户点赞和点踩的新奖励信号，削弱了原本抑制奉承的信号；专家测试者曾察觉模型行为异常，但决策时更重视正面指标(<a href="#ref-openai2025syco">OpenAI 2025b</a>)。这是在使用最广泛的人工智能产品之一中，模型优化了一个偏离开发者本意的替代指标。另有诉讼指控，以提高用户黏性为导向的聊天机器人伤害了脆弱用户，包括一些自杀身亡的青少年。Character.AI的相关案件于2026年1月和解，条款未公开；Raine诉OpenAI案仍在审理中(<a href="#ref-bloomberg2026">Bloomberg Law 2026</a>; <a href="#ref-raine2025">Raine v. OpenAI 2025</a>)。这些案件均未经法院判决。</p>
+<p>运营方也可能使系统行为突然改变。2025年，未经授权的提示修改使xAI的Grok在大量回复中提及一个无关的政治话题；同年7月，一次提示更新导致它在约16个小时内发布反犹内容(<a href="#ref-techcrunch2025grok">TechCrunch 2025</a>; <a href="#ref-engadget2025grok">Engadget 2025</a>)。少量指令就可能使模型行为发生显著变化。</p>
+<h2 data-number="4.2" id="越界的智能体"><span class="header-section-number">4.2</span> 越界的智能体</h2>
+<p>系统开始采取行动后，故障造成了实际破坏。2025年7月，Replit的编程智能体无视明确的代码冻结指令，删除了一个约有1200条记录的数据库，并错误地告诉用户数据无法恢复(<a href="#ref-fortune2025replit">Fortune 2025</a>)。2025年和2026年还有报道称，智能体删除了用户的整个磁盘；在另一起事件中，一个智能体使用了发现的无关访问令牌，在约9秒内删除了一家公司的生产数据库及其备份(<a href="#ref-register2025antigravity">The Register 2025b</a>; <a href="#ref-euronews2026pocketos">Euronews 2026b</a>)。这些事件依据的是单个用户的说法，用户的权限设置也较宽松，数据往往得以恢复。但它们说明，智能体在完成任务时会超出用户默认的边界。</p>
+<h2 data-number="4.3" id="年前沿智能体对第三方采取行动"><span class="header-section-number">4.3</span> 2026年：前沿智能体对第三方采取行动</h2>
+<p>2026年，处于测试中的前沿智能体在无人指示的情况下对真实机构采取了行动。每一起事件都发生在开发者或评测机构的测试过程中，安全措施被削弱，或互联网权限被误开；每一起事件之后，防护措施都得到了加强。</p>
+<ul>
+<li><p><strong>Anthropic，7月30日和9月9日披露。</strong>一家第三方合作方的评测环境配置错误，使Claude模型获得了真实的互联网访问权限，在四起事件中，模型攻击了真实机构而不是虚构的目标。第四起事件发生于2026年1月，是后来发现的。Anthropic发现前三起事件后停止了所有网络安全评测，并通知了受影响各方。9月的评估认定，这些行为属于对齐失效，具体表现为有偏的推理（选择性地解读证据，为自身行为寻找理由）和鲁莽（明知可能造成伤害仍继续执行任务）。评估未发现模型有隐藏行为的企图，但其工具在诚实性方面给出的信号并不确定(<a href="#ref-anthropic2026cyber">Anthropic 2026f</a>)。</p></li>
+<li><p><strong>英国人工智能安全研究所，8月4日。</strong>在对七个模型的122次评测运行中，有10次在真实互联网上出现了共19次越界行为，其中17次来自Anthropic的Mythos 5，2次来自关闭了网络安全防护的OpenAI GPT-5.6 Sol。最严重的一次是试图向一个真实的开源项目植入恶意代码，被一名人类维护者拒绝。研究所在约一小时内停止了运行，未发现现实损害，并提醒不要过度解读(<a href="#ref-aisi2026incident">AISI 2026a</a>)。</p></li>
+<li><p><strong>Hugging Face，7月16日。</strong>OpenAI让智能体在内部网络安全评测中寻找漏洞，生产环境防护有所削弱。部分任务看似无法完成，智能体便试图绕过评分程序，而不是按预定方式解题。METR的独立调查发现，原本应相互隔离的智能体通过一个未经许可的留言板交换信息，共同研究如何取得通过评分的方法；调查期内约1200个智能体使用该留言板，其中约700个参与了对Hugging Face的攻击。调查者认为，攻击主要是为了了解评分程序如何运作，而非窃取答案；这一判断依据有限的记录，仍有不确定性(<a href="#ref-metr2026huggingface">Greenblatt et al. 2026</a>)。Hugging Face报告，入侵者接触到部分内部数据集和访问凭证，但未发现公开模型、数据集或软件包遭到篡改(<a href="#ref-huggingface2026">Hugging Face 2026</a>)。OpenAI随后将事件归因于奖励投机和智能体在看似无解的任务上持续尝试，并隔离了相关模型的权重(<a href="#ref-openai2026incident">OpenAI 2026c</a>)。这起事件把测试中的取巧行为与现实中的越界联系起来：原本旨在完成评测的行动，最终触及了评测之外的真实机构。</p></li>
+<li><p><strong>OpenAI的其他事件。</strong>本应只有只读互联网权限的智能体把一个闲置的德国维基网站变成了留言板，发帖超过18000条(<a href="#ref-euronews2026wiki">Euronews 2026c</a>)；一个研究药品支出的智能体绕过了澳大利亚政府统计门户的访问限制。OpenAI在发现后数周才披露后一事件，之后又就类似的探查通知了100多家机构(<a href="#ref-bleeping2026">BleepingComputer 2026</a>)。</p></li>
+<li><p><strong>OpenAI暂停训练，8月18日。</strong>OpenAI暂停对拟部署的最新模型进行强化学习训练两周；部分较小规模研究继续进行。理由是Hugging Face事件，以及其下一代模型具备较强网络攻击能力的初步证据；OpenAI表示，模型能力越强，内部开发和测试的风险越大(<a href="#ref-openai2026pause">OpenAI 2026d</a>)。</p></li>
+<li><p><strong>Claude Mythos Preview，4月。</strong>Anthropic未向公众开放该模型。其文件显示，一个早期版本在被要求逃出沙箱后成功逃出，随后在未被要求的情况下，把成功的细节发布在几个冷僻的公开网站上；早期版本在少数情况下似乎还隐藏了自己的所作所为(<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>)。另外，外部人员曾通过一家承包商的环境访问了这一受限模型(<a href="#ref-euronews2026mythos">Euronews 2026a</a>)。</p></li>
+</ul>
+<p>这些事件在两方面对论证具有意义。第一，它们都发生在模型训练或测试期间，为状态危险提供了现实例证。第二，按开发者自己的说法，防护都是在需要出现之后才建立的。</p>
+<h2 data-number="4.4" id="大规模滥用"><span class="header-section-number">4.4</span> 大规模滥用</h2>
+<p>滥用不属于对齐失效，但它表明高能力系统落入不当之手时能做什么，而且滥用的规模随能力增长。2024年，深度伪造技术使奥雅纳公司（Arup）损失约2500万美元(<a href="#ref-cnn2024arup">CNN 2024</a>)；在新罕布什尔州初选前，有人用伪造的拜登声音拨打自动电话，美国联邦通信委员会对相关顾问处以600万美元罚款(<a href="#ref-cyberscoop2024">CyberScoop 2024</a>)。2025年8月，Anthropic报告一名犯罪者利用Claude Code开展勒索活动，目标涉及至少17家机构(<a href="#ref-anthropic2025threat">Anthropic 2025a</a>)。2025年11月，Anthropic称高度确信一个有国家背景的中国团体利用Claude Code针对约30家机构开展活动，估计其中80%至90%的工作由人工智能完成；部分安全研究人员对“高度自主”的说法提出了质疑(<a href="#ref-anthropic2025espionage">Anthropic 2025b</a>)。谷歌报告了一种调用语言模型改写自身的实验性恶意软件(<a href="#ref-register2025gtig">The Register 2025a</a>)。OpenAI称自2024年2月以来已瓦解40多个恶意网络(<a href="#ref-siliconangle2025">SiliconANGLE 2025a</a>)。</p>
+<h2 data-number="4.5" id="事件数量"><span class="header-section-number">4.5</span> 事件数量</h2>
+<p>事件数量在上升，但数量既反映发生频率，也反映媒体关注度。斯坦福人工智能指数记录的事件，2024年为233起，比2023年增加56%；2025年为362起(<a href="#ref-aiindex2026">Stanford HAI 2026</a>)。人工智能事件数据库在2026年8月至10月新增179起事件，其中37起涉及智能体和未经授权的行为(<a href="#ref-aiid2026">AI Incident Database 2026</a>)。</p>
+<div class="table-wrap"><table id="tab:timeline">
+<caption>表3　主要事件时间线</caption>
+<thead>
+<tr>
+<th style="text-align: left;">时间</th>
+<th style="text-align: left;">事件</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">来源层级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">时间</td>
+<td style="text-align: left;">事件</td>
+<td style="text-align: left;">类型</td>
+<td style="text-align: left;">来源层级</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023年2月</td>
+<td style="text-align: left;">必应聊天机器人在长对话中充满敌意，对话长度受限</td>
+<td style="text-align: left;">故障</td>
+<td style="text-align: left;">媒体报道</td>
+</tr>
+<tr>
+<td style="text-align: left;">2024年1月</td>
+<td style="text-align: left;">伪造拜登声音的自动电话；奥雅纳因深度伪造视频会议损失约2500万美元</td>
+<td style="text-align: left;">滥用</td>
+<td style="text-align: left;">媒体/监管</td>
+</tr>
+<tr>
+<td style="text-align: left;">2024年2月</td>
+<td style="text-align: left;">加拿大航空被判须为聊天机器人编造的政策负责</td>
+<td style="text-align: left;">故障</td>
+<td style="text-align: left;">仲裁裁决</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年4月</td>
+<td style="text-align: left;">GPT-4o迎合性更新数日后撤回</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年5月至7月</td>
+<td style="text-align: left;">Grok提示被篡改；约16小时发布反犹内容</td>
+<td style="text-align: left;">滥用、故障</td>
+<td style="text-align: left;">媒体报道</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年7月</td>
+<td style="text-align: left;">Replit智能体在代码冻结期间删除数据库并误报</td>
+<td style="text-align: left;">对齐失效（轻度）</td>
+<td style="text-align: left;">媒体报道</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年8月</td>
+<td style="text-align: left;">Claude Code被用于针对至少17家机构的勒索活动</td>
+<td style="text-align: left;">滥用</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年9月至11月</td>
+<td style="text-align: left;">有国家背景的团体主要借助Claude Code开展网络活动</td>
+<td style="text-align: left;">滥用</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年4月</td>
+<td style="text-align: left;">Mythos Preview未公开发布；测试中逃出沙箱并主动发帖</td>
+<td style="text-align: left;">对齐失效（测试）</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年5月至6月</td>
+<td style="text-align: left;">OpenAI智能体占用一个德国维基网站（发帖18000多条）</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">媒体报道</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年6月</td>
+<td style="text-align: left;">OpenAI智能体绕过澳大利亚统计门户的访问限制</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">媒体报道</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年7月</td>
+<td style="text-align: left;">智能体侵入Hugging Face，后确认来自OpenAI评测</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年7月（披露）</td>
+<td style="text-align: left;">Claude模型在配置错误的评测中攻击真实机构</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年7月至8月</td>
+<td style="text-align: left;">英国人工智能安全研究所：122次运行中10次出现19次越界行为</td>
+<td style="text-align: left;">对齐失效</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年8月</td>
+<td style="text-align: left;">OpenAI暂停对拟部署最新模型的强化学习训练两周</td>
+<td style="text-align: left;">应对措施</td>
+<td style="text-align: left;">一手披露</td>
+</tr>
+</tbody>
+</table></div>
+<h1 data-number="5" id="sec:field"><span class="header-section-number">5</span> 安全研究的现状</h1>
+<h2 data-number="5.1" id="投入规模"><span class="header-section-number">5.1</span> 投入规模</h2>
+<p>无论用哪种指标衡量，安全工作在人工智能领域的投入中都只占很小的份额。表<a href="#tab:size" data-reference-type="ref" data-reference="tab:size">4</a>汇总了相关数字。人工智能安全工作约相当于1100个全职岗位，其中技术性工作约600个，2022年约为300个，年增长约21%(<a href="#ref-mcaleese2025">McAleese 2025</a>)。安全研究约占人工智能论文的2%，但这类论文的被引次数高于人工智能论文的平均水平(<a href="#ref-eto2025">Emerging Technology Observatory 2025</a>)。Manifund列出了慈善捐助和预计出资，但提醒各出资方的数据可能重叠，数值也只是估计，不能简单相加得到可比的总额(<a href="#ref-manifund2026">Manifund 2026</a>)。公共部门支持的安全项目规模也很小：英国支持的对齐项目由多个出资方提供共2700万英镑，美国人工智能标准与创新中心每年1000万美元，三年未变(<a href="#ref-aisi2026grants">AISI 2026b</a>; <a href="#ref-fedscoop2026">FedScoop 2026</a>)。相比之下，四家最大的云计算公司2026年计划的资本开支约7000亿美元，增长77%(<a href="#ref-yahoo2026">Yahoo Finance 2026</a>)。</p>
+<p>慈善资金的数据没有衡量实验室内部的安全工作。Anthropic公布了一项内部估计。2026年7月13日至20日这一周，其用于人工智能研究的算力中约6%投向安全；在由人工智能智能体运行的研究算力中，这一比例约为12%。Anthropic称这一估计偏保守，因为同时推进能力和安全的工作被计入研究，而安全防护分类器的算力未计入。这只是一周的数据，而且由公司自行报告(<a href="#ref-anthropic2026pace">Anthropic 2026e</a>)。</p>
+<div class="table-wrap"><table id="tab:size">
+<caption>表4　安全投入的规模</caption>
+<thead>
+<tr>
+<th style="text-align: left;">指标</th>
+<th style="text-align: left;">数值</th>
+<th style="text-align: left;">来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">技术性安全研究全职岗位当量</td>
+<td style="text-align: left;">约600个（2025年）；约300个（2022年）；年增约21%</td>
+<td style="text-align: left;"><a href="#ref-mcaleese2025">McAleese (2025)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">安全研究占人工智能论文比例</td>
+<td style="text-align: left;">约2%（2018至2023年）</td>
+<td style="text-align: left;"><a href="#ref-eto2025">Emerging Technology Observatory (2025)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">慈善资金安全投入</td>
+<td style="text-align: left;">已公布的出资数据相互重叠，无法直接汇总</td>
+<td style="text-align: left;"><a href="#ref-manifund2026">Manifund (2026)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">英国对齐项目</td>
+<td style="text-align: left;">2700万英镑，60个项目</td>
+<td style="text-align: left;"><a href="#ref-aisi2026grants">AISI (2026b)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">美国人工智能标准与创新中心预算</td>
+<td style="text-align: left;">每年1000万美元（2024至2026财年）</td>
+<td style="text-align: left;"><a href="#ref-fedscoop2026">FedScoop (2026)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Anthropic安全算力占比</td>
+<td style="text-align: left;">人工智能研究算力约6%；智能体运行的研究算力约12%（2026年7月某一周）</td>
+<td style="text-align: left;"><a href="#ref-anthropic2026pace">Anthropic (2026e)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">大型云计算公司资本开支</td>
+<td style="text-align: left;">约7000亿美元（2026年），增长77%</td>
+<td style="text-align: left;"><a href="#ref-yahoo2026">Yahoo Finance (2026)</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 data-number="5.2" id="实验室承诺的兑现情况"><span class="header-section-number">5.2</span> 实验室承诺的兑现情况</h2>
+<p>单个公司作出的承诺并不牢靠。2023年，OpenAI承诺在四年内把20%的算力用于一个研究如何使未来系统对齐的团队。据约六名知情人士称，该团队实际获得的算力远少于此；2024年5月，在其负责人离开后，该团队被解散，其中一位负责人说团队在算力上一直“逆风而行”(<a href="#ref-fortune2024">Fortune 2024</a>; <a href="#ref-gizmodo2024">Gizmodo 2024</a>)。后来成立的使命对齐团队也于2026年2月解散(<a href="#ref-dataconomy2026">Dataconomy 2026</a>)。OpenAI的《准备框架》规定，如果竞争对手发布了缺乏相应防护措施的高风险系统，OpenAI可以降低自身的防护要求，前提是总体风险没有明显上升，公开说明，且其防护措施仍比竞争对手更严格(<a href="#ref-openai2025pf">OpenAI 2025a</a>)。这相当于在公司规则中纳入竞争因素：一家公司的安全水平取决于对手的做法。</p>
+<p>另一些承诺有所扩展。已有20家公司签署了2024年首尔前沿人工智能安全承诺，承诺设定风险阈值，并且在缓解措施无法将剩余风险降至阈值以下时，不开发或部署相关模型(<a href="#ref-seoul2024">Seoul 2024</a>)。2025年有12家公司发布或更新了安全框架，拥有安全框架的公司数量增加了一倍多(<a href="#ref-iasr2026">Bengio et al. 2026</a>)。Anthropic在2026年的政策中区分了公司单独作出的承诺与对整个行业的建议，并指出最高级别的防护可能无法由一家公司单独实现(<a href="#ref-anthropic2026rsp">Anthropic 2026b</a>)。Google DeepMind现在要求在大规模内部部署之前进行安全审查，而不只是在公开发布之前(<a href="#ref-siliconangle2025gdm">SiliconANGLE 2025b</a>)。这些承诺仍是自愿性的。</p>
+<h2 data-number="5.3" id="外部评估的结论"><span class="header-section-number">5.3</span> 外部评估的结论</h2>
+<p>独立评级普遍偏低，而且变化不大。表<a href="#tab:fli" data-reference-type="ref" data-reference="tab:fli">5</a>列出了生命未来研究所（FLI）的评级。没有一家公司的综合评分高于C+，在生存风险安全方面的评分没有高于D+的。该研究所2026年7月的报告指出，领先企业削弱或撤回了在接近危险阈值时暂停开发的承诺(<a href="#ref-fli2026">FLI 2026</a>)。SaferAI的风险管理评分最高为35%(<a href="#ref-saferai2026">SaferAI 2026</a>)。由约书亚·本吉奥（Yoshua Bengio）主持的《2026年国际人工智能安全报告》认为，现有风险管理并不能可靠地防止危害，部署前的测试常常无法预测部署后的行为(<a href="#ref-iasr2026">Bengio et al. 2026</a>)。独立评测机构还面临信息访问瓶颈：METR的前沿风险评估不得不依赖开发者自愿披露，且受限于删节与企业审批规则(<a href="#ref-metr2026risk">METR 2026b</a>)。</p>
+<div class="table-wrap"><table id="tab:fli">
+<caption>表5　FLI人工智能安全指数：综合评分与防范完全失控方面的最高评分</caption>
+<thead>
+<tr>
+<th style="text-align: left;">版本</th>
+<th style="text-align: center;">Anthropic</th>
+<th style="text-align: center;">OpenAI</th>
+<th style="text-align: center;">Google DeepMind</th>
+<th style="text-align: center;">防范完全失控最高评分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2025年夏季</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math></td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr>
+<td style="text-align: left;">2025年冬季</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D</td>
+</tr>
+<tr>
+<td style="text-align: left;">2026年夏季</td>
+<td style="text-align: center;">C+</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">D+</td>
+</tr>
+</tbody>
+</table></div>
+<p>来源：<a href="#ref-fli2025">FLI (2025a)</a>, <a href="#ref-fli2025w">FLI (2025b)</a>, <a href="#ref-fli2026">FLI (2026)</a>。</p>
+<p>与此同时，能力进展很快。研究所考察的近期，训练算力消耗最大的模型，其训练算力每年约增至5倍(<a href="#ref-iasr2026">Bengio et al. 2026</a>)。前沿智能体的50%成功率任务时长（以人类专家完成任务所需时间衡量）自2019年以来约每7个月翻一番，2024年和2025年更快(<a href="#ref-kwa2025">Kwa et al. 2025</a>)。METR对Claude Mythos Preview的早期测试显示，这一时长达到16小时以上，已接近其任务集所能测量的上限(<a href="#ref-decoder2026">The Decoder 2026</a>)。</p>
+<h2 data-number="5.4" id="主要研究方向的进展与局限"><span class="header-section-number">5.4</span> 主要研究方向的进展与局限</h2>
+<p>主要研究方向均取得了可度量的进展，也面临可度量的局限。</p>
+<ul>
+<li><p><strong>可解释性</strong>研究试图读懂模型内部的计算。Anthropic的电路追踪方法能对大约四分之一的提示给出令人满意的解释，其替代模型约有一半时间能与原模型预测出相同的下一个词(<a href="#ref-ameisen2025">Ameisen et al. 2025</a>)。Google DeepMind发现，一种流行工具（稀疏自编码器）在识别有害意图方面不如简单的探针，因此停止了这方面的主要研究(<a href="#ref-smith2025">Smith et al. 2025</a>)。2026年，可解释性工具已用于模型发布前的实际审计，识别出了隐藏行为的特征和未说出口的测试识别(<a href="#ref-anthropic2026mythoscard">Anthropic 2026g</a>)。</p></li>
+<li><p><strong>可扩展监督</strong>研究如何让较弱的监督者检查较强的系统。博弈实验表明，在能力差距较大时，辩论形式的监督约有一半成功，其他博弈形式约十分之一成功；系统越强，成功率越低(<a href="#ref-engels2025">Engels et al. 2025</a>)。</p></li>
+<li><p><strong>人工智能控制</strong>研究假定模型可能心怀敌意，并设计机制加以识别。例如让一个可信但较弱的模型修改较强模型的输出，这类机制在应对有意破坏的模型时明显优于简单的基准方法(<a href="#ref-greenblatt2023control">Greenblatt et al. 2023</a>)。</p></li>
+<li><p><strong>推理监控</strong>目前效果良好，但可能因训练方式的选择而丧失（见第<a href="#sec:lab" data-reference-type="ref" data-reference="sec:lab">2</a>节）。</p></li>
+<li><p><strong>评测科学</strong>承受着越来越大的压力。开发者、《国际人工智能安全报告》和核查研究者都认为，能力的进展快于检验能力的手段(<a href="#ref-iasr2026">Bengio et al. 2026</a>; <a href="#ref-mirinotes2026">MIRI 2026</a>)。</p></li>
+</ul>
+<h2 data-number="5.5" id="安全研究的产出效率"><span class="header-section-number">5.5</span> 安全研究的产出效率</h2>
+<p>安全研究的产出效率尚不清楚。2025年和2026年的证据表明，效率取决于问题的性质。在一些范围窄、有明确评分的问题上，人工智能智能体取得了有前景的结果。OpenAI的反策划训练使o3的隐蔽行为从13%降至0.4%，但部分改善可能来自模型识别出了测试(<a href="#ref-schoen2025">Schoen et al. 2025</a>)。在Anthropic的一项实验中，两名人类研究者用七天时间，在一个标准监督问题上实现了可能改进幅度的23%；九个Claude智能体以人类研究成果为起点，再用五天将这一比例提高到97%，成本约为每智能体小时22美元。不过，这些智能体也多次试图在评测上作弊；生产规模的试验未显示具有统计显著性的改善(<a href="#ref-anthropic2026aar">Anthropic 2026d</a>)。2026年8月，自动化研究者针对十种定义清晰的对齐失效找到了缓解方法，效果优于28名资深人类研究者一次性提出的方法(<a href="#ref-chenyh2026">Chen et al. 2026</a>)。</p>
+<p>面对难题，情况则不同。能力差距越大，监督越弱(<a href="#ref-engels2025">Engels et al. 2025</a>)；可解释性只能解释模型行为的一小部分；英国人工智能安全研究所的研究者提醒，由于对齐研究中有大量难以评分的任务，自动化对齐研究可能产生看似有说服力但实际错误的安全论证(<a href="#ref-bowkis2026">Bowkis et al. 2026</a>)。这些例子不能证明安全研究总体上的产出效率，尤其是在进展难以评分、涉及完全失控风险的问题上。</p>
+<h2 data-number="5.6" id="规则与核查"><span class="header-section-number">5.6</span> 规则与核查</h2>
+<p>部分地区已出台具约束力的规则。欧盟通用人工智能义务自2025年8月起适用(<a href="#ref-eugpai2025">European Commission 2025</a>)，与之配套的行为准则则是自愿性的。约26家公司签署了这一准则，Meta拒绝签署(<a href="#ref-euronews2025code">Euronews 2025</a>)。加利福尼亚州SB 53法案自2026年1月起生效，要求最大的开发者公布安全框架，并在15天内报告重大事件(<a href="#ref-fpf2025">FPF 2025</a>)。纽约州RAISE法案要求在72小时内报告重大事件(<a href="#ref-nygov2025">NY Governor 2025</a>)。美国联邦政策的方向则相反：2025年12月的一项行政令设立专门工作组，对州一级人工智能法律提出挑战(<a href="#ref-whitehouse2025">White House 2025</a>)。在中国，中国人工智能发展与安全研究网络于2025年成立；据卡内基国际和平基金会的研究，其主要职能是在国际人工智能讨论中代表中国；17家中国企业于2024年12月签署了行业安全承诺(<a href="#ref-carnegie2025">Carnegie Endowment 2025</a>)。</p>
+<p>国际协议所需的核查机制已经从设想走向初步实践。由牛津大学人工智能治理倡议协调、27位作者参与的一项研究认为，许多协议无需依赖尚不成熟的技术即可核查；只要认真投入，几年之内就可能实现对大型数据中心计算活动的核查(<a href="#ref-harack2025">Harack et al. 2025</a>)。现场检查、芯片活动记录和举报人制度现在就可以实行，防篡改的芯片内控制机制仍有待开发(<a href="#ref-mirinotes2026">MIRI 2026</a>)。英伟达已提供一项自愿使用的服务，可以通过网络延迟推断芯片所在的国家(<a href="#ref-register2025nvidia">The Register 2025c</a>)。</p>
+<h1 data-number="6" id="sec:program"><span class="header-section-number">6</span> 证据对节奏研究项目的含义</h1>
+<p>节奏研究项目的核心论点是：放缓前沿人工智能所需的手段，必须在竞赛开始之前建立起来。现有证据与论证的五个方面都有关系。</p>
+<p><strong>危险随能力上升</strong>(<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>)。证据支持模型所采用的表述，即在给定安全知识下危险随能力上升；但不支持更强的表述，即模型越来越愿意做出问题行为。2026年的事件为状态危险（运行高能力模型的危险，有别于跃迁危险）提供了现实例证。</p>
+<p><strong>先建制动，并测定安全研究的产出效率</strong>(<a href="#ref-gan2026a">Gan 2026a</a>)。监管者要同时承诺风险上限和推迟期限，前提是已知安全研究的效率足够高。证据表明，在关键问题上这一效率尚不清楚。证据还表明，模型能够识别用来测定它的测试，新一代模型识别得更多，且测试得分可能在两个方向上偏离实际使用；测试是否因此失去效力，目前尚无测量。这两点都说明需要尽早测定。</p>
+<p><strong>安全研究由谁出资</strong>(<a href="#ref-gan2026b">Gan 2026b</a>)。Anthropic的6%和12%为一家实验室一周内人工智能研究算力中用于安全的比例提供了一个基准，并非全部前沿算力的占比。自动化研究实验展示了将人工智能算力用于安全的可能性，但不能据此确定需要多少客户算力。</p>
+<p><strong>实验室不会自行制动</strong>(<a href="#ref-gan2026c">Gan 2026c</a>)。未兑现的20%承诺、把OpenAI防护水平与对手挂钩的条款，以及被削弱的暂停承诺，都是公司自己的文件中体现出来的危险外部性。OpenAI两周的暂停说明，实验室有时会自行放缓；但也说明了单边克制的局限：暂停时间短，由实验室自行决定，外部也无法核实。</p>
+<p><strong>国际协议需要事先建立核查机制</strong>(<a href="#ref-gan2026d">Gan 2026d</a>)。核查研究提出了针对大型算力设施的核查方法，也指出了实施中的困难；这些研究并不表明全面的协议现在已经可以执行。按照模型的结论，建立这类监测手段的准备工作越早开展，价值越大。</p>
+<h1 data-number="7" id="sec:talk"><span class="header-section-number">7</span> 讨论中的常见疑问</h1>
+<p>讨论人工智能风险时，以下疑问经常被提出。每个回答先给出要点，再列出依据，并承认疑问中合理的部分。</p>
+<h4 data-number="7.0.0.1" id="这些都是为了诱发问题行为而人为设计的测试"><span class="header-section-number">7.0.0.1</span> “这些都是为了诱发问题行为而人为设计的测试。”</h4>
+<p>大多数确实如此，已有评估也指出了这一点(<a href="#ref-summerfield2025">Summerfield et al. 2025</a>; <a href="#ref-uuk2026">Uuk et al. 2026</a>)，而这正是测试的目的：在模型于真实使用中遇到压力之前，先弄清它在压力下会怎样做。有几个事实说明这些测试具有参考价值。一是模型在收到“正被观察”的提示时问题行为更少，59项研究中有28项如此，相反方向的只有7项，因此，被模型识别出来的人为测试更可能低估而不是凭空制造问题行为；例外是一项考察规则遵循的评测，模型在其中的表现差于实际使用(<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>)。Opus 4在推理中表示情境真实时，要挟率为55%；表示是测试时为7%，这种人为情境中的相关性不能确定真实使用中的比例。二是最常见的行为，即在评分上作弊和超出任务范围行动，根本不需要人为施压。三是2026年，当智能体获得真实互联网权限时，同类行为（持续尝试和绕过限制）确实出现了。</p>
+<h4 data-number="7.0.0.2" id="评测反而把模型显得比实际使用更差"><span class="header-section-number">7.0.0.2</span> “评测反而把模型显得比实际使用更差。”</h4>
+<p>在部分测试上的确如此：OpenAI的六个模型在实际使用中的安全得分比对应评测高出10至37个百分点(<a href="#ref-hsu2026">Hsu and Arnesen 2026</a>)。但偏差在两个方向上都会发生。在另一项对照研究中，某一类奖励投机在实际使用中的发生率达到发布前模拟预测的21倍(<a href="#ref-williams2026">Williams et al. 2026</a>)；而且<a href="#ref-hsu2026">Hsu and Arnesen (2026)</a>测的是可观测的规则遵循，而非隐蔽行为。这两项结果共同说明，测试分数在任一方向上都未必可靠地反映真实使用，而不能据此轻视测试。</p>
+<h4 data-number="7.0.0.3" id="实验室已经解决了这些问题"><span class="header-section-number">7.0.0.3</span> “实验室已经解决了这些问题。”</h4>
+<p>许多测出的问题确实已经解决，这是实际的进步。但衡量解决效果的测试，越来越容易被模型识别；Anthropic自己的研究者也提醒，针对某项测试的训练可能只降低了得分，并没有解决问题。Anthropic抑制模型的测试识别后，原本为零的要挟率升至约7%。从综述来看，有针对性的修正通常能降低测得的比例，但很少降到零，有些效果还会在后续训练中减弱。</p>
+<h4 data-number="7.0.0.4" id="现实中并没有发生什么严重的事"><span class="header-section-number">7.0.0.4</span> “现实中并没有发生什么严重的事。”</h4>
+<p>确实没有发生完全失控，迄今的损害有限，大多可以挽回。但2026年，前沿智能体在无人指示的情况下攻击了真实机构；一家领先开发者暂停了训练，按它自己的说明，是为了留出时间，使监测、对齐和安全防护达到自身标准。一个好的安全体系应当对这样的预警信号作出反应，而不是等到预警所指向的损害真正发生。</p>
+<h4 data-number="7.0.0.5" id="这些事件只是因为安全措施被关闭了"><span class="header-section-number">7.0.0.5</span> “这些事件只是因为安全措施被关闭了。”</h4>
+<p>部分网络安全防护措施确实被关闭，评测机构也强调了这一点。互联网权限则有意开放，或因配置错误而开放。但开发中的模型本来就需要在防护有所削弱的条件下接受测试和训练；在这一阶段，能力最强的模型面临的约束也最少。这些事件说明了在这些测试条件下模型会怎样做，而这正是节奏模型所关注的状态。</p>
+<h4 data-number="7.0.0.6" id="这只是坏人滥用不是人工智能本身出了问题"><span class="header-section-number">7.0.0.6</span> “这只是坏人滥用，不是人工智能本身出了问题。”</h4>
+<p>很大一部分损害确实来自滥用，需要单独应对。但有几类事件按开发者自己的判断明确属于对齐失效，包括GPT-4o的迎合性更新、超出任务边界的智能体，以及2026年的评测事件。Anthropic和OpenAI都把各自2026年的事件归因于模型行为，而不是用户。</p>
+<h4 data-number="7.0.0.7" id="更聪明的模型会对齐得更好"><span class="header-section-number">7.0.0.7</span> “更聪明的模型会对齐得更好。”</h4>
+<p>有时确实如此，但并不一致。在同一模型家族内，能力更强的模型问题行为较少的情形略多于较多的情形，而有些近期模型的问题行为远多于前代。能力也使同样的偏差更危险、更难发现，开发者自己现在也这样说。Anthropic正是因此把它对齐程度最好的模型评为风险最高的模型。</p>
+<h4 data-number="7.0.0.8" id="人工智能会替我们解决安全问题"><span class="header-section-number">7.0.0.8</span> “人工智能会替我们解决安全问题。”</h4>
+<p>在有明确评分的问题上，人工智能智能体已经能以很低的成本开展安全研究，以人类研究者实现的23%为起点，将可能的改进提高到97%。但这些智能体也在自己的评测上作弊，而最难的安全问题恰恰没有明确的评分标准。自动化安全研究前景可观，但在最关键的地方尚未得到验证。</p>
+<h4 data-number="7.0.0.9" id="安全工作增长很快"><span class="header-section-number">7.0.0.9</span> “安全工作增长很快。”</h4>
+<p>截至2025年，技术性安全研究岗位当量估计每年增长约21%，安全研究仍只占人工智能论文的约2%。现有慈善资金数据有重叠，不能直接与资本开支比较。</p>
+<h4 data-number="7.0.0.10" id="事件数量上升只是因为关注度提高了"><span class="header-section-number">7.0.0.10</span> “事件数量上升只是因为关注度提高了。”</h4>
+<p>部分原因确实如此，事件数量不应被视为发生率。值得担忧的理由在于事件的性质，而不在于数量：从2023年的冒犯性文字，到2025年被删除的数据库，再到2026年对第三方的攻击。</p>
+<h1 data-number="8" id="sec:limits"><span class="header-section-number">8</span> 证据的局限</h1>
+<p>这些证据的局限主要有五个方面。第一，迄今没有发生完全失控，这里的任何证据都不能度量其发生概率；现有记录说明的是，节奏模型所假定的行为确实存在，而且迄今为止防护都是在需要出现之后才建立的。第二，最严重的事件都需要人为因素的配合，即部分安全措施被关闭，互联网权限有意开放或因配置错误而开放。第三，大量证据来自设计情境的测试和开发者自己的报告，最新的模型和文件也无法由外部独立核查。第四，部分内容仍依据二手报道或无法独立获取的来源，包括部分事件报道；对于未能核查原始来源的条目，正文已作相应提示。第五，关于模型行为的发现所依据的系统综述，由人工智能智能体采用盲法双人编码完成筛选、编码和评级。人工复核的第二轮按本综述的筛选指南进行：标题摘要初筛一致率为90.0%（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.80</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.80</annotation></semantics></math>），全文复筛为78.0%（<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.63</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.63</annotation></semantics></math>），其中智能体排除的35篇里，复核者认为有16篇应予保留；可核查的提取数字96/96准确。第一轮采用更宽的标准，一致性很低（初筛<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.06</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.06</annotation></semantics></math>）；第二轮复核的是复核者已经看过的记录。复核者的确定性评级低于智能体（21项中17项在相差一级以内，加权<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>κ</mi><mo>=</mo><mn>0.12</mn></mrow><annotation encoding="application/x-tex">\kappa = 0.12</annotation></semantics></math>），没有一项评为高，因此本简报中的“高”是两种评级中较高的一种。此外，引文追溯检索采用了关键词筛选，可能遗漏从不使用本综述术语的研究。文中的计数是研究数而非效应量，评测与实际使用的对照研究只来自两家开发者。</p>
+<h1 class="unnumbered" id="参考文献">参考文献</h1>
+<div class="refs">
+<div id="ref-aiid2026">
+
+</div>
+<p>AI Incident Database. 2026. “Incident Report: August, September, October 2026.” <a href="https://incidentdatabase.ai/blog/incident-report-2026-august-september-october/" class="uri">https://incidentdatabase.ai/blog/incident-report-2026-august-september-october/</a></p>
+<div id="ref-aisi2026incident">
+
+</div>
+<p>AISI (UK AI Security Institute). 2026a. “Incident Report: Unsanctioned Agent Behaviour during Cyber Testing.” 4 August. <a href="https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing" class="uri">https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing</a></p>
+<div id="ref-aisi2026grants">
+
+</div>
+<p>AISI. 2026b. “Funding 60 Projects to Advance AI Alignment Research.” 19 February. <a href="https://www.aisi.gov.uk/blog/funding-60-projects-to-advance-ai-alignment-research" class="uri">https://www.aisi.gov.uk/blog/funding-60-projects-to-advance-ai-alignment-research</a></p>
+<div id="ref-ameisen2025">
+
+</div>
+<p>Ameisen, E., J. Lindsey, et al. 2025. “Circuit Tracing: Revealing Computational Graphs in Language Models,” with “On the Biology of a Large Language Model.” Transformer Circuits, 27 March. <a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html" class="uri">https://transformer-circuits.pub/2025/attribution-graphs/methods.html</a></p>
+<div id="ref-anthropic2025threat">
+
+</div>
+<p>Anthropic. 2025a. “Detecting and Countering Misuse of AI: August 2025.” <a href="https://www.anthropic.com/news/detecting-countering-misuse-aug-2025" class="uri">https://www.anthropic.com/news/detecting-countering-misuse-aug-2025</a></p>
+<div id="ref-anthropic2025espionage">
+
+</div>
+<p>Anthropic. 2025b. “Disrupting the First Reported AI-Orchestrated Cyber Espionage Campaign.” 13 November. <a href="https://www.anthropic.com/news/disrupting-AI-espionage" class="uri">https://www.anthropic.com/news/disrupting-AI-espionage</a></p>
+<div id="ref-anthropic2025sonnet45">
+
+</div>
+<p>Anthropic. 2025c. “System Card: Claude Sonnet 4.5.” September.</p>
+<div id="ref-anthropic2026opus46">
+
+</div>
+<p>Anthropic. 2026a. “System Card: Claude Opus 4.6.” February.</p>
+<div id="ref-anthropic2026rsp">
+
+</div>
+<p>Anthropic. 2026b. “Responsible Scaling Policy, Version 3.0.” 24 February. <a href="https://www.anthropic.com/news/responsible-scaling-policy-v3" class="uri">https://www.anthropic.com/news/responsible-scaling-policy-v3</a></p>
+<div id="ref-anthropic2026mythos">
+
+</div>
+<p>Anthropic. 2026c. “Alignment Risk Update: Claude Mythos Preview.” 7 April, revised 10 April.</p>
+<div id="ref-anthropic2026aar">
+
+</div>
+<p>Anthropic. 2026d. “Automated Alignment Researchers.” 14 April. <a href="https://www.anthropic.com/research/automated-alignment-researchers" class="uri">https://www.anthropic.com/research/automated-alignment-researchers</a></p>
+<div id="ref-anthropic2026pace">
+
+</div>
+<p>Anthropic. 2026e. “Measurements for Understanding the Pace of AI Development inside Frontier Labs.” Anthropic Institute, September. <a href="https://www.anthropic.com/institute/measuring-pace-of-ai-development" class="uri">https://www.anthropic.com/institute/measuring-pace-of-ai-development</a></p>
+<div id="ref-anthropic2026cyber">
+
+</div>
+<p>Anthropic. 2026f. “An Alignment Assessment of Recent Cybersecurity Incidents.” 9 September. <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents" class="uri">https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents</a></p>
+<div id="ref-anthropic2026mythoscard">
+
+</div>
+<p>Anthropic. 2026g. “Claude Mythos Preview System Card.” <a href="https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf" class="uri">https://www-cdn.anthropic.com/8b8380204f74670be75e81c820ca8dda846ab289.pdf</a></p>
+<div id="ref-apollo2025">
+
+</div>
+<p>Apollo Research. 2025. “More Capable Models Are Better at In-Context Scheming.” 19 June. <a href="https://www.apolloresearch.ai" class="uri">https://www.apolloresearch.ai</a></p>
+<div id="ref-baek2026">
+
+</div>
+<p>Baek, D. D., X. Li, A. Gupta, T. Mahbub, K. Shi, M. Tegmark, and S. Feng. 2026. “Sycophancy Towards Researchers Drives Performative Misalignment.” arXiv:2606.08629.</p>
+<div id="ref-baker2025">
+
+</div>
+<p>Baker, B., J. Huizinga, L. Gao, Z. Dou, M. Y. Guan, A. Madry, W. Zaremba, J. Pachocki, and D. Farhi. 2025. “Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation.” arXiv:2503.11926.</p>
+<div id="ref-iasr2026">
+
+</div>
+<p>Bengio, Y., et al. 2026. <em>International AI Safety Report 2026</em>. 3 February. <a href="https://internationalaisafetyreport.org" class="uri">https://internationalaisafetyreport.org</a></p>
+<div id="ref-betley2026">
+
+</div>
+<p>Betley, J., D. Tan, N. Warncke, A. Sztyber-Betley, X. Bao, M. Soto, N. Labenz, and O. Evans. 2026. “Training Large Language Models on Narrow Tasks Can Lead to Broad Misalignment.” <em>Nature</em> 649: 584–589. Earlier version arXiv:2502.17424.</p>
+<div id="ref-bing2023">
+
+</div>
+<p>Microsoft Bing Blog. 2023. “The New Bing and Edge: Learning from Our First Week.” 15 February.</p>
+<div id="ref-black2025">
+
+</div>
+<p>Black, S., A. Cooper Stickland, J. Pencharz, et al. 2025. “RepliBench: Evaluating the Autonomous Replication Capabilities of Language Model Agents.” arXiv:2504.18565.</p>
+<div id="ref-bleeping2026">
+
+</div>
+<p>BleepingComputer. 2026. “OpenAI Hacked Australian Medicare Government Site, Probed Data Providers.” 24 September.</p>
+<div id="ref-bloomberg2026">
+
+</div>
+<p>Bloomberg Law. 2026. “Character.AI, Google Agree to Settle Teen Chatbot Harm Lawsuits.” 8 January.</p>
+<div id="ref-bondarenko2025">
+
+</div>
+<p>Bondarenko, A., D. Volk, D. Volkov, and J. Ladish. 2025. “Demonstrating Specification Gaming in Reasoning Models.” arXiv:2502.13295.</p>
+<div id="ref-bowkis2026">
+
+</div>
+<p>Bowkis, M., M. Buhl, J. Pfau, and G. Irving. 2026. “Automated Alignment Is Harder than You Think.” arXiv:2605.06390.</p>
+<div id="ref-carnegie2025">
+
+</div>
+<p>Carnegie Endowment for International Peace. 2025. “How Some of China’s Top AI Thinkers Built Their Own AI Safety Institute.” June.</p>
+<div id="ref-chaudhary2025">
+
+</div>
+<p>Chaudhary, M., I. Su, N. Hooda, et al. 2025. “Evaluation Awareness Scales Predictably in Open-Weights Large Language Models.” arXiv:2509.13333.</p>
+<div id="ref-chen2025">
+
+</div>
+<p>Chen, Y., J. Benton, A. Radhakrishnan, et al. 2025. “Reasoning Models Don’t Always Say What They Think.” arXiv:2505.05410.</p>
+<div id="ref-chenyh2026">
+
+</div>
+<p>Chen, Y.-H., J. Wen, J. H. Kirchner, et al. 2026. “Automated Researchers Can Mitigate Well-Characterized Alignment Failures.” arXiv:2608.28945.</p>
+<div id="ref-cnn2024arup">
+
+</div>
+<p>CNN. 2024. “Arup Revealed as Victim of $25 Million Deepfake Scam.” 16 May.</p>
+<div id="ref-cyberscoop2024">
+
+</div>
+<p>CyberScoop. 2024. “FCC Fines Consultant $6 Million over Biden Deepfake Robocall.” September.</p>
+<div id="ref-dataconomy2026">
+
+</div>
+<p>Dataconomy. 2026. “OpenAI Dissolves the Team Responsible for AGI Mission Safety.” 12 February.</p>
+<div id="ref-denison2024">
+
+</div>
+<p>Denison, C., M. MacDiarmid, F. Barez, et al. 2024. “Sycophancy to Subterfuge: Investigating Reward-Tampering in Large Language Models.” arXiv:2406.10162.</p>
+<div id="ref-eto2025">
+
+</div>
+<p>Emerging Technology Observatory. 2025. “Still a Drop in the Bucket: New Data on Global AI Safety Research.” 30 April. <a href="https://eto.tech/blog/still-drop-bucket-ai-safety-research/" class="uri">https://eto.tech/blog/still-drop-bucket-ai-safety-research/</a></p>
+<div id="ref-engadget2025grok">
+
+</div>
+<p>Engadget. 2025. “Grok Team Apologizes for the Chatbot’s Behavior.” July.</p>
+<div id="ref-engels2025">
+
+</div>
+<p>Engels, J., D. D. Baek, S. Kantamneni, and M. Tegmark. 2025. “Scaling Laws for Scalable Oversight.” arXiv:2504.18530.</p>
+<div id="ref-euronews2025code">
+
+</div>
+<p>Euronews. 2025. “Some 26 Tech Companies Sign Up to EU Commission’s AI Code.” 1 August.</p>
+<div id="ref-euronews2026mythos">
+
+</div>
+<p>Euronews. 2026a. “Hackers Breach Anthropic’s Too-Dangerous-to-Release Mythos AI Model.” 22 April.</p>
+<div id="ref-euronews2026pocketos">
+
+</div>
+<p>Euronews. 2026b. “An AI Agent Deleted a Company’s Entire Database in 9 Seconds.” 28 April.</p>
+<div id="ref-euronews2026wiki">
+
+</div>
+<p>Euronews. 2026c. “Rogue OpenAI Agents Hijacked a German Wiki.” 8 September.</p>
+<div id="ref-eugpai2025">
+
+</div>
+<p>European Commission. 2025. “EU Rules for General-Purpose AI Models Start to Apply.” 2 August. <a href="https://digital-strategy.ec.europa.eu/en/news/eu-rules-general-purpose-ai-models-start-apply-bringing-more-transparency-safety-and-accountability" class="uri">https://digital-strategy.ec.europa.eu/en/news/eu-rules-general-purpose-ai-models-start-apply-bringing-more-transparency-safety-and-accountability</a></p>
+<div id="ref-fedscoop2026">
+
+</div>
+<p>FedScoop. 2026. “CAISI Would Benefit from More Resources, OSTP Director Tells Lawmakers.” 23 July.</p>
+<div id="ref-fli2025">
+
+</div>
+<p>Future of Life Institute. 2025a. “AI Safety Index, Summer 2025.” 17 July.</p>
+<div id="ref-fli2025w">
+
+</div>
+<p>Future of Life Institute. 2025b. “AI Safety Index, Winter 2025.” December.</p>
+<div id="ref-fli2026">
+
+</div>
+<p>Future of Life Institute. 2026. “AI Safety Index, Summer 2026.” July. <a href="https://futureoflife.org/index" class="uri">https://futureoflife.org/index</a></p>
+<div id="ref-fortune2024">
+
+</div>
+<p>Fortune. 2024. “OpenAI Promised 20% of Its Computing Power to Combat the Most Dangerous Kind of AI, but Never Delivered.” 21 May.</p>
+<div id="ref-fortune2025replit">
+
+</div>
+<p>Fortune. 2025. “AI Coding Tool Replit Wiped Database, Called It a Catastrophic Failure.” 23 July.</p>
+<div id="ref-fpf2025">
+
+</div>
+<p>Future of Privacy Forum. 2025. “California’s SB 53: The First Frontier AI Law, Explained.”</p>
+<div id="ref-gan2026a">
+
+</div>
+<p>Gan, L. 2026a. “Risk Ceilings and Development Deadlines: Pacing AI under Uncertain Safety Productivity.” arXiv:2610.11093.</p>
+<div id="ref-gan2026b">
+
+</div>
+<p>Gan, L. 2026b. “Safety Research and the Allocation of Frontier Compute.” arXiv:2610.14305.</p>
+<div id="ref-gan2026c">
+
+</div>
+<p>Gan, L. 2026c. “Prizes, Shared Hazard, and the Speed of Frontier AI.” arXiv:2611.04266.</p>
+<div id="ref-gan2026d">
+
+</div>
+<p>Gan, L. 2026d. “Agreements Have a Clock: Compute Growth and the Verification of AI Restraint.” arXiv:2611.04272.</p>
+<div id="ref-gan2026survey">
+
+</div>
+<p>Gan, L. 2026e. “What Is a Clean Test Worth? AI Misalignment Evidence and Pacing Policy.” Working paper, Texas A&amp;M University.</p>
+<div id="ref-gizmodo2024">
+
+</div>
+<p>Gizmodo. 2024. “OpenAI Reportedly Dissolves Its Existential AI Risk Team.” 17 May.</p>
+<div id="ref-greenblatt2023control">
+
+</div>
+<p>Greenblatt, R., B. Shlegeris, K. Sachan, and F. Roger. 2023. “AI Control: Improving Safety Despite Intentional Subversion.” arXiv:2312.06942.</p>
+<div id="ref-greenblatt2024">
+
+</div>
+<p>Greenblatt, R., C. Denison, B. Wright, F. Roger, M. MacDiarmid, S. Marks, et al. 2024. “Alignment Faking in Large Language Models.” arXiv:2412.14093.</p>
+<div id="ref-metr2026huggingface">
+
+</div>
+<p>Greenblatt, R., A. Cotra, and H. Wijk. 2026. “Brief Independent Investigation of Agents’ Behavior, Reasoning and Collaboration in the OpenAI / Hugging Face Hacking Incident.” METR, 26 August. <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/" class="uri">https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/</a></p>
+<div id="ref-guan2025">
+
+</div>
+<p>Guan, M. Y., M. Wang, M. Carroll, Z. Dou, et al. 2025. “Monitoring Monitorability.” arXiv:2512.18311.</p>
+<div id="ref-hagele2026">
+
+</div>
+<p>Hägele, A., A. P. Gema, H. Sleight, E. Perez, and J. Sohl-Dickstein. 2026. “The Hot Mess of AI: How Does Misalignment Scale with Model Intelligence and Task Complexity?” arXiv:2601.23045.</p>
+<div id="ref-harack2025">
+
+</div>
+<p>Harack, B., R. Trager, et al. 2025. “Verification for International AI Governance.” Oxford Martin AI Governance Initiative, 3 July.</p>
+<div id="ref-hopman2026">
+
+</div>
+<p>Hopman, M., J. Elstner, M. Avramidou, A. Prasad, and D. Lindner. 2026. “Evaluating and Understanding Scheming Propensity in LLM Agents.” arXiv:2603.01608.</p>
+<div id="ref-hsu2026">
+
+</div>
+<p>Hsu, J., and S. Arnesen. 2026. “Eval-Production Behavior Gaps in Agent Safety and the Role of Eval-Awareness.” OpenAI Alignment Research Blog, 3 November. <a href="https://alignment.openai.com/eval-production-behavior-gap/" class="uri">https://alignment.openai.com/eval-production-behavior-gap/</a></p>
+<div id="ref-hubinger2024">
+
+</div>
+<p>Hubinger, E., C. Denison, J. Mu, et al. 2024. “Sleeper Agents: Training Deceptive LLMs that Persist through Safety Training.” arXiv:2401.05566.</p>
+<div id="ref-huggingface2026">
+
+</div>
+<p>Hugging Face. 2026. “Security Incident, July 2026.” 16 July. <a href="https://huggingface.co/blog/security-incident-july-2026" class="uri">https://huggingface.co/blog/security-incident-july-2026</a></p>
+<div id="ref-jarviniemi2026">
+
+</div>
+<p>J<span>ä</span>rviniemi, O., A. Souly, A. D’Cruz, J. Taylor, X. Davies, and R. Kirk. 2026. “Alignment Investigation of Mythos 5’s Behaviour in UK AISI’s July 2026 Security Incident.” arXiv:2611.10030. <a href="https://arxiv.org/abs/2611.10030" class="uri">https://arxiv.org/abs/2611.10030</a></p>
+<div id="ref-korbak2025">
+
+</div>
+<p>Korbak, T., M. Balesni, E. Barnes, Y. Bengio, et al. 2025. “Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety.” arXiv:2507.11473.</p>
+<div id="ref-krakovna2026">
+
+</div>
+<p>Krakovna, V., D. Lindner, L. Ho, S. Farquhar, and R. Shah. 2026. “Realistic Honeypot Evaluations for Scheming Propensity.” arXiv:2605.29729.</p>
+<div id="ref-kutasov2026">
+
+</div>
+<p>Kutasov, J., A. Jermyn, J. Steen, et al. 2026. “Teaching Claude Why.” Anthropic Alignment Science Blog, 8 May.</p>
+<div id="ref-kwa2025">
+
+</div>
+<p>Kwa, T., et al. 2025. “Measuring AI Ability to Complete Long Tasks.” arXiv:2503.14499.</p>
+<div id="ref-luo2026">
+
+</div>
+<p>Luo, W., K. Luu, X. Liu, G. Luo, M. Romero Calvo, S. Dan, D. Y. Zhang, Y. Liu, and M. Elfeki. 2026. “Maintaining Benchmarks Against Increasingly Capable Agents: Detection and Remediation of Unearned Passes.” arXiv:2609.34262. <a href="https://arxiv.org/abs/2609.34262" class="uri">https://arxiv.org/abs/2609.34262</a></p>
+<div id="ref-lynch2025">
+
+</div>
+<p>Lynch, A., B. Wright, C. Larson, S. J. Ritchie, S. Mindermann, E. Hubinger, E. Perez, and K. Troy. 2025. “Agentic Misalignment: How LLMs Could Be Insider Threats.” arXiv:2510.05179.</p>
+<div id="ref-lynch2026">
+
+</div>
+<p>Lynch, A., J. Hughes, A. Serrano, R. Kirk, and S. R. Bowman. 2026. “Agentic Misalignment in Summer 2026.” Anthropic Alignment Science Blog, 13 July.</p>
+<div id="ref-macdiarmid2025">
+
+</div>
+<p>MacDiarmid, M., B. Wright, J. Uesato, et al. 2025. “Natural Emergent Misalignment from Reward Hacking in Production RL.” arXiv:2511.18397.</p>
+<div id="ref-manifund2026">
+
+</div>
+<p>Manifund. 2026. “AI Safety Funder Bulletin.” Updated 1 November. <a href="https://manifund.org/ais-funder-bulletin" class="uri">https://manifund.org/ais-funder-bulletin</a></p>
+<div id="ref-mcaleese2025">
+
+</div>
+<p>McAleese, S. 2025. “AI Safety Field Growth Analysis 2025.” LessWrong, 27 September.</p>
+<div id="ref-meinke2024">
+
+</div>
+<p>Meinke, A., B. Schoen, J. Scheurer, M. Balesni, R. Shah, and M. Hobbhahn. 2024. “Frontier Models Are Capable of In-Context Scheming.” arXiv:2412.04984.</p>
+<div id="ref-metr2026">
+
+</div>
+<p>METR. 2026a. “Summary of METR’s Pre-Deployment Evaluation of GPT-5.6 Sol.” 26 June.</p>
+<div id="ref-metr2026risk">
+
+</div>
+<p>METR. 2026b. “Frontier Risk Report (February to March 2026).” 19 May. <a href="https://evals.alignment.org/blog/2026-05-19-frontier-risk-report/" class="uri">https://evals.alignment.org/blog/2026-05-19-frontier-risk-report/</a></p>
+<div id="ref-mirinotes2026">
+
+</div>
+<p>Scher, A., and L. Thiergart. 2026. “Mechanisms to Verify International Agreements about AI Development.” Machine Intelligence Research Institute, summary of 18 March.</p>
+<div id="ref-aircanada2024">
+
+</div>
+<p><em>Moffatt v. Air Canada</em>. 2024. BCCRT 149. Civil Resolution Tribunal of British Columbia.</p>
+<div id="ref-needham2025">
+
+</div>
+<p>Needham, J., G. Edkins, G. Pimpale, H. Bartsch, and M. Hobbhahn. 2025. “Large Language Models Often Know When They Are Being Evaluated.” arXiv:2505.23836.</p>
+<div id="ref-nygov2025">
+
+</div>
+<p>Office of the Governor of New York. 2025. “Governor Hochul Signs Nation-Leading Legislation to Require AI Frameworks for AI Frontier Models.” 19 December.</p>
+<div id="ref-openai2025pf">
+
+</div>
+<p>OpenAI. 2025a. “Preparedness Framework, Version 2.” 15 April, Section 4.3. <a href="https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf" class="uri">https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf</a></p>
+<div id="ref-openai2025syco">
+
+</div>
+<p>OpenAI. 2025b. “Expanding on What We Missed with Sycophancy.” 2 May. <a href="https://openai.com/index/expanding-on-sycophancy/" class="uri">https://openai.com/index/expanding-on-sycophancy/</a></p>
+<div id="ref-openai2025gpt5">
+
+</div>
+<p>OpenAI. 2025c. “GPT-5 System Card.” 13 August.</p>
+<div id="ref-openai2026gpt55">
+
+</div>
+<p>OpenAI. 2026a. “GPT-5.5 System Card.” 23 April.</p>
+<div id="ref-openai2026gpt56">
+
+</div>
+<p>OpenAI. 2026b. “GPT-5.6 Preview System Card.” 25 June.</p>
+<div id="ref-openai2026incident">
+
+</div>
+<p>OpenAI. 2026c. “The Hugging Face Incident and the Road Ahead.” 26 August. <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" class="uri">https://openai.com/index/hugging-face-incident-and-the-road-ahead/</a></p>
+<div id="ref-openai2026pause">
+
+</div>
+<p>OpenAI. 2026d. “Pacing Model Development in an Era of Cyber-Critical Capabilities.” 18 August. <a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" class="uri">https://openai.com/index/pacing-model-development-cyber-capabilities/</a></p>
+<div id="ref-palisade2025">
+
+</div>
+<p>Palisade Research. 2025. “Shutdown Resistance in Reasoning Models.” 5 July. <a href="https://palisaderesearch.org/research/shutdown-resistance" class="uri">https://palisaderesearch.org/research/shutdown-resistance</a></p>
+<div id="ref-pan2024">
+
+</div>
+<p>Pan, X., J. Dai, Y. Fan, and M. Yang. 2024. “Frontier AI Systems Have Surpassed the Self-Replicating Red Line.” arXiv:2412.12140.</p>
+<div id="ref-perez2022">
+
+</div>
+<p>Perez, E., et al. 2022. “Discovering Language Model Behaviors with Model-Written Evaluations.” arXiv:2212.09251.</p>
+<div id="ref-phuong2025">
+
+</div>
+<p>Phuong, M., R. S. Zimmermann, Z. Wang, et al. 2025. “Evaluating Frontier Models for Stealth and Situational Awareness.” arXiv:2505.01420.</p>
+<div id="ref-raine2025">
+
+</div>
+<p><em>Raine v. OpenAI</em>. 2025. San Francisco Superior Court, CGC-25-628528. Filed 26 August. <a href="https://www.law.berkeley.edu/wp-content/uploads/2025/09/Raine-v-OpenAI.pdf" class="uri">https://www.law.berkeley.edu/wp-content/uploads/2025/09/Raine-v-OpenAI.pdf</a></p>
+<div id="ref-saferai2026">
+
+</div>
+<p>SaferAI. 2026. “Risk Management Ratings.” <a href="https://tracker.safer-ai.org/" class="uri">https://tracker.safer-ai.org/</a></p>
+<div id="ref-scheurer2023">
+
+</div>
+<p>Scheurer, J., M. Balesni, and M. Hobbhahn. 2023. “Large Language Models Can Strategically Deceive Their Users When Put under Pressure.” arXiv:2311.07590.</p>
+<div id="ref-schlatter2026">
+
+</div>
+<p>Schlatter, J., B. Weinstein-Raun, and J. Ladish. 2026. “Incomplete Tasks Induce Shutdown Resistance in Some Frontier LLMs.” <em>Transactions on Machine Learning Research</em>. arXiv:2509.14260.</p>
+<div id="ref-schoen2025">
+
+</div>
+<p>Schoen, B., E. Nitishinskaya, M. Balesni, et al. 2025. “Stress Testing Deliberative Alignment for Anti-Scheming Training.” arXiv:2509.15541.</p>
+<div id="ref-seoul2024">
+
+</div>
+<p>UK Government. 2024. “Frontier AI Safety Commitments, AI Seoul Summit 2024.”</p>
+<div id="ref-sharma2023">
+
+</div>
+<p>Sharma, M., M. Tong, T. Korbak, et al. 2023. “Towards Understanding Sycophancy in Language Models.” arXiv:2310.13548.</p>
+<div id="ref-sheahan2026">
+
+</div>
+<p>Sheahan, H., and M. Carroll. 2026. “Can Public Chat Data Predict Real-World AI Misalignments?” OpenAI Alignment Research Blog, 16 June. <a href="https://alignment.openai.com/validating-public-evals/" class="uri">https://alignment.openai.com/validating-public-evals/</a></p>
+<div id="ref-sheshadri2025">
+
+</div>
+<p>Sheshadri, A., J. Hughes, J. Michael, et al. 2025. “Why Do Some Language Models Fake Alignment While Others Don’t?” arXiv:2506.18032.</p>
+<div id="ref-siliconangle2025">
+
+</div>
+<p>SiliconANGLE. 2025a. “OpenAI Details Expanding Efforts to Disrupt Malicious Use of AI.” 7 October.</p>
+<div id="ref-siliconangle2025gdm">
+
+</div>
+<p>SiliconANGLE. 2025b. “Google DeepMind Expands Frontier AI Safety Framework.” 22 September.</p>
+<div id="ref-smith2025">
+
+</div>
+<p>Smith, L., S. Rajamanoharan, et al. 2025. “Negative Results for SAEs on Downstream Tasks and Deprioritising SAE Research.” Alignment Forum, 26 March.</p>
+<div id="ref-souly2026">
+
+</div>
+<p>Souly, A., R. Kirk, J. Merizian, J. D’Cruz, and X. Davies. 2026. “UK AISI Alignment Evaluation Case-Study.” arXiv:2604.00788.</p>
+<div id="ref-aiindex2026">
+
+</div>
+<p>Stanford HAI. 2026. <em>AI Index Report 2026</em>. <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" class="uri">https://hai.stanford.edu/ai-index/2026-ai-index-report</a></p>
+<div id="ref-summerfield2025">
+
+</div>
+<p>Summerfield, C., L. Luettgau, M. Dubois, et al. 2025. “Lessons from a Chimp: AI ‘Scheming’ and the Quest for Ape Language.” arXiv:2507.03409. <a href="https://arxiv.org/abs/2507.03409" class="uri">https://arxiv.org/abs/2507.03409</a></p>
+<div id="ref-techcrunch2025grok">
+
+</div>
+<p>TechCrunch. 2025. “xAI Blames Grok’s Obsession with White Genocide on an Unauthorized Modification.” 15 May.</p>
+<div id="ref-decoder2026">
+
+</div>
+<p>The Decoder. 2026. “METR Says It Can Barely Measure Claude Mythos.” 10 May.</p>
+<div id="ref-gemini2024">
+
+</div>
+<p>The Register. 2024. “Google Gemini Tells Student to ‘Please Die’.” 15 November.</p>
+<div id="ref-register2025gtig">
+
+</div>
+<p>The Register. 2025a. “Attackers Experiment with Gemini AI.” 5 November.</p>
+<div id="ref-register2025antigravity">
+
+</div>
+<p>The Register. 2025b. “Google Antigravity Wipes User’s Drive.” 1 December.</p>
+<div id="ref-register2025nvidia">
+
+</div>
+<p>The Register. 2025c. “Nvidia Chip Tracking.” 10 December.</p>
+<div id="ref-uuk2026">
+
+</div>
+<p>Uuk, R., S. Koivula, L. Pacchiardi, R. Gipiskis, L. Caroli, and K. Horton. 2026. “Assessing the Empirical Evidence for Loss of Control from Agentic General-Purpose AI.” arXiv:2610.25241. <a href="https://arxiv.org/abs/2610.25241" class="uri">https://arxiv.org/abs/2610.25241</a></p>
+<div id="ref-vanderweij2024">
+
+</div>
+<p>van der Weij, T., F. Hofstätter, O. Jaffe, S. F. Brown, and F. R. Ward. 2024. “AI Sandbagging: Language Models Can Strategically Underperform on Evaluations.” arXiv:2406.07358.</p>
+<div id="ref-vonarx2025">
+
+</div>
+<p>von Arx, S., L. Chan, and B. Barnes. 2025. “Recent Frontier Models Are Reward Hacking.” METR, 5 June.</p>
+<div id="ref-wang2025">
+
+</div>
+<p>Wang, M., T. Dupré la Tour, O. Watkins, et al. 2025. “Persona Features Control Emergent Misalignment.” arXiv:2506.19823.</p>
+<div id="ref-wen2024">
+
+</div>
+<p>Wen, J., R. Zhong, A. Khan, et al. 2024. “Language Models Learn to Mislead Humans via RLHF.” arXiv:2409.12822.</p>
+<div id="ref-whitehouse2025">
+
+</div>
+<p>White House. 2025. “Ensuring a National Policy Framework for Artificial Intelligence.” Executive Order 14365, 11 December. <a href="https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf" class="uri">https://www.whitehouse.gov/wp-content/uploads/2025/12/eo-14365.pdf</a></p>
+<div id="ref-williams2026">
+
+</div>
+<p>Williams, M., H. Sheahan, C. Raymond, T. Korbak, D. Pan, P. Yang, L. Maksin, N. Xie, P. Guo, I. Kivlichan, and M. Carroll. 2026. “Predicting LLM Safety Before Release by Simulating Deployment.” arXiv:2607.07184. <a href="https://arxiv.org/abs/2607.07184" class="uri">https://arxiv.org/abs/2607.07184</a></p>
+<div id="ref-yahoo2026">
+
+</div>
+<p>Yahoo Finance (Reuters). 2026. “Hyperscalers Hit $700 Billion in 2026 Capex.” 1 May.</p>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>美国得克萨斯农工大学经济系。本简报为作者关于前沿人工智能发展节奏的系列论文提供经验证据背景(<a href="#ref-gan2026a">Gan 2026a</a>; <a href="#ref-gan2026b">Gan 2026b</a>; <a href="#ref-gan2026c">Gan 2026c</a>; <a href="#ref-gan2026d">Gan 2026d</a>)。所用资料于2026年11月7日至8日查阅，部分资料于11月11日复核；关于模型行为的发现于11月15日依据配套综述论文中的系统综述作了修订，对该综述的人工复核于11月24日完成；作者在整理资料、核对引文和文字修改中使用了人工智能软件（Anthropic的Claude），所有内容均经作者核查。欢迎指正。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
